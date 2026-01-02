@@ -20,3 +20,20 @@ body {
 p {
     margin: 0;
 }
+
+button {
+    font-family: "JetBrains Mono", monospace;
+    border-radius: 6px;
+    border: none;
+
+    padding: 4px 14px;
+    background: linear-gradient(#4b91f7, #367af6);
+    color: #ffffff;
+
+    cursor: pointer;
+    transition: padding 0.2s ease-in;
+}
+
+button:active {
+    padding: 4.3px 15px;
+}
