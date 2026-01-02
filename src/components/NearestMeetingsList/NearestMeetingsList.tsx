@@ -2,14 +2,27 @@ import Block from "../common/Block/Block";
 import MeetingItem from "../MeetingItem/MeetingItem";
 import "./NearestMeetingsList.css";
 import type { MeetingType } from "../../types/MeetingType";
+import { useAppSelector } from "../../hooks/redux";
+import { separateNearest } from "./utils/separateNearest";
 
 /** Блок со списком ближайших встреч */
 function NearestMeetingsList() {
-    const emptyText = () => {
-        return <span className="empty_list_text">Ближайших встреч нет 😕</span>;
+    const { meetings } = useAppSelector((store) => store.meetingsReducer);
+    const separatedMeetings = separateNearest(meetings);
+
+    const EmptyText = () => {
+        return (
+            <span className="empty_list_text">Ближайших записей нет 👀</span>
+        );
     };
 
-    const NearestMeetingsBlock = (title: string, meetings: MeetingType[]) => {
+    const NearestMeetingsBlock = ({
+        title,
+        meetings,
+    }: {
+        title: string;
+        meetings: MeetingType[];
+    }) => {
         return (
             <>
                 {meetings.map((meeting) => (
@@ -25,27 +38,21 @@ function NearestMeetingsList() {
     };
 
     return (
-        <Block title="Ближайшие встречи">
-            <MeetingItem
-                person="Vadim T."
-                date={new Date()}
-                links={{ telegram: "https://t.me/neblessed" }}
-            />
-            <MeetingItem
-                person="Julia K."
-                date={new Date()}
-                links={{ telegram: "https://t.me/neblessed" }}
-            />
-            <MeetingItem
-                person="Arnold S."
-                date={new Date()}
-                links={{ telegram: "https://t.me/neblessed" }}
-            />
-            <MeetingItem
-                person="Tom K."
-                date={new Date()}
-                links={{ telegram: "https://t.me/neblessed" }}
-            />
+        <Block title="Ближайшие записи">
+            {separatedMeetings.today.length > 0 && (
+                <NearestMeetingsBlock
+                    title="Сегодня"
+                    meetings={separatedMeetings.today}
+                />
+            )}
+            {separatedMeetings.tomorrow.length > 0 && (
+                <NearestMeetingsBlock
+                    title="Завтра"
+                    meetings={separatedMeetings.tomorrow}
+                />
+            )}
+            {separatedMeetings.today.length === 0 &&
+                separatedMeetings.tomorrow.length === 0 && <EmptyText />}
         </Block>
     );
 }

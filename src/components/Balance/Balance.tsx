@@ -101,7 +101,7 @@ function Balance() {
                         className="balance_popover_content__arrow"
                         src="./icons/arrow-right.svg"
                         onClick={() => {
-                            if (!goal || goal <= 0) {
+                            if (!tempGoal || tempGoal <= 0) {
                                 const input = document.getElementsByClassName(
                                     "balance_popover_content__input"
                                 );
