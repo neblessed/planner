@@ -7,7 +7,7 @@ function App() {
         <>
             <div className="app_row1">
                 <NearestMeetingsList />
-                <Balance balance={83700} expenses={-3753} />
+                <Balance />
             </div>
         </>
     );

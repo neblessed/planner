@@ -3,28 +3,28 @@ import Amount from "../common/Amount/Amout";
 import Block from "../common/Block/Block";
 import "./Balance.css";
 import Popover from "../common/Popover/Popover";
-
-type BalanceProps = {
-    balance: number;
-    expenses?: number;
-};
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
+import { setupGoal } from "../../store/slice/meetings.slice";
 
 /** Блок балансом */
-function Balance({ balance, expenses }: BalanceProps) {
+function Balance() {
+    const dispatch = useAppDispatch();
+    const { balance, goal } = useAppSelector((store) => store.meetingsReducer);
     const [period, setPeriod] = useState<"week" | "month" | "all">("week");
     const [goalOpened, setGoalOpened] = useState(false);
-    //TODO Начальное значение тянуть из БД
-    const [goal, setGoal] = useState(1000);
+    const [tempGoal, setTempGoal] = useState(goal);
 
-    const progress = (balance / goal) * 100;
+    const progress = (balance.total / tempGoal) * 100;
 
     return (
         <Block title="Мой баланс">
             <div className="balance_block">
                 <div className="balance_block__amounts">
                     {/* TODO Считать чистую сумму */}
-                    <Amount amount={balance} size="large" />
-                    {expenses && <Amount amount={expenses} size="small" />}
+                    <Amount amount={balance.total} size="large" />
+                    {balance.spendings < 0 && (
+                        <Amount amount={balance.spendings} size="small" />
+                    )}
                 </div>
                 <div className="balance_block__goal">
                     <div className="balance_block__goal_progress">
@@ -39,7 +39,7 @@ function Balance({ balance, expenses }: BalanceProps) {
                         />
                     </div>
                     <span className="balance_block__goal_progress_percent">
-                        {progress > 100 ? 100 : progress}%
+                        {progress > 100 ? 100 : progress.toFixed(1)}%
                     </span>
                 </div>
                 <div className="balance_block__controls">
@@ -94,8 +94,8 @@ function Balance({ balance, expenses }: BalanceProps) {
                         className="balance_popover_content__input"
                         placeholder="Новая цель, ₽"
                         type="number"
-                        value={goal}
-                        onChange={(e) => setGoal(Number(e.target.value))}
+                        value={tempGoal}
+                        onChange={(e) => setTempGoal(Number(e.target.value))}
                     />
                     <img
                         className="balance_popover_content__arrow"
@@ -108,7 +108,7 @@ function Balance({ balance, expenses }: BalanceProps) {
 
                                 input[0].classList.add("input-error");
                             } else {
-                                setGoal(goal);
+                                dispatch(setupGoal(tempGoal));
                                 setGoalOpened(false);
                             }
                         }}
