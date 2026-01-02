@@ -1,34 +1,13 @@
 import "./App.css";
-
-import Block from "./components/common/Block/Block";
-import MeetingItem from "./components/MeetingItem/MeetingItem";
+import Balance from "./components/Balance/Balance";
+import NearestMeetingsList from "./components/NearestMeetingsList/NearestMeetingsList";
 
 function App() {
     return (
         <>
             <div className="app_row1">
-                <Block title="Ближайшие встречи">
-                    <MeetingItem
-                        person="Vadim T."
-                        date={new Date()}
-                        links={{ telegram: "https://t.me/neblessed" }}
-                    />
-                    <MeetingItem
-                        person="Julia K."
-                        date={new Date()}
-                        links={{ telegram: "https://t.me/neblessed" }}
-                    />
-                    <MeetingItem
-                        person="Arnold S."
-                        date={new Date()}
-                        links={{ telegram: "https://t.me/neblessed" }}
-                    />
-                    <MeetingItem
-                        person="Tom K."
-                        date={new Date()}
-                        links={{ telegram: "https://t.me/neblessed" }}
-                    />
-                </Block>
+                <NearestMeetingsList />
+                <Balance balance={83700} expenses={-3753} />
             </div>
         </>
     );

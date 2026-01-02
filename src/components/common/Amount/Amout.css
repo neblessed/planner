@@ -1,5 +1,5 @@
 .amount {
-    color: var(--green);
+    color: rgba(0, 0, 0, 0.551);
 }
 
 .loss {
@@ -8,12 +8,12 @@
 
 .small {
     font-size: 14px;
-    font-weight: 400;
+    font-weight: 600;
 }
 
 .medium {
     font-size: 18px;
-    font-weight: 600;
+    font-weight: 700;
 }
 
 .large {

@@ -2,13 +2,13 @@ import "./Amout.css";
 
 type AmoutProps = {
     amount: number;
-    size: "small" | "medium" | "large";
+    size?: "small" | "medium" | "large";
 };
 
 function Amount({ amount, size = "medium" }: AmoutProps) {
     return (
         <span className={`amount ${size} ${amount < 0 ? "loss" : ""}`}>
-            {amount} ₽
+            {amount}₽
         </span>
     );
 }
