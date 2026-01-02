@@ -1,7 +1,7 @@
 import "./MeetingItem.css";
 import type { MeetingType } from "../../types/MeetingType";
 
-type MeetingItemProps = Omit<MeetingType, "location" | "id">;
+type MeetingItemProps = Omit<MeetingType, "location" | "id" | "status">;
 
 const formatTime = (date: Date) => {
     return `${date.getHours()}:${date.getMinutes()}`;

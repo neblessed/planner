@@ -1,3 +1,5 @@
+import type { StatusType } from "./StatusType";
+
 export type MeetingType = {
     id: number;
     /** ФИО заказчика **/
@@ -13,4 +15,5 @@ export type MeetingType = {
         /** Ссылка на портфолио с выполненной работой **/
         wfolio?: string;
     };
+    status: StatusType;
 };
