@@ -31,9 +31,9 @@ button {
     color: #ffffff;
 
     cursor: pointer;
-    transition: padding 0.2s ease-in;
+    transition: padding 0.1s ease-in;
 }
 
 button:active {
-    padding: 4.3px 15px;
+    padding: 4.4px 15px;
 }
