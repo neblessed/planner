@@ -47,9 +47,11 @@
 }
 
 .meeting_row__time {
+    font-size: 12px;
+    font-weight: 400;
     border-radius: 4px;
     padding: 0px 4px;
-    background-color: rgba(0, 0, 0, 0.286);
+    background-color: var(--dark-grey);
 
     color: white;
 

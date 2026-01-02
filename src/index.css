@@ -8,6 +8,7 @@
     --green: rgb(69, 240, 163);
     --aqua-green: rgba(137, 237, 192, 0.973);
     --light-grey: rgba(0, 0, 0, 0.097);
+    --dark-grey: rgba(0, 0, 0, 0.551);
 
     /* background-color: rgb(255, 255, 255); */
     background: url(../public/background.jpg);
