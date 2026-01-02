@@ -19,6 +19,8 @@
     border: 1px solid var(--light-grey);
     border-radius: 8px;
     background-color: rgba(0, 0, 0, 0.021);
+
+    overflow: hidden;
 }
 
 .balance_block__switcher_period {
@@ -77,7 +79,7 @@
 
 .balance_block__goal {
     display: flex;
-    gap: 5px;
+    gap: 8px;
     align-items: center;
 }
 
@@ -92,6 +94,7 @@
 
     border: 1px solid var(--light-grey);
     border-radius: 8px;
+    overflow: hidden;
 }
 
 .balance_block__goal_progress_current {
