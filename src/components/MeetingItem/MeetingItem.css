@@ -1,0 +1,57 @@
+.meeting_row {
+    margin-inline: auto;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.meeting_row__info {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+    border-bottom: 0.5px solid rgba(0, 0, 0, 0.074);
+
+    margin-right: 7px;
+}
+
+.meeting_row__bullet {
+    width: 3px;
+    height: 3px;
+    background-color: rgba(0, 0, 0, 0.071);
+    border-radius: 15px;
+}
+
+.meeting_row__person {
+    text-align: start;
+    width: 160px;
+    font-weight: 300;
+}
+
+.meeting_row__telegram {
+    display: inherit;
+    align-content: center;
+    opacity: 0.2;
+
+    transition: opacity 0.18s ease-in-out;
+}
+
+.meeting_row__telegram:hover {
+    opacity: 1;
+}
+
+.meeting_row__telegram img {
+    width: auto;
+    height: 15px;
+}
+
+.meeting_row__time {
+    border-radius: 4px;
+    padding: 0px 4px;
+    background-color: rgba(137, 237, 192, 0.973);
+
+    color: white;
+
+    cursor: default;
+}
