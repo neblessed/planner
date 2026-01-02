@@ -5,6 +5,8 @@
     font-weight: 500;
 
     --block-raduis: 14px;
+    --green: rgb(69, 240, 163);
+    --aqua-green: rgba(137, 237, 192, 0.973);
 
     background-color: rgba(255, 255, 255, 0);
 }

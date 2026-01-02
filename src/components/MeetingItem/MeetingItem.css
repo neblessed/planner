@@ -49,7 +49,7 @@
 .meeting_row__time {
     border-radius: 4px;
     padding: 0px 4px;
-    background-color: rgba(137, 237, 192, 0.973);
+    background-color: var(--aqua-green);
 
     color: white;
 
