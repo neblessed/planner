@@ -1,0 +1,19 @@
+import { createSlice } from "@reduxjs/toolkit";
+import type { InitialMeetingsStateType } from "../types/MeetingsStateType";
+
+const initialMeetingsState: InitialMeetingsStateType = {
+    meetings: [],
+    goal: 100000,
+    balance: {
+        total: 53000,
+        spendings: 3753,
+    },
+};
+
+const meetingsSlice = createSlice({
+    name: "meetingsSlice",
+    initialState: initialMeetingsState,
+    reducers: {},
+});
+
+export default meetingsSlice.reducer;
