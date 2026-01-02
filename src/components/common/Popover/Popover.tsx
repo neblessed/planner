@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import "./Popover.css";
 import { useOnClickOutside } from "../../../hooks/useOnClickOutside";
 
@@ -13,7 +13,6 @@ type PopoverProps = {
 function Popover({ title, children, isOpen = true, onClose }: PopoverProps) {
     const popoverRef = useRef<HTMLDivElement>(null);
 
-    // Если передана функция onClose, используем закрытие по клику вне
     useOnClickOutside(popoverRef, () => {
         if (onClose && isOpen) {
             onClose();
