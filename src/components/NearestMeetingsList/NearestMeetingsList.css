@@ -3,3 +3,29 @@
     color: rgba(0, 0, 0, 0.453);
     font-size: 14px;
 }
+
+.meeting_days {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.meeting_day_block {
+    text-align: start;
+    background-color: rgba(0, 0, 0, 0.032);
+    border-radius: 5px;
+    padding: 5px 5px;
+}
+
+.meeting_day_block__title {
+    background: var(--green);
+    border-radius: 3px;
+    padding: 0px 3px;
+
+    opacity: 0.8;
+}
+
+.meeting_day_block__items {
+    margin-top: 5px;
+}

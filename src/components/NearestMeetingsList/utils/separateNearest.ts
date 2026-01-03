@@ -21,7 +21,6 @@ export const separateNearest = (meetings: MeetingType[]): SeparatedMeetings => {
         const meetingDate = new Date(meeting.date);
         meetingDate.setHours(0, 0, 0, 0);
 
-        // Сравниваем даты (без времени)
         if (meetingDate.getTime() === today.getTime()) {
             separated.today.push(meeting);
         } else if (meetingDate.getTime() === tomorrow.getTime()) {
