@@ -1,17 +1,23 @@
-#root {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 2rem;
-    text-align: center;
-}
-
 .planner {
+    width: 1280px;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 20px 50px;
+
     display: flex;
     flex-direction: column;
+    align-content: center;
     gap: 50px;
 }
 
 .widgets_row__1 {
-    display: flex;
-    gap: 20px;
+    align-self: flex-end;
+}
+
+.widgets_row__2 {
+    align-self: center;
+}
+
+.menu_row {
+    align-self: center;
 }

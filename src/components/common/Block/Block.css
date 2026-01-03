@@ -1,7 +1,7 @@
 .block {
-    width: 300px;
+    min-width: 300px;
+    max-width: 1000px;
     height: auto;
-    max-height: 180px;
 
     border: 1px solid rgba(0, 0, 0, 0.097);
     border-radius: var(--block-raduis);
@@ -37,6 +37,7 @@
 .block__content {
     width: 100%;
     height: auto;
+    max-height: 280px;
 
     padding: 10px;
     font-size: 13px;

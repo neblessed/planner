@@ -12,6 +12,8 @@ function App() {
         <div className="planner">
             <div className="widgets_row__1">
                 <NearestMeetingsList />
+            </div>
+            <div className="widgets_row__2">
                 <Balance />
             </div>
             <div className="menu_row">
