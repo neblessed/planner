@@ -32,7 +32,15 @@ function DatePicker({ label, placeholder = "Выберите дату" }: DatePi
             </div>
             {isOpen && (
                 <div className="calendar">
-                    <div className="calendar__header"></div>
+                    <div className="calendar__header">
+                        <span className="calendar__header_period">
+                            Январь 2026
+                        </span>
+                        <div className="calendar__header_controls">
+                            <img alt="<" src="./icons/arrow-right-2.svg" />
+                            <img alt=">" src="./icons/arrow-left-2.svg" />
+                        </div>
+                    </div>
                     <div className="calendar__days">
                         {Array.from({ length: 31 }).map((_, day) => {
                             const current = day + 1;
@@ -43,6 +51,10 @@ function DatePicker({ label, placeholder = "Выберите дату" }: DatePi
                                 </span>
                             );
                         })}
+                    </div>
+                    <div className="calendar__time">
+                        <span className="calendar__time_label">Время:</span>
+                        <input type="time"></input>
                     </div>
                 </div>
             )}
