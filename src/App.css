@@ -5,7 +5,13 @@
     text-align: center;
 }
 
-.app_row1 {
+.planner {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.widgets_row__1 {
     display: flex;
     gap: 20px;
 }
