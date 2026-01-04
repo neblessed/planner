@@ -7,6 +7,7 @@ type FieldProps = {
     value: string;
     setValue: (value: string) => void;
     type?: HTMLInputTypeAttribute;
+    error?: string;
 };
 
 function Field({
@@ -15,6 +16,7 @@ function Field({
     value,
     setValue,
     type = "text",
+    error,
 }: FieldProps) {
     return (
         <div className="field">
@@ -24,6 +26,7 @@ function Field({
                 placeholder={placeholder}
                 value={value}
                 onChange={(e) => setValue(e.target.value)}
+                className={error ? "input-error" : ""}
             />
         </div>
     );

@@ -5,9 +5,9 @@ export type MeetingType = {
     /** ФИО клиента **/
     person: string;
     /** Место встречи **/
-    location?: string;
+    location: string;
     /** Дата встречи **/
-    date: Date;
+    date: Date | null;
     /** Ссылки **/
     links: {
         /** Telegram клиента **/

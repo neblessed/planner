@@ -6,6 +6,7 @@ type DatePickerProps = {
     placeholder?: string;
     date: string;
     setDate: (date: string) => void;
+    error?: string;
 };
 
 const formatISODateToFieldValue = (isoDate: string) => {
@@ -28,6 +29,7 @@ function DatePicker({
     placeholder = "Выберите дату",
     date,
     setDate,
+    error,
 }: DatePickerProps) {
     const now = new Date();
     const [calendarDate, setCalendarDate] = useState(now);
@@ -42,7 +44,11 @@ function DatePicker({
                 {label && (
                     <span className="datepicker__root_label">{label}:</span>
                 )}
-                <div className="datepicker__root_field">
+                <div
+                    className={`datepicker__root_field ${
+                        error ? "input-error" : ""
+                    }`}
+                >
                     {date ? (
                         <span className="datepicker__root_field_value">
                             {formatISODateToFieldValue(date)}
