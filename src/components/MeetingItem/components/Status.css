@@ -5,6 +5,7 @@
     font-size: 11px;
 
     cursor: pointer;
+    text-wrap-mode: nowrap;
 }
 
 /* Назначено */
