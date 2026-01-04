@@ -13,7 +13,7 @@ function CreationModal({ setClose }: CreationModalProps) {
         "meeting"
     );
     return (
-        <Modal title="Создание" setOpen={setClose}>
+        <Modal title="Создание записи" setOpen={setClose}>
             <div className="modal_block__controls">
                 <div className="modal_block__switcher">
                     <span

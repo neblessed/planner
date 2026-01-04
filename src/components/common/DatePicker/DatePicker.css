@@ -38,10 +38,15 @@
     opacity: 0.5;
 }
 
+.datepicker__root_field_value {
+    opacity: 1;
+    font-size: 14px;
+}
+
 .calendar {
     position: absolute;
 
-    width: 230px;
+    width: 220px;
     height: 185px;
 
     border: 1px solid rgba(0, 0, 0, 0.097);
@@ -64,17 +69,18 @@
 }
 
 .calendar__header_period {
+    text-transform: capitalize;
     font-size: 15px;
     font-weight: 700;
 }
 
 .calendar__header_controls {
     display: flex;
-    gap: 20px;
+    gap: 30px;
 
     & img {
         width: auto;
-        height: 15px;
+        height: 12px;
 
         cursor: pointer;
     }
@@ -105,6 +111,11 @@
     color: #0a7aff;
     border-radius: 20%;
     background: rgba(10, 122, 255, 0.12);
+}
+
+.calendar__footer {
+    display: inherit;
+    justify-content: space-between;
 }
 
 .calendar__time {
