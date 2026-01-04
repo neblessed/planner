@@ -7,7 +7,7 @@
     display: flex;
     flex-direction: column;
     align-content: center;
-    gap: 50px;
+    gap: 30px;
 }
 
 .widgets_row__1 {
@@ -16,6 +16,12 @@
 
 .widgets_row__2 {
     align-self: center;
+}
+
+.widgets_row__3 {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
 }
 
 .menu_row {

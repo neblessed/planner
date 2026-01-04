@@ -17,7 +17,8 @@
 
     display: flex;
     align-items: center;
-    gap: 40px;
+    justify-content: center;
+    position: relative;
 
     background-color: #f5f5f5;
     cursor: pointer;
@@ -27,6 +28,8 @@
 .block__controls {
     display: flex;
     gap: 8px;
+    position: absolute;
+    left: 15px;
 }
 
 .block__label {

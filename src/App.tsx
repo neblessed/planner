@@ -4,6 +4,7 @@ import Balance from "./components/Balance/Balance";
 import Menu from "./components/Menu/Menu";
 import NearestMeetingsList from "./components/NearestMeetingsList/NearestMeetingsList";
 import CreationModal from "./components/modals/CreationModal/CreationModal";
+import Block from "./components/common/Block/Block";
 
 function App() {
     const [creationModalVisible, setCreationModalVisible] = useState(false);
@@ -15,6 +16,17 @@ function App() {
             </div>
             <div className="widgets_row__2">
                 <Balance />
+            </div>
+            <div className="widgets_row__3">
+                <Block title="Запланировано">
+                    <span>stub</span>
+                </Block>
+                <Block title="Ожидают обработки">
+                    <span>stub</span>
+                </Block>
+                <Block title="Выполнено">
+                    <span>stub</span>
+                </Block>
             </div>
             <div className="menu_row">
                 <Menu onAddClick={setCreationModalVisible} />
