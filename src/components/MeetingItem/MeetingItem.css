@@ -8,7 +8,7 @@
 
 .meeting_row__info {
     display: flex;
-    gap: 10px;
+    gap: 18px;
     align-items: center;
 
     border-bottom: 0.5px solid rgba(0, 0, 0, 0.074);
@@ -32,7 +32,7 @@
 .meeting_row__telegram {
     display: inherit;
     align-content: center;
-    opacity: 0.2;
+    opacity: 0.6;
 
     transition: opacity 0.18s ease-in-out;
 }
