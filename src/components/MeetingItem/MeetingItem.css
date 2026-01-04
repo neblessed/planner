@@ -16,7 +16,11 @@
     max-width: 400px;
     align-items: center;
     gap: 8px;
-    margin-inline: 8px;
+    padding-inline: 4px;
+
+    text-wrap-mode: nowrap;
+
+    cursor: default;
 }
 
 .meeting_row__info {
