@@ -49,21 +49,48 @@ function NearestMeetingsList() {
     return (
         <Block title="Ближайшие записи">
             <div className="meeting_days">
-                {separatedMeetings.today.length > 0 && (
-                    <NearestMeetingsBlock
-                        title="Сегодня"
-                        meetings={separatedMeetings.today}
-                    />
-                )}
-                {separatedMeetings.tomorrow.length > 0 && (
-                    <NearestMeetingsBlock
-                        title="Завтра"
-                        meetings={separatedMeetings.tomorrow}
-                    />
-                )}
+                {Object.keys(separatedMeetings).map((key) => {
+                    const meetingsArray = separatedMeetings[key];
+
+                    if (key === "one" && meetingsArray.length > 0) {
+                        return (
+                            <NearestMeetingsBlock
+                                key={key}
+                                title="Сегодня"
+                                meetings={meetingsArray}
+                            />
+                        );
+                    }
+
+                    if (key === "two" && meetingsArray.length > 0) {
+                        return (
+                            <NearestMeetingsBlock
+                                key={key}
+                                title="Завтра"
+                                meetings={meetingsArray}
+                            />
+                        );
+                    }
+
+                    if (meetingsArray.length > 0) {
+                        return (
+                            <NearestMeetingsBlock
+                                key={key}
+                                title={new Date(
+                                    meetingsArray[0].date
+                                ).toLocaleDateString("ru-RU", {
+                                    weekday: "long",
+                                    day: "numeric",
+                                })}
+                                meetings={meetingsArray}
+                            />
+                        );
+                    }
+                })}
             </div>
-            {separatedMeetings.today.length === 0 &&
-                separatedMeetings.tomorrow.length === 0 && <EmptyText />}
+            {!Object.keys(separatedMeetings).some(
+                (s) => separatedMeetings[s].length > 0
+            ) && <EmptyText />}
         </Block>
     );
 }

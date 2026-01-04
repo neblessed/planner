@@ -24,6 +24,7 @@
     padding: 0px 3px;
 
     opacity: 0.8;
+    text-transform: capitalize;
 }
 
 .meeting_day_block__items {
