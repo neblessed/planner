@@ -6,7 +6,7 @@
 
 .balance_block__amounts {
     display: flex;
-    gap: 5px;
+    gap: 8px;
     justify-content: center;
     align-items: center;
 }

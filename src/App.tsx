@@ -18,7 +18,7 @@ function App() {
                 <Balance />
             </div>
             <div className="widgets_row__3">
-                <Block title="Запланировано">
+                <Block title="Запланировано 📅">
                     <span>
                         Lorem ipsum dolor sit amet, consectetur adipisicing
                         elit. Quasi asperiores possimus molestiae autem,
@@ -27,7 +27,7 @@ function App() {
                         odio repudiandae magni.
                     </span>
                 </Block>
-                <Block title="Ожидают обработки">
+                <Block title="Ожидают обработки 🕑">
                     <span>
                         Lorem ipsum dolor sit amet, consectetur adipisicing
                         elit. Quasi asperiores possimus molestiae autem,
@@ -36,7 +36,7 @@ function App() {
                         odio repudiandae magni.
                     </span>
                 </Block>
-                <Block title="Выполнено">
+                <Block title="Выполнено ✅">
                     <span>
                         Lorem ipsum dolor sit amet, consectetur adipisicing
                         elit. Quasi asperiores possimus molestiae autem,
