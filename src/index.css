@@ -5,16 +5,14 @@
     font-weight: 500;
 
     --block-raduis: 14px;
+    --green: rgb(69, 240, 163);
+    --aqua-green: rgba(137, 237, 192, 0.973);
+    --light-grey: rgba(0, 0, 0, 0.097);
+    --dark-grey: rgba(0, 0, 0, 0.551);
+    --error-red: rgba(239, 55, 38, 0.642);
+    --error-red-transparent: rgba(239, 55, 38, 0.069);
 
-    background-color: rgba(255, 255, 255, 0);
-}
-
-body {
-    margin: 0;
-    display: flex;
-    place-items: center;
-    min-width: 320px;
-    min-height: 100vh;
+    background-color: rgb(255, 242, 184);
 }
 
 p {
@@ -31,9 +29,51 @@ button {
     color: #ffffff;
 
     cursor: pointer;
-    transition: padding 0.2s ease-in;
+    transition: padding 0.1s ease-in;
 }
 
 button:active {
-    padding: 4.3px 15px;
+    padding: 4.4px 15px;
+}
+
+input {
+    font-family: "JetBrains Mono", monospace;
+    border: 1px solid var(--light-grey);
+    border-radius: 4px;
+    padding: 2px 5px;
+    outline: none;
+}
+
+.input-error {
+    border: 1px solid var(--error-red) !important;
+    background-color: var(--error-red-transparent) !important;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+textarea {
+    font-family: "JetBrains Mono", monospace;
+    border: 1px solid var(--light-grey);
+    border-radius: 4px;
+    padding: 2px 5px;
+
+    height: 55px;
+
+    outline: none;
+    resize: none;
+}
+
+.error-text {
+    text-align: center;
+    font-weight: 400;
+    border: 1px solid var(--error-red);
+    border-radius: 4px;
+    padding: 3px 4px;
+    background-color: var(--error-red-transparent);
+    color: rgba(0, 0, 0, 0.785);
 }

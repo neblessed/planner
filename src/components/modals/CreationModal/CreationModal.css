@@ -1,0 +1,55 @@
+.modal_block__controls {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.modal_block__switcher {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+
+    border: 1px solid var(--light-grey);
+    border-radius: 8px;
+    background-color: #00000005;
+
+    overflow: hidden;
+}
+
+.modal_block__switcher_line {
+    box-sizing: border-box;
+    width: 1px;
+    height: auto;
+
+    background: var(--light-grey);
+}
+
+.modal_block__switcher_option {
+    padding: 4px 10px;
+    width: auto;
+    font-weight: 300;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.modal_switcher_selected {
+    background-color: rgba(121, 121, 121, 0.027);
+    box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.106);
+}
+
+.modal_block__switcher_line {
+    box-sizing: border-box;
+    width: 1px;
+    height: auto;
+
+    background: var(--light-grey);
+}
+
+.modal_form {
+    width: 100%;
+    margin-top: 15px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
