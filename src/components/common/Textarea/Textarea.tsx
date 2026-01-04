@@ -4,7 +4,7 @@ type TextareaProps = {
     label?: string;
     placeholder?: string;
     value: string;
-    setValue: (e?: any) => void;
+    setValue: (value: string) => void;
 };
 
 function Textarea({ label, placeholder = "", value, setValue }: TextareaProps) {
@@ -14,7 +14,7 @@ function Textarea({ label, placeholder = "", value, setValue }: TextareaProps) {
             <textarea
                 placeholder={placeholder}
                 value={value}
-                onChange={setValue}
+                onChange={(e) => setValue(e.target.value)}
             />
         </div>
     );

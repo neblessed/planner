@@ -124,10 +124,6 @@ function DatePicker({
                             <span className="calendar__time_label">Время:</span>
                             <input
                                 type="time"
-                                value={calendarDate.toLocaleTimeString(
-                                    "ru-RU",
-                                    { hour: "2-digit", minute: "2-digit" }
-                                )}
                                 onChange={(e) => {
                                     const [hours, minutes] = e.target.value
                                         .split(":")

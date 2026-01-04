@@ -5,7 +5,7 @@ type FieldProps = {
     label: string;
     placeholder?: string;
     value: string;
-    setValue: (e?: any) => void;
+    setValue: (value: string) => void;
     type?: HTMLInputTypeAttribute;
 };
 
@@ -23,7 +23,7 @@ function Field({
                 type={type}
                 placeholder={placeholder}
                 value={value}
-                onChange={setValue}
+                onChange={(e) => setValue(e.target.value)}
             />
         </div>
     );

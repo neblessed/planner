@@ -5,15 +5,15 @@ import MeetingForm from "./components/MeetingForm";
 import SpendingForm from "./components/SpendingForm";
 
 type CreationModalProps = {
-    setClose: (state: boolean) => void;
+    setOpen: (state: boolean) => void;
 };
 
-function CreationModal({ setClose }: CreationModalProps) {
+function CreationModal({ setOpen }: CreationModalProps) {
     const [creationType, setCreationType] = useState<"meeting" | "spending">(
         "meeting"
     );
     return (
-        <Modal title="Создание записи" setOpen={setClose}>
+        <Modal title="Создание записи" setOpen={setOpen}>
             <div className="modal_block__controls">
                 <div className="modal_block__switcher">
                     <span
@@ -40,8 +40,12 @@ function CreationModal({ setClose }: CreationModalProps) {
                 </div>
             </div>
             <div className="modal_form">
-                {creationType === "meeting" && <MeetingForm />}
-                {creationType === "spending" && <SpendingForm />}
+                {creationType === "meeting" && (
+                    <MeetingForm setOpen={setOpen} />
+                )}
+                {creationType === "spending" && (
+                    <SpendingForm setOpen={setOpen} />
+                )}
             </div>
         </Modal>
     );

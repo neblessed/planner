@@ -1,6 +1,10 @@
 import Field from "../../../common/Field/Field";
 
-function SpendingForm() {
+type SpendingFormProps = {
+    setOpen: (state: boolean) => void;
+};
+
+function SpendingForm({ setOpen }: SpendingFormProps) {
     return (
         <>
             <Field label="Наименование" placeholder="Наименование траты" />

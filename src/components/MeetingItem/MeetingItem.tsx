@@ -3,10 +3,6 @@ import type { MeetingType } from "../../types/MeetingType";
 
 type MeetingItemProps = Omit<MeetingType, "location" | "id" | "status">;
 
-const formatTime = (date: Date) => {
-    return `${date.getHours()}:${date.getMinutes()}`;
-};
-
 function MeetingItem({ person, date, links }: MeetingItemProps) {
     const { telegram } = links;
 
@@ -24,7 +20,12 @@ function MeetingItem({ person, date, links }: MeetingItemProps) {
                 </a>
             </div>
             <div className="meeting_row__date">
-                <span className="meeting_row__time">{formatTime(date)}</span>
+                <span className="meeting_row__time">
+                    {date.toLocaleTimeString("ru-RU", {
+                        hour: "2-digit",
+                        minute: "2-digit",
+                    })}
+                </span>
             </div>
         </div>
     );

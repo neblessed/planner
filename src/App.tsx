@@ -21,7 +21,7 @@ function App() {
             </div>
 
             {creationModalVisible && (
-                <CreationModal setClose={setCreationModalVisible} />
+                <CreationModal setOpen={setCreationModalVisible} />
             )}
         </div>
     );
