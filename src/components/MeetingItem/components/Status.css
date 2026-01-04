@@ -1,0 +1,33 @@
+.meeting_status {
+    padding: 0px 4px;
+    border: 1px solid var(--light-grey);
+    border-radius: 4px;
+    font-size: 11px;
+
+    cursor: pointer;
+}
+
+/* Назначено */
+.assigned {
+    background-color: rgba(49, 172, 255, 0.3);
+}
+
+/* Проведено */
+.completed {
+    background-color: rgba(255, 228, 49, 0.3);
+}
+
+/* Ждет обработки */
+.pending {
+    background-color: rgba(255, 49, 49, 0.3);
+}
+
+/* В обработке */
+.processing {
+    background-color: rgba(193, 49, 255, 0.3);
+}
+
+/* Сдано */
+.submitted {
+    background-color: rgba(49, 255, 94, 0.3);
+}

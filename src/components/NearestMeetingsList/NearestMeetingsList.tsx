@@ -1,5 +1,5 @@
 import Block from "../common/Block/Block";
-import MeetingItem from "../MeetingItem/MeetingItem";
+import NearestMeetingItem from "../NearestMeetingItem/NearestMeetingItem";
 import "./NearestMeetingsList.css";
 import type { MeetingType } from "../../types/MeetingType";
 import { useAppSelector } from "../../hooks/redux";
@@ -29,7 +29,7 @@ const NearestMeetingsBlock = ({
                     })
                     // Трансформируем в MeetngItem
                     .map((meeting) => (
-                        <MeetingItem
+                        <NearestMeetingItem
                             key={meeting.id}
                             person={meeting.person}
                             date={meeting.date}
