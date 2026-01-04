@@ -81,7 +81,7 @@ function MeetingForm({ setOpen }: MeetingFormProps) {
                         id: Date.now(),
                         person,
                         location,
-                        date: date === "" ? null : new Date(date),
+                        date,
                         links: {
                             telegram: `https://t.me/${telegram.replace(
                                 "@",

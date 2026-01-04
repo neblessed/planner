@@ -7,7 +7,7 @@ export type MeetingType = {
     /** Место встречи **/
     location: string;
     /** Дата встречи **/
-    date: Date | null;
+    date: string;
     /** Ссылки **/
     links: {
         /** Telegram клиента **/
@@ -18,4 +18,6 @@ export type MeetingType = {
     status: StatusType;
     /** Комментарий к записи */
     comment?: string;
+    /**Стоимость заказа */
+    amount?: number;
 };

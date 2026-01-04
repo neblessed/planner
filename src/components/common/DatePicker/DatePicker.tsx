@@ -7,21 +7,7 @@ type DatePickerProps = {
     date: string;
     setDate: (date: string) => void;
     error?: string;
-};
-
-const formatISODateToFieldValue = (isoDate: string) => {
-    const date = new Date(isoDate);
-    const now = new Date();
-
-    return date.toLocaleString("ru-RU", {
-        day: "numeric",
-        month: "long",
-        ...(date.getFullYear() !== now.getFullYear()
-            ? { year: "numeric" }
-            : {}),
-        hour: "2-digit",
-        minute: "2-digit",
-    });
+    time?: boolean;
 };
 
 function DatePicker({
@@ -30,10 +16,25 @@ function DatePicker({
     date,
     setDate,
     error,
+    time = true,
 }: DatePickerProps) {
     const now = new Date();
     const [calendarDate, setCalendarDate] = useState(now);
     const [isOpen, setIsOpen] = useState(false);
+
+    const formatISODateToFieldValue = (isoDate: string) => {
+        const date = new Date(isoDate);
+        const now = new Date();
+
+        return date.toLocaleString("ru-RU", {
+            day: "numeric",
+            month: "long",
+            ...(date.getFullYear() !== now.getFullYear()
+                ? { year: "numeric" }
+                : {}),
+            ...(time ? { hour: "2-digit", minute: "2-digit" } : {}),
+        });
+    };
 
     return (
         <div className="datepicker">
@@ -125,24 +126,40 @@ function DatePicker({
                             );
                         })}
                     </div>
-                    <div className="calendar__footer">
-                        <div className="calendar__time">
-                            <span className="calendar__time_label">Время:</span>
-                            <input
-                                type="time"
-                                onChange={(e) => {
-                                    const [hours, minutes] = e.target.value
-                                        .split(":")
-                                        .map(Number);
-                                    setCalendarDate((prev) => {
-                                        const newDate = new Date(prev);
-                                        newDate.setHours(hours, minutes, 0, 0);
-                                        return newDate;
-                                    });
-                                }}
-                            />
-                        </div>
+                    <div
+                        className="calendar__footer"
+                        style={!time ? { justifyContent: "flex-end" } : {}}
+                    >
+                        {time && (
+                            <>
+                                <div className="calendar__time">
+                                    <span className="calendar__time_label">
+                                        Время:
+                                    </span>
+                                    <input
+                                        type="time"
+                                        onChange={(e) => {
+                                            const [hours, minutes] =
+                                                e.target.value
+                                                    .split(":")
+                                                    .map(Number);
+                                            setCalendarDate((prev) => {
+                                                const newDate = new Date(prev);
+                                                newDate.setHours(
+                                                    hours,
+                                                    minutes,
+                                                    0,
+                                                    0
+                                                );
+                                                return newDate;
+                                            });
+                                        }}
+                                    />
+                                </div>
+                            </>
+                        )}
                         <button
+                            className="calendar__footer_button"
                             onClick={() => {
                                 setDate(calendarDate.toISOString());
                                 setIsOpen(false);

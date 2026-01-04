@@ -24,7 +24,7 @@ function Field({
             <input
                 type={type}
                 placeholder={placeholder}
-                value={value}
+                value={type === "number" && value === "0" ? "" : value}
                 onChange={(e) => setValue(e.target.value)}
                 className={error ? "input-error" : ""}
             />

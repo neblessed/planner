@@ -21,7 +21,7 @@ function MeetingItem({ person, date, links }: MeetingItemProps) {
             </div>
             <div className="meeting_row__date">
                 <span className="meeting_row__time">
-                    {date.toLocaleTimeString("ru-RU", {
+                    {new Date(date).toLocaleTimeString("ru-RU", {
                         hour: "2-digit",
                         minute: "2-digit",
                     })}
