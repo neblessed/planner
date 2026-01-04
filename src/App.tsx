@@ -19,13 +19,31 @@ function App() {
             </div>
             <div className="widgets_row__3">
                 <Block title="Запланировано">
-                    <span>stub</span>
+                    <span>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing
+                        elit. Quasi asperiores possimus molestiae autem,
+                        deserunt blanditiis, commodi fugit cum suscipit, eum
+                        impedit voluptates labore. Fugiat, suscipit? Sint nihil
+                        odio repudiandae magni.
+                    </span>
                 </Block>
                 <Block title="Ожидают обработки">
-                    <span>stub</span>
+                    <span>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing
+                        elit. Quasi asperiores possimus molestiae autem,
+                        deserunt blanditiis, commodi fugit cum suscipit, eum
+                        impedit voluptates labore. Fugiat, suscipit? Sint nihil
+                        odio repudiandae magni.
+                    </span>
                 </Block>
                 <Block title="Выполнено">
-                    <span>stub</span>
+                    <span>
+                        Lorem ipsum dolor sit amet, consectetur adipisicing
+                        elit. Quasi asperiores possimus molestiae autem,
+                        deserunt blanditiis, commodi fugit cum suscipit, eum
+                        impedit voluptates labore. Fugiat, suscipit? Sint nihil
+                        odio repudiandae magni.
+                    </span>
                 </Block>
             </div>
             <div className="menu_row">

@@ -20,7 +20,7 @@
 
     border: 1px solid rgba(0, 0, 0, 0.097);
     border-radius: var(--block-raduis);
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.354);
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.192);
 
     margin: auto;
 }
