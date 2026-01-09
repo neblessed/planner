@@ -35,6 +35,8 @@ button {
 
     cursor: pointer;
     transition: padding 0.1s ease-in;
+
+    text-align: center;
 }
 
 button:active {

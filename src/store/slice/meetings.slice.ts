@@ -34,7 +34,6 @@ const meetingsSlice = createSlice({
             );
         },
         updateMeeting: (state, action: PayloadAction<OptionalMeetingType>) => {
-            console.log(action);
             const id = action.payload.id;
             const meeting = state.meetings.find((meeting) => meeting.id === id);
 
@@ -53,9 +52,19 @@ const meetingsSlice = createSlice({
                 });
             }
         },
+        deleteMeeting: (state, action: PayloadAction<number>) => {
+            state.meetings = state.meetings.filter(
+                (meeting) => meeting.id !== action.payload
+            );
+        },
     },
 });
 
-export const { setupGoal, addMeeting, addSpending, updateMeeting } =
-    meetingsSlice.actions;
+export const {
+    setupGoal,
+    addMeeting,
+    addSpending,
+    updateMeeting,
+    deleteMeeting,
+} = meetingsSlice.actions;
 export default meetingsSlice.reducer;

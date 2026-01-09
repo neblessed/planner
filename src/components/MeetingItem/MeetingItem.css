@@ -10,7 +10,7 @@
     cursor: default;
     border-radius: 5px;
 
-    background-color: rgb(246, 245, 245);
+    background-color: rgb(252, 252, 252);
 }
 
 .meeting_row_red {
@@ -28,7 +28,7 @@
 }
 
 .meeting_row__person {
-    width: 150px;
+    width: 120px;
     font-weight: 600;
     font-size: 12px;
     margin-left: 8px;

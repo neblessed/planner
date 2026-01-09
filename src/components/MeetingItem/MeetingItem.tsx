@@ -4,6 +4,7 @@ import Popover from "../common/Popover/Popover";
 import Status from "./components/Status";
 import "./MeetingItem.css";
 import type { StatusType } from "../../types/StatusType";
+import CreationModal from "../modals/CreationModal/CreationModal";
 
 const rowBackgroundByStatus = (status: StatusType, date: string) => {
     const isCurrentDateLaterThanMeetingDate =
@@ -20,18 +21,12 @@ const rowBackgroundByStatus = (status: StatusType, date: string) => {
     return "";
 };
 
-function MeetingItem({
-    id,
-    person,
-    location,
-    status,
-    comment,
-    links,
-    amount,
-    date,
-}: MeetingType) {
+function MeetingItem(props: MeetingType) {
+    const { id, person, location, status, comment, links, amount, date } =
+        props;
     const [commentOpened, setCommentOpened] = useState(false);
     const [isStatusOpened, setIsStatusOpened] = useState(false);
+    const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
     const formattedDate = (date: string) => {
         const now = new Date();
@@ -53,9 +48,19 @@ function MeetingItem({
     return (
         <div className={`meeting_row ${rowBackgroundByStatus(status, date)}`}>
             <div className="meeting_row__info">
-                <span className="meeting_row__person">{person}</span>
+                <span
+                    className="meeting_row__person"
+                    onClick={() => setIsEditModalOpen((prev) => !prev)}
+                >
+                    {person}
+                </span>
                 <div className="meeting_row_liner" />
-                <span className="meeting_row__date">{formattedDate(date)}</span>
+                <span
+                    className="meeting_row__date"
+                    onClick={() => setIsEditModalOpen((prev) => !prev)}
+                >
+                    {formattedDate(date)}
+                </span>
                 <div className="meeting_row_liner" />
                 <div className="meeting_row_status">
                     <Status
@@ -91,14 +96,20 @@ function MeetingItem({
             <div className="meeting_row_liner" />
             <div className="meeting_row__additional">
                 {location && (
-                    <span className="meeting_row__additional_location">
+                    <span
+                        className="meeting_row__additional_location"
+                        onClick={() => setIsEditModalOpen((prev) => !prev)}
+                    >
                         {location}
                     </span>
                 )}
                 {amount && (
                     <>
                         <div className="meeting_row_liner" />
-                        <span className="meeting_row__additional_amount">
+                        <span
+                            className="meeting_row__additional_amount"
+                            onClick={() => setIsEditModalOpen((prev) => !prev)}
+                        >
                             {amount}
                         </span>
                     </>
@@ -123,6 +134,9 @@ function MeetingItem({
                     </>
                 )}
             </div>
+            {isEditModalOpen && (
+                <CreationModal setOpen={setIsEditModalOpen} meeting={props} />
+            )}
         </div>
     );
 }

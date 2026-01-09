@@ -18,7 +18,7 @@ function InProgressBlock() {
                     })
                 ) : (
                     <span className="empty_list_text">
-                        Нет запланированных записей
+                        Нет съемок в обработке
                     </span>
                 )}
             </Block>
