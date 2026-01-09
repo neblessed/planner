@@ -1,8 +1,12 @@
+import { useAppDispatch } from "../../../hooks/redux";
+import { updateMeeting } from "../../../store/slice/meetings.slice";
+import type { MeetingType } from "../../../types/MeetingType";
 import type { StatusType } from "../../../types/StatusType";
 import Popover from "../../common/Popover/Popover";
 import "./Status.css";
 
 type StatusProps = {
+    id: number;
     status: StatusType;
     isOpen: boolean;
     setIsOpened: (state: any) => void;
@@ -16,7 +20,9 @@ const statusStyleMapping: Record<StatusType, string> = {
     Сдано: "submitted",
 };
 
-function Status({ status, isOpen, setIsOpened }: StatusProps) {
+function Status({ id, status, isOpen, setIsOpened }: StatusProps) {
+    const dispatch = useAppDispatch();
+
     return (
         <div
             className={`meeting_status ${statusStyleMapping[status]}`}
@@ -27,7 +33,16 @@ function Status({ status, isOpen, setIsOpened }: StatusProps) {
                 <div className="popover_statuses">
                     {Object.keys(statusStyleMapping).map((s) => (
                         <span
+                            key={s}
                             className={`meeting_status ${statusStyleMapping[s]}`}
+                            onClick={() =>
+                                dispatch(
+                                    updateMeeting({
+                                        id,
+                                        status: s as StatusType,
+                                    })
+                                )
+                            }
                         >
                             {s}
                         </span>

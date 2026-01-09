@@ -12,6 +12,8 @@ const initialMeetingsState: InitialMeetingsStateType = {
     spendings: initialSpendings,
 };
 
+type OptionalMeetingType = Partial<MeetingType>;
+
 const meetingsSlice = createSlice({
     name: "meetingsSlice",
     initialState: initialMeetingsState,
@@ -31,8 +33,29 @@ const meetingsSlice = createSlice({
                 state.spendings
             );
         },
+        updateMeeting: (state, action: PayloadAction<OptionalMeetingType>) => {
+            console.log(action);
+            const id = action.payload.id;
+            const meeting = state.meetings.find((meeting) => meeting.id === id);
+
+            if (meeting) {
+                const updated = {
+                    ...meeting,
+                    ...action.payload,
+                };
+
+                state.meetings = state.meetings.map((meeting) => {
+                    if (meeting.id === id) {
+                        return updated;
+                    }
+
+                    return meeting;
+                });
+            }
+        },
     },
 });
 
-export const { setupGoal, addMeeting, addSpending } = meetingsSlice.actions;
+export const { setupGoal, addMeeting, addSpending, updateMeeting } =
+    meetingsSlice.actions;
 export default meetingsSlice.reducer;

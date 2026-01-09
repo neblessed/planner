@@ -21,6 +21,7 @@ const rowBackgroundByStatus = (status: StatusType, date: string) => {
 };
 
 function MeetingItem({
+    id,
     person,
     location,
     status,
@@ -57,6 +58,7 @@ function MeetingItem({
                 <span className="meeting_row__date">{formattedDate(date)}</span>
                 <div className="meeting_row_liner" />
                 <Status
+                    id={id}
                     status={status}
                     setIsOpened={setIsStatusOpened}
                     isOpen={isStatusOpened}
