@@ -25,7 +25,7 @@ const meetingsSlice = createSlice({
             state.meetings.push(action.payload);
 
             state.balance = calculateBalance(
-                53000,
+                0,
                 state.meetings,
                 state.spendings
             );
@@ -34,7 +34,7 @@ const meetingsSlice = createSlice({
             state.spendings.push(action.payload);
 
             state.balance = calculateBalance(
-                53000,
+                0,
                 state.meetings,
                 state.spendings
             );
@@ -58,7 +58,7 @@ const meetingsSlice = createSlice({
                 });
 
                 state.balance = calculateBalance(
-                    53000,
+                    0,
                     state.meetings,
                     state.spendings
                 );
@@ -70,7 +70,7 @@ const meetingsSlice = createSlice({
             );
 
             state.balance = calculateBalance(
-                53000,
+                0,
                 state.meetings,
                 state.spendings
             );

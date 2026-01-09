@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Amount from "../common/Amount/Amout";
 import Block from "../common/Block/Block";
 import "./Balance.css";
 import Popover from "../common/Popover/Popover";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { setupGoal } from "../../store/slice/meetings.slice";
+import { getBalanceByPeriod } from "./utils/getBalanceByPeriod";
 
 /** Блок балансом */
 function Balance() {
@@ -13,17 +14,24 @@ function Balance() {
     const [period, setPeriod] = useState<"week" | "month" | "all">("all");
     const [goalOpened, setGoalOpened] = useState(false);
     const [tempGoal, setTempGoal] = useState(goal);
+    let balanceByPeriod = getBalanceByPeriod(balance, period);
 
-    const progress = (balance.total / tempGoal) * 100;
+    useEffect(() => {
+        balanceByPeriod = getBalanceByPeriod(balance, period);
+    }, [balance]);
+
+    const progress = (balanceByPeriod.total / tempGoal) * 100;
 
     return (
         <Block title="Мой баланс">
             <div className="balance_block">
                 <div className="balance_block__amounts">
-                    {/* TODO Считать чистую сумму */}
-                    <Amount amount={balance.total} size="large" />
-                    {balance.spendings < 0 && (
-                        <Amount amount={balance.spendings} size="small" />
+                    <Amount amount={balanceByPeriod.total} size="large" />
+                    {balanceByPeriod.spendings < 0 && (
+                        <Amount
+                            amount={balanceByPeriod.spendings}
+                            size="small"
+                        />
                     )}
                 </div>
                 <div className="balance_block__goal">

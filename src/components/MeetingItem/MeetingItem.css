@@ -28,7 +28,7 @@
 }
 
 .meeting_row__person {
-    width: 110px;
+    width: 100px;
     font-weight: 600;
     font-size: 12px;
     margin-left: 8px;
@@ -37,7 +37,7 @@
 .meeting_row__date {
     font-size: 12px;
     font-weight: 400;
-    width: 90px;
+    width: 105px;
     text-align: end;
 }
 .meeting_row_status {

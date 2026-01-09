@@ -4,9 +4,12 @@ import MeetingItem from "../MeetingItem/MeetingItem";
 
 function CompletedBlock() {
     const { meetings } = useAppSelector((store) => store.meetingsReducer);
-    const completedMeetings = meetings.filter(
-        (meeting) => meeting.status === "Сдано"
-    );
+    const completedMeetings = meetings
+        .filter((meeting) => meeting.status === "Сдано")
+        .sort(
+            (m1, m2) =>
+                new Date(m2.date).getTime() - new Date(m1.date).getTime()
+        );
     return (
         <>
             <Block title="Завершенные записи ✅" wide={true}>

@@ -103,7 +103,7 @@ function MeetingItem(props: MeetingType) {
                         {location}
                     </span>
                 )}
-                {amount && (
+                {amount || amount === 0 ? (
                     <>
                         <div className="meeting_row_liner" />
                         <span
@@ -113,7 +113,7 @@ function MeetingItem(props: MeetingType) {
                             {amount}
                         </span>
                     </>
-                )}
+                ) : null}
                 {comment && (
                     <>
                         <div className="meeting_row_liner" />
