@@ -33,7 +33,7 @@ function MeetingItem(props: MeetingType) {
         const d = new Date(date);
         const formatted = d.toLocaleDateString("ru-RU", {
             day: "numeric",
-            month: "numeric",
+            month: "long",
             ...(now.getFullYear() !== d.getFullYear()
                 ? { year: "2-digit" }
                 : {}),
