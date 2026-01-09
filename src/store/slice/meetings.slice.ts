@@ -23,6 +23,12 @@ const meetingsSlice = createSlice({
         },
         addMeeting: (state, action: PayloadAction<MeetingType>) => {
             state.meetings.push(action.payload);
+
+            state.balance = calculateBalance(
+                53000,
+                state.meetings,
+                state.spendings
+            );
         },
         addSpending: (state, action: PayloadAction<SpendingType>) => {
             state.spendings.push(action.payload);
@@ -50,11 +56,23 @@ const meetingsSlice = createSlice({
 
                     return meeting;
                 });
+
+                state.balance = calculateBalance(
+                    53000,
+                    state.meetings,
+                    state.spendings
+                );
             }
         },
         deleteMeeting: (state, action: PayloadAction<number>) => {
             state.meetings = state.meetings.filter(
                 (meeting) => meeting.id !== action.payload
+            );
+
+            state.balance = calculateBalance(
+                53000,
+                state.meetings,
+                state.spendings
             );
         },
     },

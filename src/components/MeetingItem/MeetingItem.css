@@ -28,7 +28,7 @@
 }
 
 .meeting_row__person {
-    width: 120px;
+    width: 110px;
     font-weight: 600;
     font-size: 12px;
     margin-left: 8px;
@@ -37,7 +37,7 @@
 .meeting_row__date {
     font-size: 12px;
     font-weight: 400;
-    width: 120px;
+    width: 90px;
     text-align: end;
 }
 .meeting_row_status {
@@ -49,6 +49,8 @@
 .meeting_row__links {
     display: flex;
     gap: 3px;
+    width: 30px;
+    justify-content: center;
 
     & a {
         align-content: center;
@@ -100,7 +102,7 @@
 .meeting_row__additional_location {
     font-size: 12px;
     font-weight: 400;
-    width: 75px;
+    width: 95px;
 }
 
 .meeting_row__additional_amount {

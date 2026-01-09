@@ -17,6 +17,14 @@
     width: 110px;
 }
 
+.update_status_form {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
 /* Назначено */
 .assigned {
     background-color: rgb(178, 223, 252);

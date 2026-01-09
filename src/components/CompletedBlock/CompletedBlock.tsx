@@ -2,23 +2,21 @@ import { useAppSelector } from "../../hooks/redux";
 import Block from "../common/Block/Block";
 import MeetingItem from "../MeetingItem/MeetingItem";
 
-function InProgressBlock() {
+function CompletedBlock() {
     const { meetings } = useAppSelector((store) => store.meetingsReducer);
-    const inProgressMeetings = meetings.filter(
-        (meeting) =>
-            meeting.status === "Ждёт обработки" ||
-            meeting.status === "В обработке"
+    const completedMeetings = meetings.filter(
+        (meeting) => meeting.status === "Сдано"
     );
     return (
         <>
-            <Block title="В работе 💻" wide={true}>
-                {inProgressMeetings.length > 0 ? (
-                    inProgressMeetings.map((meeting) => {
+            <Block title="Завершенные записи ✅" wide={true}>
+                {completedMeetings.length > 0 ? (
+                    completedMeetings.map((meeting) => {
                         return <MeetingItem key={meeting.id} {...meeting} />;
                     })
                 ) : (
                     <span className="empty_list_text">
-                        Нет съемок в обработке
+                        Нет завершенных записей
                     </span>
                 )}
             </Block>
@@ -26,4 +24,4 @@ function InProgressBlock() {
     );
 }
 
-export default InProgressBlock;
+export default CompletedBlock;
