@@ -2,24 +2,18 @@ import { useAppSelector } from "../../hooks/redux";
 import Block from "../common/Block/Block";
 import MeetingItem from "../MeetingItem/MeetingItem";
 
-function PlannedBlock() {
+function InProgressBlock() {
     const { meetings } = useAppSelector((store) => store.meetingsReducer);
-
-    const plannedMeetings = meetings
-        .filter(
-            (meeting) =>
-                meeting.status === "Назначено" || meeting.status === "Проведено"
-        )
-        .sort(
-            (m1, m2) =>
-                new Date(m2.date).getTime() - new Date(m1.date).getTime()
-        );
-
+    const inProgressMeetings = meetings.filter(
+        (meeting) =>
+            meeting.status === "Ждёт обработки" ||
+            meeting.status === "В обработке"
+    );
     return (
         <>
-            <Block title="Запланировано 📅">
-                {plannedMeetings.length > 0 ? (
-                    plannedMeetings.map((meeting) => {
+            <Block title="В работе 💻">
+                {inProgressMeetings.length > 0 ? (
+                    inProgressMeetings.map((meeting) => {
                         return <MeetingItem key={meeting.id} {...meeting} />;
                     })
                 ) : (
@@ -32,4 +26,4 @@ function PlannedBlock() {
     );
 }
 
-export default PlannedBlock;
+export default InProgressBlock;

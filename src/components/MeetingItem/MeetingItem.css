@@ -9,6 +9,8 @@
 
     cursor: default;
     border-radius: 5px;
+
+    background-color: rgb(246, 245, 245);
 }
 
 .meeting_row_red {
@@ -37,6 +39,11 @@
     font-weight: 400;
     width: 120px;
     text-align: end;
+}
+.meeting_row_status {
+    display: flex;
+    justify-content: start;
+    width: 108px;
 }
 
 .meeting_row__links {

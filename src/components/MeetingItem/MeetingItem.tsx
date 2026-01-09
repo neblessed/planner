@@ -57,12 +57,14 @@ function MeetingItem({
                 <div className="meeting_row_liner" />
                 <span className="meeting_row__date">{formattedDate(date)}</span>
                 <div className="meeting_row_liner" />
-                <Status
-                    id={id}
-                    status={status}
-                    setIsOpened={setIsStatusOpened}
-                    isOpen={isStatusOpened}
-                />
+                <div className="meeting_row_status">
+                    <Status
+                        id={id}
+                        status={status}
+                        setIsOpened={setIsStatusOpened}
+                        isOpen={isStatusOpened}
+                    />
+                </div>
             </div>
             <div className="meeting_row_liner" />
             <div className="meeting_row__links">

@@ -5,6 +5,7 @@ import Menu from "./components/Menu/Menu";
 import NearestMeetingsList from "./components/NearestMeetingsList/NearestMeetingsList";
 import CreationModal from "./components/modals/CreationModal/CreationModal";
 import PlannedBlock from "./components/PlannedBlock/PlannedBlock";
+import InProgressBlock from "./components/InProgressBlock/InProgressBlock";
 
 function App() {
     const [creationModalVisible, setCreationModalVisible] = useState(false);
@@ -19,6 +20,7 @@ function App() {
             </div>
             <div className="widgets_row__3">
                 <PlannedBlock />
+                <InProgressBlock />
             </div>
             <div className="menu_row">
                 <Menu onAddClick={setCreationModalVisible} />
