@@ -11,6 +11,11 @@
     --dark-grey: rgba(0, 0, 0, 0.551);
     --error-red: rgba(239, 55, 38, 0.642);
     --error-red-transparent: rgba(239, 55, 38, 0.069);
+    --bg-light-blue: rgba(49, 172, 255, 0.15);
+    --bg-light-yellow: rgba(255, 228, 49, 0.15);
+    --bg-light-red: rgba(255, 49, 49, 0.15);
+    --bg-light-purple: rgba(193, 49, 255, 0.15);
+    --bg-light-green: rgba(49, 255, 94, 0.15);
 
     background-color: rgb(255, 242, 184);
 }

@@ -10,7 +10,7 @@ import { setupGoal } from "../../store/slice/meetings.slice";
 function Balance() {
     const dispatch = useAppDispatch();
     const { balance, goal } = useAppSelector((store) => store.meetingsReducer);
-    const [period, setPeriod] = useState<"week" | "month" | "all">("week");
+    const [period, setPeriod] = useState<"week" | "month" | "all">("all");
     const [goalOpened, setGoalOpened] = useState(false);
     const [tempGoal, setTempGoal] = useState(goal);
 

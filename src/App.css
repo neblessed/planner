@@ -20,8 +20,11 @@
 
 .widgets_row__3 {
     display: flex;
-    gap: 30px;
+    flex-direction: column;
+    gap: 20px;
     justify-content: center;
+    align-items: center;
+    margin: auto;
 }
 
 .menu_row {

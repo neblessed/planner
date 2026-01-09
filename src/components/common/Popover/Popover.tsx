@@ -4,7 +4,7 @@ import "./Popover.css";
 import { useOnClickOutside } from "../../../hooks/useOnClickOutside";
 
 type PopoverProps = {
-    title: string;
+    title?: string;
     children: ReactNode | ReactNode[];
     isOpen?: boolean;
     onClose?: () => void;
@@ -23,7 +23,7 @@ function Popover({ title, children, isOpen = true, onClose }: PopoverProps) {
 
     return (
         <div className="popover" ref={popoverRef}>
-            <span className="popover__title">{title}</span>
+            {title && <span className="popover__title">{title}</span>}
             <div className="popover__content">{children}</div>
         </div>
     );

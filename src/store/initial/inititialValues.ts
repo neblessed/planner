@@ -7,7 +7,7 @@ export const initialMeetings: MeetingType[] = [
         person: "Vadim T.",
         date: "2026-01-04T14:30:00Z",
         links: { telegram: "https://t.me/neblessed" },
-        status: "В обработке",
+        status: "Назначено",
         location: "Студия",
     },
     {
@@ -15,7 +15,7 @@ export const initialMeetings: MeetingType[] = [
         person: "Arnold S.",
         date: "2026-01-05T15:30:00Z",
         links: { telegram: "https://t.me/neblessed" },
-        status: "В обработке",
+        status: "Проведено",
         location: "Студия",
     },
     {
@@ -23,8 +23,18 @@ export const initialMeetings: MeetingType[] = [
         person: "Jilia K.",
         date: "2026-01-05T12:30:00Z",
         links: { telegram: "https://t.me/neblessed" },
-        status: "В обработке",
+        status: "Проведено",
         location: "Студия",
+    },
+    {
+        id: 4,
+        person: "Gosha R.",
+        date: "2026-01-05T12:30:00Z",
+        links: { telegram: "https://t.me/neblessed" },
+        status: "Назначено",
+        location: "Парк",
+        amount: 3500,
+        comment: "Взять зонт",
     },
 ];
 

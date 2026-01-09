@@ -1,8 +1,24 @@
+import { useState } from "react";
 import type { MeetingType } from "../../types/MeetingType";
+import Popover from "../common/Popover/Popover";
 import Status from "./components/Status";
 import "./MeetingItem.css";
+import type { StatusType } from "../../types/StatusType";
 
-type MeetingItemProps = Omit<MeetingType, "id">;
+const rowBackgroundByStatus = (status: StatusType, date: string) => {
+    const isCurrentDateLaterThanMeetingDate =
+        Date.now() > new Date(date).getTime();
+
+    if (status === "Назначено" && isCurrentDateLaterThanMeetingDate) {
+        return "meeting_row_red";
+    }
+
+    if (status === "Проведено") {
+        return "meeting_row_yellow";
+    }
+
+    return "";
+};
 
 function MeetingItem({
     person,
@@ -12,7 +28,10 @@ function MeetingItem({
     links,
     amount,
     date,
-}: MeetingItemProps) {
+}: MeetingType) {
+    const [commentOpened, setCommentOpened] = useState(false);
+    const [isStatusOpened, setIsStatusOpened] = useState(false);
+
     const formattedDate = (date: string) => {
         const now = new Date();
         const d = new Date(date);
@@ -31,13 +50,17 @@ function MeetingItem({
         return `${formatted}, ${time}`;
     };
     return (
-        <div className="meeting_row">
+        <div className={`meeting_row ${rowBackgroundByStatus(status, date)}`}>
             <div className="meeting_row__info">
                 <span className="meeting_row__person">{person}</span>
                 <div className="meeting_row_liner" />
                 <span className="meeting_row__date">{formattedDate(date)}</span>
                 <div className="meeting_row_liner" />
-                <Status status={status} />
+                <Status
+                    status={status}
+                    setIsOpened={setIsStatusOpened}
+                    isOpen={isStatusOpened}
+                />
             </div>
             <div className="meeting_row_liner" />
             <div className="meeting_row__links">
@@ -48,13 +71,53 @@ function MeetingItem({
                 >
                     <img src="./icons/telegram.svg" />
                 </a>
-                <a
-                    className="meeting_row__links_icon_wfolio"
-                    href={links.wfolio}
-                    target="_blank"
-                >
-                    <img src="./icons/wfolio.svg" />
-                </a>
+                {links.wfolio && (
+                    <>
+                        {" "}
+                        <a
+                            className="meeting_row__links_icon_wfolio"
+                            href={links.wfolio}
+                            target="_blank"
+                        >
+                            <img src="./icons/wfolio.svg" />
+                        </a>
+                    </>
+                )}
+            </div>
+            <div className="meeting_row_liner" />
+            <div className="meeting_row__additional">
+                {location && (
+                    <span className="meeting_row__additional_location">
+                        {location}
+                    </span>
+                )}
+                {amount && (
+                    <>
+                        <div className="meeting_row_liner" />
+                        <span className="meeting_row__additional_amount">
+                            {amount}
+                        </span>
+                    </>
+                )}
+                {comment && (
+                    <>
+                        <div className="meeting_row_liner" />
+                        <img
+                            className="meeting_row__additional_comment_icon"
+                            src="./icons/comment.svg"
+                            onClick={() => setCommentOpened((prev) => !prev)}
+                        />
+                        <Popover
+                            title="Комментарий"
+                            isOpen={commentOpened}
+                            onClose={() => setCommentOpened(false)}
+                        >
+                            <span className="meeting_row__additional_comment">
+                                {comment}
+                            </span>
+                        </Popover>
+                    </>
+                )}
             </div>
         </div>
     );

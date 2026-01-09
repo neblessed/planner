@@ -2,20 +2,29 @@
     padding: 0px 4px;
     border: 1px solid var(--light-grey);
     border-radius: 4px;
-    font-size: 11px;
+    font-size: 12px;
+    font-weight: 300;
 
     cursor: pointer;
     text-wrap-mode: nowrap;
 }
 
+.popover_statuses {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding-block: 10px;
+    width: 110px;
+}
+
 /* Назначено */
 .assigned {
-    background-color: rgba(49, 172, 255, 0.3);
+    background-color: rgb(178, 223, 252);
 }
 
 /* Проведено */
 .completed {
-    background-color: rgba(255, 228, 49, 0.3);
+    background-color: rgb(255, 244, 175);
 }
 
 /* Ждет обработки */
