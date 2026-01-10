@@ -1,10 +1,8 @@
 import { useState } from "react";
 import type { MeetingType } from "../../types/MeetingType";
-import Popover from "../common/Popover/Popover";
 import Status from "./components/Status";
 import "./MeetingItem.css";
 import CreationModal from "../modals/CreationModal/CreationModal";
-import { getDeadlineDays } from "./utils/getDeadlineDays";
 import { rowBackgroundByStatus } from "./utils/getRowBackgroundByStatus";
 
 type MeetingItemProps = {
@@ -73,14 +71,21 @@ function MeetingItem({
                 {enableDeadlineCell && (
                     <>
                         <div className="meeting_row_liner" />
-                        <span
+                        <div
                             className={`${
-                                deadlineDate ? "meeting_row__deadline" : ""
+                                deadlineDate ? "meeting_row__deadline_cell" : ""
                             }`}
-                            style={{ width: "20px" }}
                         >
-                            {deadlineDate ? getDeadlineDays(deadlineDate) : ""}
-                        </span>
+                            <span
+                                className={`${
+                                    deadlineDate ? "meeting_row__deadline" : ""
+                                }`}
+                            >
+                                {deadlineDate
+                                    ? formattedDate(deadlineDate)
+                                    : ""}
+                            </span>
+                        </div>
                     </>
                 )}
                 <div className="meeting_row_liner" />

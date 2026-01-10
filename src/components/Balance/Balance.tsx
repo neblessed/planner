@@ -14,13 +14,9 @@ function Balance() {
     const [period, setPeriod] = useState<"week" | "month" | "all">("all");
     const [goalOpened, setGoalOpened] = useState(false);
     const [tempGoal, setTempGoal] = useState(goal);
-    let balanceByPeriod = getBalanceByPeriod(balance, period);
+    const balanceByPeriod = getBalanceByPeriod(balance, period);
 
-    useEffect(() => {
-        balanceByPeriod = getBalanceByPeriod(balance, period);
-    }, [balance]);
-
-    const progress = (balanceByPeriod.total / tempGoal) * 100;
+    const progress = (balance.all.total / tempGoal) * 100;
 
     return (
         <Block title="Мой баланс">

@@ -3,114 +3,92 @@ import type { SpendingType } from "../../types/SpendingType";
 import type { Balance } from "../types/BalanceType";
 
 /**
- * Считает актуальный баланс аккаунта
+ * Считает актуальный баланс аккаунта за периоды
  * @param initialBalance - стартовое значение баланса
- * @param meetings - массив со встречами
- * @param spendings - массив с тратами
- * @returns
+ * @param meetings - массив со встречами (доходы)
+ * @param spendings - массив с тратами (расходы)
+ * @returns баланс за разные периоды
  */
 export const calculateBalance = (
-    initialBalance: number,
     meetings: MeetingType[],
     spendings: SpendingType[]
 ): Balance => {
-    const meetingsWithAmountsAndDates = meetings
-        .filter((meeting) => meeting.amount)
-        .map((meeting) => {
-            return {
-                amount: meeting.amount ? meeting.amount : 0,
-                date: new Date(meeting.date),
-            };
+    const now = new Date();
+    const todayStart = new Date(
+        now.getFullYear(),
+        now.getMonth(),
+        now.getDate()
+    );
+
+    // Вычисляем даты начала периодов
+    const weekStart = new Date(todayStart);
+    weekStart.setDate(weekStart.getDate() - 7); // 7 дней назад
+
+    const monthStart = new Date(todayStart);
+    monthStart.setMonth(monthStart.getMonth() - 1); // 1 месяц назад
+
+    // Функция для фильтрации по периоду
+    const filterByPeriod = <T extends { date: Date }>(
+        items: T[],
+        startDate: Date,
+        endDate: Date = todayStart
+    ): T[] => {
+        return items.filter((item) => {
+            const itemDate = new Date(item.date);
+            itemDate.setHours(0, 0, 0, 0);
+            return itemDate >= startDate && itemDate <= endDate;
         });
+    };
 
-    const spendingsAmountsWithDates = spendings.map((spending) => {
-        return {
-            amount: spending.amount,
-            date: new Date(spending.date),
-        };
-    });
+    // Подготавливаем данные
+    const meetingsWithDates = meetings
+        .filter((meeting) => meeting.amount != null)
+        .map((meeting) => ({
+            amount: meeting.amount || 0,
+            date: new Date(meeting.date),
+        }));
 
-    const weekMeetingsAmounts: number[] = [];
-    const weekSpendingsAmounts: number[] = [];
-    const monthMeetingsAmounts: number[] = [];
-    const monthSpendingsAmounts: number[] = [];
+    const spendingsWithDates = spendings.map((spending) => ({
+        amount: spending.amount,
+        date: new Date(spending.date),
+    }));
 
-    meetingsWithAmountsAndDates.forEach((meeting) => {
-        const currentDate = new Date();
-        const meetingDate = meeting.date;
+    // Фильтруем по периодам
+    const weekMeetings = filterByPeriod(meetingsWithDates, weekStart);
+    const weekSpendings = filterByPeriod(spendingsWithDates, weekStart);
 
-        // Обнуляем время чтобы сравнивать дни, месяцы, недели
-        currentDate.setHours(0, 0, 0, 0);
-        meetingDate.setHours(0, 0, 0, 0);
+    const monthMeetings = filterByPeriod(meetingsWithDates, monthStart);
+    const monthSpendings = filterByPeriod(spendingsWithDates, monthStart);
 
-        // Прибавляем 7 дней к текущей дате и смотрим совпадения
-        currentDate.setDate(currentDate.getDate() + 7);
+    // Все встречи/траты
+    const allMeetings = meetingsWithDates;
+    const allSpendings = spendingsWithDates;
 
-        if (currentDate >= meetingDate) {
-            weekMeetingsAmounts.push(meeting.amount);
-        }
+    // Вычисляем суммы
+    const sumAmounts = <T extends { amount: number }>(items: T[]): number =>
+        items.reduce((sum, item) => sum + item.amount, 0);
 
-        // Забираем обратно 7 дней
-        currentDate.setDate(currentDate.getDate() - 7);
+    const totalWeekMeetings = sumAmounts(weekMeetings);
+    const totalWeekSpendings = sumAmounts(weekSpendings);
 
-        // Теперь добавляем месяц
-        currentDate.setMonth(currentDate.getMonth() + 1);
+    const totalMonthMeetings = sumAmounts(monthMeetings);
+    const totalMonthSpendings = sumAmounts(monthSpendings);
 
-        if (currentDate >= meetingDate) {
-            monthMeetingsAmounts.push(meeting.amount);
-        }
-    });
-
-    spendingsAmountsWithDates.forEach((spending) => {
-        const currentDate = new Date();
-        const meetingDate = spending.date;
-
-        // Обнуляем время чтобы сравнивать дни, месяцы, недели
-        currentDate.setHours(0, 0, 0, 0);
-        meetingDate.setHours(0, 0, 0, 0);
-
-        // Прибавляем 7 дней к текущей дате и смотрим совпадения
-        currentDate.setDate(currentDate.getDate() + 7);
-
-        if (currentDate >= meetingDate) {
-            weekSpendingsAmounts.push(spending.amount);
-        }
-
-        // Забираем обратно 7 дней
-        currentDate.setDate(currentDate.getDate() - 7);
-
-        // Теперь добавляем месяц
-        currentDate.setMonth(currentDate.getMonth() + 1);
-
-        if (currentDate >= meetingDate) {
-            monthSpendingsAmounts.push(spending.amount);
-        }
-    });
-
-    const allPeriodSpendings = spendingsAmountsWithDates
-        .map((s) => s.amount)
-        .reduce((a, b) => a + b, 0);
+    const totalAllMeetings = sumAmounts(allMeetings);
+    const totalAllSpendings = sumAmounts(allSpendings);
 
     return {
         all: {
-            total:
-                meetingsWithAmountsAndDates
-                    .map((m) => m.amount)
-                    .reduce((a, b) => a + b, initialBalance) -
-                allPeriodSpendings,
-            spendings: -allPeriodSpendings,
+            total: totalAllMeetings - totalAllSpendings,
+            spendings: -totalAllSpendings,
         },
         month: {
-            total:
-                monthMeetingsAmounts.reduce((a, b) => a + b, 0) -
-                monthSpendingsAmounts.reduce((a, b) => a + b, 0),
-            spendings: -monthSpendingsAmounts.reduce((a, b) => a + b, 0),
+            total: totalMonthMeetings - totalMonthSpendings,
+            spendings: -totalMonthSpendings,
         },
         week: {
-            total:
-                weekMeetingsAmounts.reduce((a, b) => a + b, 0) -
-                weekSpendingsAmounts.reduce((a, b) => a + b, 0),
-            spendings: -weekSpendingsAmounts.reduce((a, b) => a + b, 0),
+            total: totalWeekMeetings - totalWeekSpendings,
+            spendings: -totalWeekSpendings,
         },
     };
 };

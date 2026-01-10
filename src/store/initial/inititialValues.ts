@@ -312,7 +312,7 @@ export const initialMeetings: MeetingType[] = [
         },
         status: "Сдано",
         location: "Студия",
-        amount: 7777,
+        amount: 3250,
     },
     {
         id: 27,
@@ -361,13 +361,14 @@ export const initialMeetings: MeetingType[] = [
     },
     {
         id: 31,
-        person: "Тест",
+        person: "Альбина",
         date: "2026-01-10T17:00:00Z",
         links: {
             telegram: "https://t.me/neblessed",
         },
         status: "Назначено",
         location: "Студия",
+        comment: "Взять большую сумку",
     },
 ];
 

@@ -8,7 +8,7 @@ import { initialMeetings, initialSpendings } from "../initial/inititialValues";
 const initialMeetingsState: InitialMeetingsStateType = {
     meetings: initialMeetings,
     goal: 100000,
-    balance: calculateBalance(53000, initialMeetings, initialSpendings),
+    balance: calculateBalance(initialMeetings, initialSpendings),
     spendings: initialSpendings,
 };
 
@@ -24,20 +24,12 @@ const meetingsSlice = createSlice({
         addMeeting: (state, action: PayloadAction<MeetingType>) => {
             state.meetings.push(action.payload);
 
-            state.balance = calculateBalance(
-                0,
-                state.meetings,
-                state.spendings
-            );
+            state.balance = calculateBalance(state.meetings, state.spendings);
         },
         addSpending: (state, action: PayloadAction<SpendingType>) => {
             state.spendings.push(action.payload);
 
-            state.balance = calculateBalance(
-                0,
-                state.meetings,
-                state.spendings
-            );
+            state.balance = calculateBalance(state.meetings, state.spendings);
         },
         updateMeeting: (state, action: PayloadAction<OptionalMeetingType>) => {
             const id = action.payload.id;
@@ -58,7 +50,6 @@ const meetingsSlice = createSlice({
                 });
 
                 state.balance = calculateBalance(
-                    0,
                     state.meetings,
                     state.spendings
                 );
@@ -69,11 +60,7 @@ const meetingsSlice = createSlice({
                 (meeting) => meeting.id !== action.payload
             );
 
-            state.balance = calculateBalance(
-                0,
-                state.meetings,
-                state.spendings
-            );
+            state.balance = calculateBalance(state.meetings, state.spendings);
         },
     },
 });
