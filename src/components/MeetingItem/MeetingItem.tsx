@@ -31,7 +31,7 @@ function MeetingItem({
     const [isStatusOpened, setIsStatusOpened] = useState(false);
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 
-    const formattedDate = (date: string) => {
+    const formattedDate = (date: string, withTime = true) => {
         const now = new Date();
         const d = new Date(date);
         const formatted = d.toLocaleDateString("ru-RU", {
@@ -46,7 +46,7 @@ function MeetingItem({
             minute: "2-digit",
         });
 
-        return `${formatted}, ${time}`;
+        return `${formatted}${withTime ? `,  ${time}` : ""}`;
     };
     return (
         <div
@@ -56,15 +56,17 @@ function MeetingItem({
         >
             <div className="meeting_row__info">
                 <span
-                    className="meeting_row__person"
+                    className="meeting_row__person meeting_row__item"
                     onClick={() => setIsEditModalOpen((prev) => !prev)}
+                    hint-text="Имя клиента"
                 >
                     {person}
                 </span>
                 <div className="meeting_row_liner" />
                 <span
-                    className="meeting_row__date"
+                    className="meeting_row__date meeting_row__item"
                     onClick={() => setIsEditModalOpen((prev) => !prev)}
+                    hint-text="Дата съемки"
                 >
                     {formattedDate(date)}
                 </span>
@@ -72,9 +74,11 @@ function MeetingItem({
                     <>
                         <div className="meeting_row_liner" />
                         <div
-                            className={`${
+                            className={`meeting_row__item ${
                                 deadlineDate ? "meeting_row__deadline_cell" : ""
                             }`}
+                            style={!deadlineDate ? { width: "80px" } : {}}
+                            hint-text="Дедлайн сдачи"
                         >
                             <span
                                 className={`${
@@ -82,7 +86,7 @@ function MeetingItem({
                                 }`}
                             >
                                 {deadlineDate
-                                    ? formattedDate(deadlineDate)
+                                    ? formattedDate(deadlineDate, false)
                                     : ""}
                             </span>
                         </div>
@@ -124,8 +128,9 @@ function MeetingItem({
             <div className="meeting_row__additional">
                 {location && (
                     <span
-                        className="meeting_row__additional_location"
+                        className="meeting_row__additional_location meeting_row__item"
                         onClick={() => setIsEditModalOpen((prev) => !prev)}
+                        hint-text="Место съемки"
                     >
                         {location}
                     </span>
@@ -134,29 +139,34 @@ function MeetingItem({
                     <>
                         <div className="meeting_row_liner" />
                         <span
-                            className="meeting_row__additional_amount"
+                            className="meeting_row__additional_amount meeting_row__item"
                             onClick={() => setIsEditModalOpen((prev) => !prev)}
+                            hint-text="Стоимость съемки"
                         >
                             {amount}
                         </span>
                     </>
                 ) : null}
-                {comment && (
+                {comment ? (
                     <>
                         <div className="meeting_row_liner" />
-                        <a
-                            className="meeting_row__additional_comment_icon"
-                            comment-text={comment}
-                        >
-                            <img
+                        <div className="meeting_row__additional_comment">
+                            <a
                                 className="meeting_row__additional_comment_icon"
-                                src="./icons/comment.svg"
-                                onClick={() =>
-                                    setCommentOpened((prev) => !prev)
-                                }
-                            />
-                        </a>
+                                comment-text={comment}
+                            >
+                                <img
+                                    className="meeting_row__additional_comment_icon"
+                                    src="./icons/comment.svg"
+                                    onClick={() =>
+                                        setCommentOpened((prev) => !prev)
+                                    }
+                                />
+                            </a>
+                        </div>
                     </>
+                ) : (
+                    <div className="meeting_row__additional_comment" />
                 )}
             </div>
             {isEditModalOpen && (

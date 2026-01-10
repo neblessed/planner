@@ -2,9 +2,10 @@ import "./Menu.css";
 
 type MenuProps = {
     onAddClick: (state: boolean) => void;
+    onSpendingsClick: (state: boolean) => void;
 };
 
-function Menu({ onAddClick }: MenuProps) {
+function Menu({ onAddClick, onSpendingsClick }: MenuProps) {
     const formatted = new Date().toLocaleDateString("ru-RU", {
         day: "numeric",
         month: "long",
@@ -18,7 +19,11 @@ function Menu({ onAddClick }: MenuProps) {
                     src="./icons/plus.svg"
                     onClick={() => onAddClick(true)}
                 />
-                <img className="planner_menu__icon" src="./icons/history.svg" />
+                <img
+                    className="planner_menu__icon"
+                    src="./icons/history.svg"
+                    onClick={() => onSpendingsClick(true)}
+                />
             </div>
             <div className="planner_menu__line" />
             <span className="planner_menu__today">{formatted}</span>

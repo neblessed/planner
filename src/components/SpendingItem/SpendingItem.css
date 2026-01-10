@@ -1,0 +1,61 @@
+.spending_row {
+    display: flex;
+    gap: 5px;
+
+    align-items: center;
+    padding: 1px 4px;
+    border-radius: 4px;
+    cursor: default;
+
+    background-color: rgb(247, 247, 247);
+}
+
+.spending_row__data {
+    width: 300px;
+
+    display: flex;
+    gap: 5px;
+}
+
+.spending_row__title {
+    width: 170px;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.spending_row__date {
+    font-size: 12px;
+    font-weight: 400;
+    width: 90px;
+    text-align: end;
+}
+
+.spending_row__amount {
+    font-weight: 400;
+    border: 1px solid var(--light-grey);
+    padding: 0px 3px;
+    border-radius: 4px;
+    font-size: 12px;
+    background-color: rgba(255, 255, 255, 0.65);
+
+    width: 45px;
+    text-align: center;
+}
+
+.spending_row__liner {
+    width: 1px;
+    height: 15px;
+    background-color: var(--light-grey);
+}
+
+.spending_row__delete {
+    width: auto;
+    height: 15px;
+
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+.spending_row__delete:hover {
+    opacity: 1;
+}

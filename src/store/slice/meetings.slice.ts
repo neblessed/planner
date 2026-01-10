@@ -31,6 +31,13 @@ const meetingsSlice = createSlice({
 
             state.balance = calculateBalance(state.meetings, state.spendings);
         },
+        deleteSpending: (state, action: PayloadAction<number>) => {
+            state.spendings = state.spendings.filter(
+                (spending) => spending.id !== action.payload
+            );
+
+            state.balance = calculateBalance(state.meetings, state.spendings);
+        },
         updateMeeting: (state, action: PayloadAction<OptionalMeetingType>) => {
             const id = action.payload.id;
             const meeting = state.meetings.find((meeting) => meeting.id === id);
@@ -67,8 +74,9 @@ const meetingsSlice = createSlice({
 
 export const {
     setupGoal,
-    addMeeting,
     addSpending,
+    deleteSpending,
+    addMeeting,
     updateMeeting,
     deleteMeeting,
 } = meetingsSlice.actions;

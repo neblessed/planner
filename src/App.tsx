@@ -7,9 +7,11 @@ import CreationModal from "./components/modals/CreationModal/CreationModal";
 import PlannedBlock from "./components/PlannedBlock/PlannedBlock";
 import InProgressBlock from "./components/InProgressBlock/InProgressBlock";
 import CompletedBlock from "./components/CompletedBlock/CompletedBlock";
+import SpendingsModal from "./components/modals/SpendingsModal/SpendingsModal";
 
 function App() {
     const [creationModalVisible, setCreationModalVisible] = useState(false);
+    const [spendingsModalVisible, setSpendingsModalVisible] = useState(false);
 
     return (
         <div className="planner">
@@ -25,11 +27,18 @@ function App() {
                 <CompletedBlock />
             </div>
             <div className="menu_row">
-                <Menu onAddClick={setCreationModalVisible} />
+                <Menu
+                    onAddClick={setCreationModalVisible}
+                    onSpendingsClick={setSpendingsModalVisible}
+                />
             </div>
 
             {creationModalVisible && (
                 <CreationModal setOpen={setCreationModalVisible} />
+            )}
+
+            {spendingsModalVisible && (
+                <SpendingsModal setOpen={setSpendingsModalVisible} />
             )}
         </div>
     );
