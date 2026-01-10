@@ -4,11 +4,12 @@ import "./Block.css";
 type BlockProps = {
     title: string;
     children: ReactNode | ReactNode[];
+    wide?: boolean;
 };
 
-function Block({ title, children }: BlockProps) {
+function Block({ title, children, wide = false }: BlockProps) {
     return (
-        <div className="block">
+        <div className={`block ${wide ? "block_wide" : ""}`}>
             <div className="block__header">
                 <div className="block__controls">
                     <img src="./icons/close.svg" />

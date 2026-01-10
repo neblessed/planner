@@ -1,5 +1,5 @@
 .planner {
-    width: 1280px;
+    width: auto;
     max-width: 100%;
     margin: 0 auto;
     padding: 20px 50px;
@@ -7,7 +7,7 @@
     display: flex;
     flex-direction: column;
     align-content: center;
-    gap: 50px;
+    gap: 30px;
 }
 
 .widgets_row__1 {
@@ -16,6 +16,15 @@
 
 .widgets_row__2 {
     align-self: center;
+}
+
+.widgets_row__3 {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
 }
 
 .menu_row {

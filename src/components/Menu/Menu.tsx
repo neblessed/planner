@@ -2,7 +2,6 @@ import "./Menu.css";
 
 type MenuProps = {
     onAddClick: (state: boolean) => void;
-    // onHistoryClick: (state: boolean) => void;
 };
 
 function Menu({ onAddClick }: MenuProps) {

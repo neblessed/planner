@@ -1,12 +1,16 @@
 .block {
     min-width: 300px;
-    max-width: 1000px;
+    max-width: 1200px;
     height: auto;
 
     border: 1px solid rgba(0, 0, 0, 0.097);
     border-radius: var(--block-raduis);
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.06);
     align-self: flex-start;
+}
+
+.block_wide {
+    min-width: 100%;
 }
 
 .block__header {
@@ -17,16 +21,25 @@
 
     display: flex;
     align-items: center;
-    gap: 40px;
+    justify-content: center;
+    position: relative;
 
     background-color: #f5f5f5;
-    cursor: pointer;
+    cursor: default;
     border-radius: var(--block-raduis) var(--block-raduis) 0 0;
 }
 
 .block__controls {
     display: flex;
     gap: 8px;
+    position: absolute;
+    left: 15px;
+    opacity: 0.6;
+
+    & img {
+        width: auto;
+        height: 10px;
+    }
 }
 
 .block__label {
@@ -35,9 +48,10 @@
 }
 
 .block__content {
-    width: 100%;
+    min-width: 300px;
+    max-width: 1200px;
     height: auto;
-    max-height: 280px;
+    max-height: 200px;
 
     padding: 10px;
     font-size: 13px;
@@ -52,6 +66,5 @@
     overflow-y: auto;
 
     background-color: white;
-
     border-radius: 0 0 var(--block-raduis) var(--block-raduis);
 }

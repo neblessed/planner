@@ -1,35 +1,104 @@
 .meeting_row {
-    margin-inline: auto;
-
     display: flex;
-    justify-content: space-between;
+    /* width: 1150px; */
+    min-width: 700px;
+    max-width: auto;
     align-items: center;
+    gap: 8px;
+    padding: 1px 4px;
+
+    text-wrap-mode: nowrap;
+
+    cursor: default;
+    border-radius: 4px;
+
+    background-color: rgb(252, 252, 252);
+}
+
+.meeting_row_disabled {
+    display: flex;
+    width: 850px;
+    align-items: center;
+    gap: 8px;
+    padding: 1px 4px;
+
+    text-wrap-mode: nowrap;
+
+    cursor: default;
+    border-radius: 4px;
+
+    background-color: rgb(252, 252, 252);
+    opacity: 0.5;
+    transition: opacity 0.08s ease-in-out;
+}
+
+.meeting_row_disabled:hover {
+    opacity: 1;
+}
+
+.meeting_row_red {
+    background-color: var(--bg-light-red);
+}
+
+.meeting_row_yellow {
+    background-color: var(--bg-light-yellow);
 }
 
 .meeting_row__info {
-    display: flex;
-    gap: 18px;
+    display: inherit;
+    gap: 8px;
     align-items: center;
-
-    border-bottom: 0.5px solid rgba(0, 0, 0, 0.074);
-
-    margin-right: 7px;
-}
-
-.meeting_row__bullet {
-    width: 3px;
-    height: 3px;
-    background-color: rgba(0, 0, 0, 0.071);
-    border-radius: 15px;
 }
 
 .meeting_row__person {
-    text-align: start;
-    width: 160px;
-    font-weight: 300;
+    width: 150px;
+    font-weight: 600;
+    font-size: 12px;
+    margin-left: 8px;
 }
 
-.meeting_row__telegram {
+.meeting_row__date {
+    font-size: 12px;
+    font-weight: 400;
+    width: 170px;
+    text-align: end;
+}
+
+.meeting_row__deadline_cell {
+    display: flex;
+    justify-content: center;
+    width: 170px;
+}
+
+.meeting_row__deadline {
+    font-size: 12px;
+    font-weight: 400;
+    text-align: center;
+
+    border: 1px solid var(--light-grey);
+    border-radius: 4px;
+    background-color: rgba(255, 0, 21, 0.245);
+    padding: 1px 5px;
+}
+
+.meeting_row_status {
+    display: flex;
+    justify-content: start;
+    width: 108px;
+}
+
+.meeting_row__links {
+    display: flex;
+    gap: 3px;
+    width: 30px;
+    justify-content: center;
+
+    & a {
+        align-content: center;
+    }
+}
+
+.meeting_row__links_icon {
     display: inherit;
     align-content: center;
     opacity: 0.6;
@@ -37,23 +106,106 @@
     transition: opacity 0.18s ease-in-out;
 }
 
-.meeting_row__telegram:hover {
+.meeting_row__links_icon:hover {
     opacity: 1;
 }
 
-.meeting_row__telegram img {
+.meeting_row__links_icon img {
     width: auto;
     height: 15px;
 }
 
-.meeting_row__time {
+.meeting_row__links_icon_wfolio {
+    display: inherit;
+    align-content: center;
+    opacity: 0.6;
+
+    transition: opacity 0.18s ease-in-out;
+
+    cursor: pointer;
+}
+
+.meeting_row__links_icon_wfolio:hover {
+    opacity: 1;
+}
+
+.meeting_row__links_icon_wfolio img {
+    width: 12px;
+    height: auto;
+}
+
+.meeting_row__additional {
+    display: inherit;
+    gap: 8px;
+    align-items: center;
+}
+
+.meeting_row__additional_location {
     font-size: 12px;
     font-weight: 400;
+    width: 150px;
+}
+
+.meeting_row__additional_amount {
+    font-weight: 400;
+    border: 1px solid var(--light-grey);
+    padding: 0px 3px;
     border-radius: 4px;
-    padding: 0px 4px;
+    font-size: 12px;
+    background-color: rgba(255, 255, 255, 0.65);
+}
+
+.meeting_row__additional_comment {
+    text-align: center;
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--dark-grey);
+    text-wrap-mode: wrap;
+    margin-top: 10px;
+}
+
+.meeting_row__additional_comment_icon {
+    width: auto;
+    height: 16px;
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.meeting_row__additional_comment_icon::before {
+    position: absolute;
+    content: attr(comment-text);
+    transform: translate(20px, -10px);
+    background-color: white;
+    padding: 2px 10px;
+    border-radius: 5px;
+    border: 1px solid var(--light-grey);
+    opacity: 0;
+
+    min-width: 40px;
+    max-width: 200px;
+    min-height: 18px;
+    max-height: 250px;
+
+    white-space: normal;
+    word-wrap: break-word;
+    word-break: break-word;
+    overflow-wrap: break-word;
+
+    text-align: center;
+}
+
+.meeting_row__additional_comment_icon:hover::before {
+    opacity: 1;
+}
+
+.meeting_row_liner {
+    width: 1px;
+    height: 15px;
+    background-color: var(--light-grey);
+}
+
+.meeting_row_liner_dark {
+    width: 1px;
+    height: 15px;
     background-color: var(--dark-grey);
-
-    color: white;
-
-    cursor: default;
 }

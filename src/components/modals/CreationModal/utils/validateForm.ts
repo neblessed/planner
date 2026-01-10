@@ -22,6 +22,24 @@ export const validateForm = (object: MeetingType | SpendingType) => {
             );
         }
 
+        if (object.links.wfolio && object.links.wfolio.length === 0) {
+            throw new Error(
+                JSON.stringify({
+                    field: "wfolio",
+                    message: CreationFormError.emptyWfolio,
+                })
+            );
+        }
+
+        if (object.amount && object.amount <= 0) {
+            throw new Error(
+                JSON.stringify({
+                    field: "amount",
+                    message: CreationFormError.emptyAmount,
+                })
+            );
+        }
+
         if (object.location.length === 0) {
             throw new Error(
                 JSON.stringify({

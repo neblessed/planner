@@ -8,9 +8,11 @@ import { initialMeetings, initialSpendings } from "../initial/inititialValues";
 const initialMeetingsState: InitialMeetingsStateType = {
     meetings: initialMeetings,
     goal: 100000,
-    balance: calculateBalance(53000, initialMeetings, initialSpendings),
+    balance: calculateBalance(initialMeetings, initialSpendings),
     spendings: initialSpendings,
 };
+
+type OptionalMeetingType = Partial<MeetingType>;
 
 const meetingsSlice = createSlice({
     name: "meetingsSlice",
@@ -21,18 +23,53 @@ const meetingsSlice = createSlice({
         },
         addMeeting: (state, action: PayloadAction<MeetingType>) => {
             state.meetings.push(action.payload);
+
+            state.balance = calculateBalance(state.meetings, state.spendings);
         },
         addSpending: (state, action: PayloadAction<SpendingType>) => {
             state.spendings.push(action.payload);
 
-            state.balance = calculateBalance(
-                53000,
-                state.meetings,
-                state.spendings
+            state.balance = calculateBalance(state.meetings, state.spendings);
+        },
+        updateMeeting: (state, action: PayloadAction<OptionalMeetingType>) => {
+            const id = action.payload.id;
+            const meeting = state.meetings.find((meeting) => meeting.id === id);
+
+            if (meeting) {
+                const updated = {
+                    ...meeting,
+                    ...action.payload,
+                };
+
+                state.meetings = state.meetings.map((meeting) => {
+                    if (meeting.id === id) {
+                        return updated;
+                    }
+
+                    return meeting;
+                });
+
+                state.balance = calculateBalance(
+                    state.meetings,
+                    state.spendings
+                );
+            }
+        },
+        deleteMeeting: (state, action: PayloadAction<number>) => {
+            state.meetings = state.meetings.filter(
+                (meeting) => meeting.id !== action.payload
             );
+
+            state.balance = calculateBalance(state.meetings, state.spendings);
         },
     },
 });
 
-export const { setupGoal, addMeeting, addSpending } = meetingsSlice.actions;
+export const {
+    setupGoal,
+    addMeeting,
+    addSpending,
+    updateMeeting,
+    deleteMeeting,
+} = meetingsSlice.actions;
 export default meetingsSlice.reducer;
