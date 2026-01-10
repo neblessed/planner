@@ -50,7 +50,7 @@
 .block__content {
     min-width: 300px;
     max-width: 1200px;
-    height: auto;
+    min-height: auto;
     max-height: 200px;
 
     padding: 10px;
@@ -67,4 +67,5 @@
 
     background-color: white;
     border-radius: 0 0 var(--block-raduis) var(--block-raduis);
+    position: relative;
 }
