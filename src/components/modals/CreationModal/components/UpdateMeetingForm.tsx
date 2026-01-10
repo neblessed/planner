@@ -148,7 +148,7 @@ function UpdateMeetingForm({ meeting, setOpen }: UpdateMeetingFormProps) {
                             date,
                             ...(amount && { amount: Number(amount) }),
                             location,
-                            ...(comment && { comment }),
+                            ...(comment !== null && { comment }),
                         };
 
                         try {
