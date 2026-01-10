@@ -10,9 +10,14 @@ import { rowBackgroundByStatus } from "./utils/getRowBackgroundByStatus";
 type MeetingItemProps = {
     meeting: MeetingType;
     enableDeadlineCell?: boolean;
+    isDisabled?: boolean;
 };
 
-function MeetingItem({ meeting, enableDeadlineCell = true }: MeetingItemProps) {
+function MeetingItem({
+    meeting,
+    enableDeadlineCell = true,
+    isDisabled = false,
+}: MeetingItemProps) {
     const {
         id,
         person,
@@ -46,7 +51,11 @@ function MeetingItem({ meeting, enableDeadlineCell = true }: MeetingItemProps) {
         return `${formatted}, ${time}`;
     };
     return (
-        <div className={`meeting_row ${rowBackgroundByStatus(status, date)}`}>
+        <div
+            className={`${
+                isDisabled ? "meeting_row_disabled" : "meeting_row"
+            } ${rowBackgroundByStatus(status, date)}`}
+        >
             <div className="meeting_row__info">
                 <span
                     className="meeting_row__person"

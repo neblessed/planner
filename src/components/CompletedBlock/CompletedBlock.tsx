@@ -20,6 +20,7 @@ function CompletedBlock() {
                                 key={meeting.id}
                                 meeting={meeting}
                                 enableDeadlineCell={false}
+                                isDisabled={true}
                             />
                         );
                     })
