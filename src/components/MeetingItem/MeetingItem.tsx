@@ -135,21 +135,25 @@ function MeetingItem({
                         {location}
                     </span>
                 )}
-                {amount || amount === 0 ? (
-                    <>
-                        <div className="meeting_row_liner" />
-                        <span
-                            className="meeting_row__additional_amount meeting_row__item"
-                            onClick={() => setIsEditModalOpen((prev) => !prev)}
-                            hint-text="Стоимость съемки"
-                        >
-                            {amount}
-                        </span>
-                    </>
-                ) : null}
+                <>
+                    <div className="meeting_row_liner" />
+                    <div className="meeting_row__aditional_amount_cell">
+                        {amount || amount === 0 ? (
+                            <span
+                                className="meeting_row__additional_amount meeting_row__item"
+                                onClick={() =>
+                                    setIsEditModalOpen((prev) => !prev)
+                                }
+                                hint-text="Стоимость съемки"
+                            >
+                                {amount}
+                            </span>
+                        ) : null}
+                    </div>
+                </>
+                <div className="meeting_row_liner" />
                 {comment ? (
                     <>
-                        <div className="meeting_row_liner" />
                         <div className="meeting_row__additional_comment">
                             <a
                                 className="meeting_row__additional_comment_icon"

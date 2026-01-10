@@ -67,5 +67,11 @@
 
     background-color: white;
     border-radius: 0 0 var(--block-raduis) var(--block-raduis);
-    /* position: relative; */
+
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.block__content::-webkit-scrollbar {
+    display: none;
 }
