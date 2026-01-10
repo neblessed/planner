@@ -139,20 +139,18 @@ function MeetingItem({
                 {comment && (
                     <>
                         <div className="meeting_row_liner" />
-                        <img
+                        <a
                             className="meeting_row__additional_comment_icon"
-                            src="./icons/comment.svg"
-                            onClick={() => setCommentOpened((prev) => !prev)}
-                        />
-                        <Popover
-                            title="Комментарий"
-                            isOpen={commentOpened}
-                            onClose={() => setCommentOpened(false)}
+                            comment-text={comment}
                         >
-                            <span className="meeting_row__additional_comment">
-                                {comment}
-                            </span>
-                        </Popover>
+                            <img
+                                className="meeting_row__additional_comment_icon"
+                                src="./icons/comment.svg"
+                                onClick={() =>
+                                    setCommentOpened((prev) => !prev)
+                                }
+                            />
+                        </a>
                     </>
                 )}
             </div>

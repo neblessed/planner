@@ -136,7 +136,7 @@
 .meeting_row__additional_location {
     font-size: 12px;
     font-weight: 400;
-    width: 195px;
+    width: 170px;
 }
 
 .meeting_row__additional_amount {
@@ -160,9 +160,35 @@
 .meeting_row__additional_comment_icon {
     width: auto;
     height: 16px;
-
-    opacity: 0.6;
+    opacity: 0.8;
     cursor: pointer;
+}
+
+.meeting_row__additional_comment_icon::before {
+    position: absolute;
+    content: attr(comment-text);
+    transform: translate(20px, -10px);
+    background-color: white;
+    padding: 2px 10px;
+    border-radius: 5px;
+    border: 1px solid var(--light-grey);
+    opacity: 0;
+
+    min-width: 40px;
+    max-width: 200px;
+    min-height: 18px;
+    max-height: 250px;
+
+    white-space: normal;
+    word-wrap: break-word;
+    word-break: break-word;
+    overflow-wrap: break-word;
+
+    text-align: center;
+}
+
+.meeting_row__additional_comment_icon:hover::before {
+    opacity: 1;
 }
 
 .meeting_row_liner {
