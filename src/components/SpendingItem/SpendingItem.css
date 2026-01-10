@@ -1,14 +1,20 @@
 .spending_row {
-    width: 300px;
-
     display: flex;
     gap: 5px;
+
     align-items: center;
     padding: 1px 4px;
     border-radius: 4px;
     cursor: default;
 
     background-color: rgb(247, 247, 247);
+}
+
+.spending_row__data {
+    width: 300px;
+
+    display: flex;
+    gap: 5px;
 }
 
 .spending_row__title {
@@ -40,4 +46,16 @@
     width: 1px;
     height: 15px;
     background-color: var(--light-grey);
+}
+
+.spending_row__delete {
+    width: auto;
+    height: 15px;
+
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+.spending_row__delete:hover {
+    opacity: 1;
 }

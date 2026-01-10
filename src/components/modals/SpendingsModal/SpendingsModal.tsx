@@ -16,9 +16,15 @@ function SpendingsModal({ setOpen }: SpendingsModalProps) {
 
     return (
         <Modal title="Список трат" setOpen={setOpen}>
-            {sortedSpendings.map((spending) => (
-                <SpendingItem key={spending.id} spending={spending} />
-            ))}
+            {sortedSpendings.length > 0 ? (
+                sortedSpendings.map((spending) => (
+                    <SpendingItem key={spending.id} spending={spending} />
+                ))
+            ) : (
+                <span className="empty_list_text">
+                    Вы ещё не добавили ни одной траты
+                </span>
+            )}
         </Modal>
     );
 }
