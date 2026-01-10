@@ -8,7 +8,7 @@
     text-wrap-mode: nowrap;
 
     cursor: default;
-    border-radius: 5px;
+    border-radius: 4px;
 
     background-color: rgb(252, 252, 252);
 }
@@ -40,6 +40,19 @@
     width: 180px;
     text-align: end;
 }
+
+.meeting_row__deadline {
+    font-size: 12px;
+    font-weight: 400;
+    width: 20px;
+    text-align: center;
+
+    border: 1px solid var(--light-grey);
+    border-radius: 4px;
+
+    background-color: rgba(255, 0, 21, 0.245);
+}
+
 .meeting_row_status {
     display: flex;
     justify-content: start;

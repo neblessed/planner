@@ -6,7 +6,6 @@ export const validateStatusForm = (data: {
     amount?: string | null;
     wfolio?: string | null;
 }) => {
-    console.log(data);
     if (data.amount && Number(data.amount) <= 0) {
         throw new Error(
             JSON.stringify({
@@ -16,7 +15,10 @@ export const validateStatusForm = (data: {
         );
     }
 
-    if ((data.wfolio && data.wfolio === null) || data.wfolio!.length <= 10) {
+    if (
+        (data.wfolio && data.wfolio === null) ||
+        (data.wfolio !== null && data.wfolio!.length <= 10)
+    ) {
         throw new Error(
             JSON.stringify({
                 field: "status-wfolio",

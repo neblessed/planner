@@ -326,6 +326,49 @@ export const initialMeetings: MeetingType[] = [
         location: "Студия",
         amount: 3000,
     },
+    {
+        id: 28,
+        person: "Вадим",
+        date: "2026-01-22T17:00:00Z",
+        deadlineDate: "2026-01-25T17:00:00Z",
+        links: {
+            telegram: "https://t.me/neblessed",
+        },
+        status: "В обработке",
+        location: "Студия",
+    },
+    {
+        id: 29,
+        person: "Коля",
+        date: "2026-01-22T17:00:00Z",
+        deadlineDate: "2026-01-22T17:00:00Z",
+        links: {
+            telegram: "https://t.me/neblessed",
+        },
+        status: "Ждёт обработки",
+        location: "Студия",
+    },
+    {
+        id: 30,
+        person: "Женя",
+        date: "2026-01-22T17:00:00Z",
+        deadlineDate: "2026-01-20T17:00:00Z",
+        links: {
+            telegram: "https://t.me/neblessed",
+        },
+        status: "В обработке",
+        location: "Студия",
+    },
+    {
+        id: 31,
+        person: "Тест",
+        date: "2026-01-10T17:00:00Z",
+        links: {
+            telegram: "https://t.me/neblessed",
+        },
+        status: "Назначено",
+        location: "Студия",
+    },
 ];
 
 export const initialSpendings: SpendingType[] = [

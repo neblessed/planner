@@ -20,7 +20,9 @@ function PlannedBlock() {
             <Block title="Запланировано 📅" wide={true}>
                 {plannedMeetings.length > 0 ? (
                     plannedMeetings.map((meeting) => {
-                        return <MeetingItem key={meeting.id} {...meeting} />;
+                        return (
+                            <MeetingItem key={meeting.id} meeting={meeting} />
+                        );
                     })
                 ) : (
                     <span className="empty_list_text">

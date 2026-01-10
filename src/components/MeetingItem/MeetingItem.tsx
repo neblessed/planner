@@ -3,27 +3,27 @@ import type { MeetingType } from "../../types/MeetingType";
 import Popover from "../common/Popover/Popover";
 import Status from "./components/Status";
 import "./MeetingItem.css";
-import type { StatusType } from "../../types/StatusType";
 import CreationModal from "../modals/CreationModal/CreationModal";
+import { getDeadlineDays } from "./utils/getDeadlineDays";
+import { rowBackgroundByStatus } from "./utils/getRowBackgroundByStatus";
 
-const rowBackgroundByStatus = (status: StatusType, date: string) => {
-    const isCurrentDateLaterThanMeetingDate =
-        Date.now() > new Date(date).getTime();
-
-    if (status === "Назначено" && isCurrentDateLaterThanMeetingDate) {
-        return "meeting_row_red";
-    }
-
-    if (status === "Проведено") {
-        return "meeting_row_yellow";
-    }
-
-    return "";
+type MeetingItemProps = {
+    meeting: MeetingType;
+    enableDeadlineCell?: boolean;
 };
 
-function MeetingItem(props: MeetingType) {
-    const { id, person, location, status, comment, links, amount, date } =
-        props;
+function MeetingItem({ meeting, enableDeadlineCell = true }: MeetingItemProps) {
+    const {
+        id,
+        person,
+        location,
+        status,
+        comment,
+        links,
+        amount,
+        date,
+        deadlineDate,
+    } = meeting;
     const [commentOpened, setCommentOpened] = useState(false);
     const [isStatusOpened, setIsStatusOpened] = useState(false);
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -61,6 +61,19 @@ function MeetingItem(props: MeetingType) {
                 >
                     {formattedDate(date)}
                 </span>
+                {enableDeadlineCell && (
+                    <>
+                        <div className="meeting_row_liner" />
+                        <span
+                            className={`${
+                                deadlineDate ? "meeting_row__deadline" : ""
+                            }`}
+                            style={{ width: "20px" }}
+                        >
+                            {deadlineDate ? getDeadlineDays(deadlineDate) : ""}
+                        </span>
+                    </>
+                )}
                 <div className="meeting_row_liner" />
                 <div className="meeting_row_status">
                     <Status
@@ -135,7 +148,7 @@ function MeetingItem(props: MeetingType) {
                 )}
             </div>
             {isEditModalOpen && (
-                <CreationModal setOpen={setIsEditModalOpen} meeting={props} />
+                <CreationModal setOpen={setIsEditModalOpen} meeting={meeting} />
             )}
         </div>
     );

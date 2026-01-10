@@ -15,7 +15,13 @@ function CompletedBlock() {
             <Block title="Завершенные записи ✅" wide={true}>
                 {completedMeetings.length > 0 ? (
                     completedMeetings.map((meeting) => {
-                        return <MeetingItem key={meeting.id} {...meeting} />;
+                        return (
+                            <MeetingItem
+                                key={meeting.id}
+                                meeting={meeting}
+                                enableDeadlineCell={false}
+                            />
+                        );
                     })
                 ) : (
                     <span className="empty_list_text">

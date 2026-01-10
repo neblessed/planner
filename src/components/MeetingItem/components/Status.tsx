@@ -28,9 +28,10 @@ function Status({ id, status, isOpen, setIsOpened }: StatusProps) {
     const dispatch = useAppDispatch();
     const { meetings } = useAppSelector((store) => store.meetingsReducer);
     const [updatedStatus, setUpdatedStatus] = useState<StatusType>(status);
-    const [amount, setAmount] = useState<null | string>(null);
+    const [amount, setAmount] = useState<string | null>(null);
     const [wfolio, setWfolio] = useState<string | null>(null);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [deadlineDate, setDeadlineDate] = useState<string | null>(null);
     const [error, setError] = useState<null | FormErrorType>(null);
 
     return (
@@ -54,8 +55,19 @@ function Status({ id, status, isOpen, setIsOpened }: StatusProps) {
                                         setUpdatedStatus(type);
 
                                         if (type === "Проведено") {
+                                            const deadline = new Date();
+                                            deadline.setHours(0, 0, 0, 0);
+
+                                            // Дедлайн 10 дней
+                                            deadline.setDate(
+                                                deadline.getDate() + 10
+                                            );
+
                                             setAmount("0");
                                             setWfolio(null);
+                                            setDeadlineDate(
+                                                deadline.toISOString()
+                                            );
                                             setIsModalOpen(true);
                                         }
 
@@ -140,6 +152,9 @@ function Status({ id, status, isOpen, setIsOpened }: StatusProps) {
                                                     amount: Number(amount),
                                                 }),
                                                 status: updatedStatus,
+                                                ...(deadlineDate && {
+                                                    deadlineDate,
+                                                }),
                                             })
                                         );
 

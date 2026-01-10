@@ -8,6 +8,8 @@ export type MeetingType = {
     location: string;
     /** Дата встречи **/
     date: string;
+    /** Дата дедлайна обработки */
+    deadlineDate?: string;
     /** Ссылки **/
     links: {
         /** Telegram клиента **/
