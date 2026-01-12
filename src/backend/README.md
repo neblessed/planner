@@ -37,5 +37,4 @@ project/
 │ └── tsconfig.json
 │
 ├── package.json # Общий для скриптов (опционально)
-├── start.sh # Скрипт запуска
 └── README.md
