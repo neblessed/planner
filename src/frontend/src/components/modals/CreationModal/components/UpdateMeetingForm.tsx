@@ -9,7 +9,7 @@ import { useAppDispatch } from "../../../../hooks/redux";
 import {
     deleteMeeting,
     updateMeeting,
-} from "../../../../../store/slice/meetings.slice";
+} from "../../../../store/slice/meetings.slice";
 
 type UpdateMeetingFormProps = {
     meeting: MeetingType;

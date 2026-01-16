@@ -1,11 +1,11 @@
 import { useState } from "react";
 import Field from "../../../common/Field/Field";
 import DatePicker from "../../../common/DatePicker/DatePicker";
-import type { FormErrorType } from "../../../../../types/FormErrorType";
+import type { FormErrorType } from "../../../../types/FormErrorType";
 import { validateForm } from "../utils/validateForm";
 import { useAppDispatch } from "../../../../hooks/redux";
-import { addSpending } from "../../../../../store/slice/meetings.slice";
-import type { SpendingType } from "../../../../../types/SpendingType";
+import { addSpending } from "../../../../store/slice/meetings.slice";
+import type { SpendingType } from "../../../../types/SpendingType";
 
 type SpendingFormProps = {
     setOpen: (state: boolean) => void;

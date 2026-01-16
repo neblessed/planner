@@ -4,7 +4,7 @@ import Block from "../common/Block/Block";
 import "./Balance.css";
 import Popover from "../common/Popover/Popover";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
-import { setupGoal } from "../../../store/slice/meetings.slice";
+import { setupGoal } from "../../store/slice/meetings.slice";
 import { getBalanceByPeriod } from "./utils/getBalanceByPeriod";
 
 /** Блок балансом */

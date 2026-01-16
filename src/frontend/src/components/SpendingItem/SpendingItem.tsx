@@ -1,8 +1,8 @@
 import { useState } from "react";
-import type { SpendingType } from "../../../types/SpendingType";
+import type { SpendingType } from "../../types/SpendingType";
 import "./SpendingItem.css";
 import { useAppDispatch } from "../../hooks/redux";
-import { deleteSpending } from "../../../store/slice/meetings.slice";
+import { deleteSpending } from "../../store/slice/meetings.slice";
 
 type SpendingItemProps = {
     spending: SpendingType;

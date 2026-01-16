@@ -3,10 +3,10 @@ import DatePicker from "../../../common/DatePicker/DatePicker";
 import Field from "../../../common/Field/Field";
 import Textarea from "../../../common/Textarea/Textarea";
 import { useAppDispatch } from "../../../../hooks/redux";
-import { addMeeting } from "../../../../../store/slice/meetings.slice";
+import { addMeeting } from "../../../../store/slice/meetings.slice";
 import { validateForm } from "../utils/validateForm";
-import type { MeetingType } from "../../../../../types/MeetingType";
-import type { FormErrorType } from "../../../../../types/FormErrorType";
+import type { MeetingType } from "../../../../types/MeetingType";
+import type { FormErrorType } from "../../../../types/FormErrorType";
 
 type MeetingFormProps = {
     setOpen: (state: boolean) => void;

@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../hooks/redux";
-import { updateMeeting } from "../../../../store/slice/meetings.slice";
-import type { StatusType } from "../../../../types/StatusType";
+import { updateMeeting } from "../../../store/slice/meetings.slice";
+import type { StatusType } from "../../../types/StatusType";
 import Popover from "../../common/Popover/Popover";
 import "./Status.css";
 import Modal from "../../common/Modal/Modal";
 import Field from "../../common/Field/Field";
-import type { FormErrorType } from "../../../../types/FormErrorType";
+import type { FormErrorType } from "../../../types/FormErrorType";
 import { validateStatusForm } from "../utils/validateStatusForm";
 
 type StatusProps = {
