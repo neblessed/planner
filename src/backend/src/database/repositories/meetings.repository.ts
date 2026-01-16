@@ -4,19 +4,27 @@ import type { Meeting } from "../types/Meeting.type";
 
 export class MeetingRepository {
     // Возвращает массив встреч
-    static getAllMeetings(): Meeting[] {
+    static getAll(): Meeting[] {
         return db.prepare("SELECT * FROM meetings").all() as Meeting[];
     }
 
-    // Получить одну встречу по ID
-    static getMeetingById(id: number): Meeting | undefined {
+    /**
+     * Получить встречу по id
+     * @param id - идентификатор встречи
+     * @returns
+     */
+    static getById(id: number): Meeting | undefined {
         return db
             .prepare("SELECT * FROM meetings WHERE id = ?")
             .get(id) as Meeting;
     }
 
-    // Создать встречу
-    static createMeeting(meeting: Omit<Meeting, "id">) {
+    /**
+     * Создать встречу
+     * @param meeting - встреча
+     * @returns
+     */
+    static create(meeting: Omit<Meeting, "id">) {
         const stmt = db.prepare(`
             INSERT INTO meetings (person, location, date, deadlineDate, telegram, wfolio, status, comment, amount)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
@@ -31,18 +39,33 @@ export class MeetingRepository {
             meeting.wfolio || null,
             meeting.status,
             meeting.comment || null,
-            meeting.amount || null
+            meeting.amount || null,
         );
     }
 
-    static updateMeeting(
-        id: number,
-        data: Partial<Omit<Meeting, "id">>
-    ): boolean {
+    /**
+     * Удалить встречу по id
+     * @param id - идентификатор встречи
+     * @returns
+     */
+    static delete(id: number) {
+        const stmt = db.prepare(`DELETE FROM meetings WHERE id = ?`);
+
+        return stmt.run(id);
+    }
+
+    /**
+     * Обновить встречу
+     * @param id - идентификатор встречи
+     * @param data  - остальные параметры для обновления
+     * @returns
+     */
+    static update(id: number, data: Partial<Omit<Meeting, "id">>): boolean {
         // Проверяем существует ли встреча
         const exists = db
             .prepare("SELECT 1 FROM meetings WHERE id = ?")
             .get(id);
+
         if (!exists) {
             return false;
         }
@@ -50,18 +73,9 @@ export class MeetingRepository {
         // Обрабатываем структуру данных
         const updateFields: Record<string, any> = {};
 
-        // Копируем поля из data
-        Object.entries(data).forEach(([key, value]) => {
-            if (key !== "id") {
-                if (key === "links") {
-                    // Разбираем объект links
-                    updateFields.telegram = value?.telegram;
-                    updateFields.wfolio = value?.wfolio || null;
-                } else {
-                    updateFields[key] = value;
-                }
-            }
-        });
+        Object.entries(data).forEach(
+            ([key, value]) => (updateFields[key] = value),
+        );
 
         if (Object.keys(updateFields).length === 0) {
             return false; // Нечего обновлять
