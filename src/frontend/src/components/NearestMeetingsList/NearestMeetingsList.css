@@ -1,6 +1,8 @@
 .empty_list_text {
     color: rgba(0, 0, 0, 0.453);
     font-size: 14px;
+
+    cursor: default;
 }
 
 .meeting_days {
@@ -8,6 +10,8 @@
     display: flex;
     flex-direction: column;
     gap: 5px;
+
+    cursor: default;
 }
 
 .meeting_day_block {
