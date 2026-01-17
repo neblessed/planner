@@ -53,7 +53,7 @@ export class SpendingsController {
                 amount,
                 date,
             });
-            res.status(201).json({ message: "success" });
+            res.status(201).json(req.body);
         } catch (error) {
             res.status(500).json({ error: "Internal server error" });
         }

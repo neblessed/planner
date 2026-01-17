@@ -14,6 +14,7 @@ export const createNewSpending = createAsyncThunk(
     "meetings/createSpending",
     async (spendingData: Omit<SpendingType, "id">) => {
         const response = await api.createSpending(spendingData);
+        console.log("response", response);
         return response;
     },
 );

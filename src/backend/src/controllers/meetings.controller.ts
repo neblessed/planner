@@ -74,9 +74,7 @@ export class MeetingsController {
             }
 
             await MeetingRepository.create(data);
-            res.status(201).json({
-                message: "Встреча создана",
-            });
+            res.status(201).json(req.body);
         } catch (error) {
             res.status(500).json({
                 error: "Ошибка при создании встречи",
