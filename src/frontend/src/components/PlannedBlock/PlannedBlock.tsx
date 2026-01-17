@@ -15,7 +15,7 @@ function PlannedBlock() {
         )
         .sort(
             (m1, m2) =>
-                new Date(m2.date).getTime() - new Date(m1.date).getTime(),
+                new Date(m1.date).getTime() - new Date(m2.date).getTime(),
         );
 
     return (

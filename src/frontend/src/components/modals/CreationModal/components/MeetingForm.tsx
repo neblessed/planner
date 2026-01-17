@@ -79,11 +79,11 @@ function MeetingForm({ setOpen }: MeetingFormProps) {
                 onClick={() => {
                     const meeting: MeetingType = {
                         id: Date.now(),
-                        person,
-                        location,
-                        date,
-                        telegram: `https://t.me/${telegram.replace("@", "")}`,
-                        comment,
+                        person: person.trim(),
+                        location: location.trim(),
+                        date: date.trim(),
+                        telegram: `https://t.me/${telegram.trim().replace("@", "")}`,
+                        comment: comment.trim(),
                         status: "Назначено",
                     };
 

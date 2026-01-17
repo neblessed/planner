@@ -21,6 +21,7 @@ const NearestMeetingsBlock = ({
             <span className="meeting_day_block__title">{title}:</span>
             <div className="meeting_day_block__items">
                 {meetings
+                    .filter((meeting) => meeting.status === "Назначено")
                     // Сортируем по возрастанию
                     .sort((a, b) => {
                         const dateA = new Date(a.date).getTime();
@@ -50,7 +51,10 @@ function NearestMeetingsList() {
         <Block title="Ближайшие записи">
             <div className="meeting_days">
                 {Object.keys(separatedMeetings).map((key) => {
-                    const meetingsArray = separatedMeetings[key];
+                    const meetingsArray = separatedMeetings[key].filter(
+                        (meeting: MeetingType) =>
+                            meeting.status === "Назначено",
+                    );
 
                     if (key === "one" && meetingsArray.length > 0) {
                         return (

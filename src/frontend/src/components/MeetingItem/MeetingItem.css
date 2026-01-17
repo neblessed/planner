@@ -201,6 +201,7 @@
 }
 
 .meeting_row__additional_comment_icon {
+    display: flex;
     width: auto;
     height: 16px;
     opacity: 0.8;
