@@ -17,7 +17,7 @@ export class SpendingRepository {
      */
     static getSpendingById(id: number): Spending | undefined {
         return db
-            .prepare("SELECT * FROM meetings WHERE id = ?")
+            .prepare("SELECT * FROM spendings WHERE id = ?")
             .get(id) as Spending;
     }
 

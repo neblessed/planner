@@ -4,7 +4,6 @@ import { CreateMeetingDTO } from "../database/types/CreateMeetingDTO";
 import { UpdateMeetingDTO } from "../database/types/UpdateMeetingDTO";
 
 export class MeetingsController {
-    // GET /api/meetings - получить все встречи
     static async getAllMeetings(_req: Request, res: Response): Promise<void> {
         try {
             const meetings = await MeetingRepository.getAll();
@@ -20,7 +19,6 @@ export class MeetingsController {
         }
     }
 
-    // GET /api/meetings/:id - получить встречу по ID
     static async getMeetingById(req: Request, res: Response): Promise<void> {
         try {
             const id = parseInt(req.params.id);
@@ -90,7 +88,6 @@ export class MeetingsController {
         }
     }
 
-    // PUT /api/meetings/:id - обновить встречу
     static async updateMeeting(req: Request, res: Response): Promise<void> {
         try {
             const id = parseInt(req.params.id);
@@ -126,7 +123,6 @@ export class MeetingsController {
         }
     }
 
-    // DELETE /api/meetings/:id - удалить встречу
     static async deleteMeeting(req: Request, res: Response): Promise<void> {
         try {
             const id = parseInt(req.params.id);

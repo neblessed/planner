@@ -6,10 +6,19 @@ export class GoalController {
         try {
             const { goal } = req.body;
 
-            await GoalRepository.renewGoal(Number(goal));
+            await GoalRepository.renew(goal);
             res.status(201).json({ message: "Цель обновлена" });
         } catch (error) {
-            res.status(500).json({ error: "Internal server error" });
+            res.status(500).json({ error: `Internal server error\n${error}` });
+        }
+    }
+
+    static async get(req: Request, res: Response) {
+        try {
+            const data = (await GoalRepository.get()) as Record<string, any>;
+            res.status(201).json({ goal: data[0].goal });
+        } catch (error) {
+            res.status(500).json({ error: `Internal server error\n${error}` });
         }
     }
 }
