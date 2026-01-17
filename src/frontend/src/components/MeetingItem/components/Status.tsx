@@ -8,6 +8,8 @@ import Modal from "../../common/Modal/Modal";
 import Field from "../../common/Field/Field";
 import type { FormErrorType } from "../../../types/FormErrorType";
 import { validateStatusForm } from "../utils/validateStatusForm";
+import { updateExistedMeeting } from "../../../store/thunks/meeting.thunk";
+import { MeetingType } from "../../../types/MeetingType";
 
 type StatusProps = {
     id: number;
@@ -77,7 +79,7 @@ function Status({ id, status, isOpen, setIsOpened }: StatusProps) {
                                             setIsModalOpen(true);
                                         } else {
                                             dispatch(
-                                                updateMeeting({
+                                                updateExistedMeeting({
                                                     id,
                                                     status: type,
                                                 }),
@@ -135,12 +137,12 @@ function Status({ id, status, isOpen, setIsOpened }: StatusProps) {
                                     validateStatusForm({ amount, wfolio });
 
                                     const meeting = meetings.find(
-                                        (m) => m.id === id,
+                                        (m: MeetingType) => m.id === id,
                                     );
 
                                     if (meeting) {
                                         dispatch(
-                                            updateMeeting({
+                                            updateExistedMeeting({
                                                 ...meeting,
                                                 ...(wfolio && {
                                                     links: {

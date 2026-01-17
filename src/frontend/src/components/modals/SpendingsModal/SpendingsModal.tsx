@@ -9,9 +9,8 @@ type SpendingsModalProps = {
 function SpendingsModal({ setOpen }: SpendingsModalProps) {
     const { spendings } = useAppSelector((store) => store.meetingsReducer);
 
-    console.log(spendings);
     const sortedSpendings = [...spendings].sort(
-        (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+        (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
     );
 
     return (

@@ -11,13 +11,13 @@ import type { Balance } from "../types/BalanceType";
  */
 export const calculateBalance = (
     meetings: MeetingType[],
-    spendings: SpendingType[]
+    spendings: SpendingType[],
 ): Balance => {
     const now = new Date();
     const todayStart = new Date(
         now.getFullYear(),
         now.getMonth(),
-        now.getDate()
+        now.getDate(),
     );
 
     // Вычисляем даты начала периодов
@@ -31,7 +31,7 @@ export const calculateBalance = (
     const filterByPeriod = <T extends { date: Date }>(
         items: T[],
         startDate: Date,
-        endDate: Date = todayStart
+        endDate: Date = todayStart,
     ): T[] => {
         return items.filter((item) => {
             const itemDate = new Date(item.date);

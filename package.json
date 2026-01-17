@@ -10,6 +10,7 @@
         "dev:frontend": "npm run dev -w frontend"
     },
     "devDependencies": {
+        "@types/cors": "^2.8.19",
         "concurrently": "^8.2.2"
     }
 }

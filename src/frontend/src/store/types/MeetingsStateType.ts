@@ -7,4 +7,6 @@ export type InitialMeetingsStateType = {
     goal: number;
     balance: Balance;
     spendings: SpendingType[];
+    loading: boolean;
+    error: null | string;
 };

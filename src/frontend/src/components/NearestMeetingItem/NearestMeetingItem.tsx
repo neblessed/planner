@@ -1,5 +1,5 @@
+import { MeetingType } from "../../types/MeetingType";
 import "./NearestMeetingItem.css";
-import type { MeetingType } from "../../../types/MeetingType";
 
 type NearestMeetingItemProps = Omit<MeetingType, "location" | "id" | "status">;
 

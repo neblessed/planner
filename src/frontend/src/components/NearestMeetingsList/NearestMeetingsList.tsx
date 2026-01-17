@@ -1,9 +1,9 @@
 import Block from "../common/Block/Block";
 import NearestMeetingItem from "../NearestMeetingItem/NearestMeetingItem";
 import "./NearestMeetingsList.css";
-import type { MeetingType } from "../../../types/MeetingType";
 import { useAppSelector } from "../../hooks/redux";
 import { separateNearest } from "./utils/separateNearest";
+import { MeetingType } from "../../types/MeetingType";
 
 const EmptyText = () => {
     return <span className="empty_list_text">Ближайших записей нет 👀</span>;
@@ -33,7 +33,7 @@ const NearestMeetingsBlock = ({
                             key={meeting.id}
                             person={meeting.person}
                             date={meeting.date}
-                            links={meeting.links}
+                            links={meeting}
                         />
                     ))}
             </div>

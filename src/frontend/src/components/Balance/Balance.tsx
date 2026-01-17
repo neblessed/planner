@@ -6,6 +6,7 @@ import Popover from "../common/Popover/Popover";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
 import { setupGoal } from "../../store/slice/meetings.slice";
 import { getBalanceByPeriod } from "./utils/getBalanceByPeriod";
+import { fetchGoal, renewGoal } from "../../store/thunks/goal.thunk";
 
 /** Блок балансом */
 function Balance() {
@@ -15,8 +16,12 @@ function Balance() {
     const [goalOpened, setGoalOpened] = useState(false);
     const [tempGoal, setTempGoal] = useState(goal);
     const balanceByPeriod = getBalanceByPeriod(balance, period);
-
     const progress = (balance.all.total / tempGoal) * 100;
+
+    // Синхронизируем tempGoal при изменении goal из store
+    useEffect(() => {
+        setTempGoal(goal);
+    }, [goal]);
 
     return (
         <Block title="Мой баланс">
@@ -113,6 +118,7 @@ function Balance() {
                                 input[0].classList.add("input-error");
                             } else {
                                 dispatch(setupGoal(tempGoal));
+                                dispatch(renewGoal(tempGoal));
                                 setGoalOpened(false);
                             }
                         }}

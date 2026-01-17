@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import Balance from "./src/components/Balance/Balance";
 import Menu from "./src/components/Menu/Menu";
@@ -8,10 +8,21 @@ import PlannedBlock from "./src/components/PlannedBlock/PlannedBlock";
 import InProgressBlock from "./src/components/InProgressBlock/InProgressBlock";
 import CompletedBlock from "./src/components/CompletedBlock/CompletedBlock";
 import SpendingsModal from "./src/components/modals/SpendingsModal/SpendingsModal";
+import { useAppDispatch } from "./src/hooks/redux";
+import { fetchAllSpendings } from "./src/store/thunks/spending.thunk";
+import { fetchMeetings } from "./src/store/thunks/meeting.thunk";
+import { fetchGoal } from "./src/store/thunks/goal.thunk";
 
 function App() {
+    const dispatch = useAppDispatch();
     const [creationModalVisible, setCreationModalVisible] = useState(false);
     const [spendingsModalVisible, setSpendingsModalVisible] = useState(false);
+
+    useEffect(() => {
+        dispatch(fetchAllSpendings());
+        dispatch(fetchMeetings());
+        dispatch(fetchGoal());
+    }, [dispatch]);
 
     return (
         <div className="planner">
