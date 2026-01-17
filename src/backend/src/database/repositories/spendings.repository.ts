@@ -41,8 +41,6 @@ export class SpendingRepository {
      * @returns
      */
     static deleteSpending(id: number) {
-        const stmt = db.prepare(`DELETE FROM spendings WHERE id = ?`);
-
-        return stmt.run(id);
+        return db.prepare(`DELETE FROM spendings WHERE id = ?`).run(id);
     }
 }

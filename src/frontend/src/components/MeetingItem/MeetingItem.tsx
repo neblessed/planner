@@ -1,5 +1,5 @@
 import { useState } from "react";
-import type { MeetingType } from "../../../types/MeetingType";
+import type { MeetingType } from "../../types/MeetingType";
 import Status from "./components/Status";
 import "./MeetingItem.css";
 import CreationModal from "../modals/CreationModal/CreationModal";
@@ -22,7 +22,8 @@ function MeetingItem({
         location,
         status,
         comment,
-        links,
+        telegram,
+        wfolio,
         amount,
         date,
         deadlineDate,
@@ -106,17 +107,16 @@ function MeetingItem({
             <div className="meeting_row__links">
                 <a
                     className="meeting_row__links_icon"
-                    href={links.telegram}
+                    href={telegram}
                     target="_blank"
                 >
                     <img src="./icons/telegram.svg" />
                 </a>
-                {links.wfolio && (
+                {wfolio && (
                     <>
-                        {" "}
                         <a
                             className="meeting_row__links_icon_wfolio"
-                            href={links.wfolio}
+                            href={wfolio}
                             target="_blank"
                         >
                             <img src="./icons/wfolio.svg" />

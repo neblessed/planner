@@ -10,13 +10,10 @@ export type MeetingType = {
     date: string;
     /** Дата дедлайна обработки */
     deadlineDate?: string;
-    /** Ссылки **/
-    links: {
-        /** Telegram клиента **/
-        telegram: string;
-        /** Ссылка на портфолио с выполненной работой **/
-        wfolio?: string;
-    };
+    /** Telegram клиента **/
+    telegram: string;
+    /** Ссылка на портфолио с выполненной работой **/
+    wfolio?: string;
     status: StatusType;
     /** Комментарий к записи */
     comment?: string;

@@ -33,7 +33,7 @@ const NearestMeetingsBlock = ({
                             key={meeting.id}
                             person={meeting.person}
                             date={meeting.date}
-                            links={meeting}
+                            telegram={meeting.telegram}
                         />
                     ))}
             </div>

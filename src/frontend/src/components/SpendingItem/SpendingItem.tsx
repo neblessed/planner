@@ -2,7 +2,7 @@ import { useState } from "react";
 import type { SpendingType } from "../../types/SpendingType";
 import "./SpendingItem.css";
 import { useAppDispatch } from "../../hooks/redux";
-import { deleteSpending } from "../../store/slice/meetings.slice";
+import { deleteExistedSpending } from "../../store/thunks/spending.thunk";
 
 type SpendingItemProps = {
     spending: SpendingType;
@@ -29,7 +29,7 @@ function SpendingItem({ spending }: SpendingItemProps) {
                 className="spending_row__delete"
                 src="./icons/trash.svg"
                 onClick={() => {
-                    dispatch(deleteSpending(spending.id));
+                    dispatch(deleteExistedSpending(spending.id));
                 }}
             />
         </div>

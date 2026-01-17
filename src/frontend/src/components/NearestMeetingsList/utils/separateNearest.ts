@@ -1,4 +1,4 @@
-import type { MeetingType } from "../../../../types/MeetingType";
+import type { MeetingType } from "../../../types/MeetingType";
 
 type SeparatedMeetings = {
     one: MeetingType[];

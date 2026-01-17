@@ -1,4 +1,4 @@
-import type { StatusType } from "../../../../types/StatusType";
+import type { StatusType } from "../../../types/StatusType";
 
 export const rowBackgroundByStatus = (status: StatusType, date: string) => {
     const isCurrentDateLaterThanMeetingDate =

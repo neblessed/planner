@@ -144,12 +144,7 @@ function Status({ id, status, isOpen, setIsOpened }: StatusProps) {
                                         dispatch(
                                             updateExistedMeeting({
                                                 ...meeting,
-                                                ...(wfolio && {
-                                                    links: {
-                                                        ...meeting.links,
-                                                        wfolio,
-                                                    },
-                                                }),
+                                                ...(wfolio && { wfolio }),
                                                 ...(amount && {
                                                     amount: Number(amount),
                                                 }),

@@ -7,15 +7,7 @@ export const fetchMeetings = createAsyncThunk(
     async () => {
         const response = await api.getMeetings();
 
-        return (response as any[]).map((resp) => {
-            return {
-                ...resp,
-                links: {
-                    telegram: resp.telegram,
-                    wfolio: resp.wfolio,
-                },
-            };
-        });
+        return response;
     },
 );
 

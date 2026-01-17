@@ -18,15 +18,14 @@ export const api = {
         fetch(`${API_BASE}/spendings/${id}`).then((res) => res.json()),
     getSpendings: () =>
         fetch(`${API_BASE}/spendings`).then((res) => res.json()),
-    createSpending: (spending: Omit<SpendingType, "id">) => {
+    createSpending: (spending: Omit<SpendingType, "id">) =>
         fetch(`${API_BASE}/spendings/`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(spending),
-        }).then((res) => res.json());
-    },
+        }).then((res) => res.json()),
     deleteSpending: (id: number) => {
-        fetch(`${API_BASE}/spendings/`, {
+        fetch(`${API_BASE}/spendings/${id}`, {
             method: "DELETE",
             headers: { "Content-Type": "application/json" },
         }).then((res) => res.json());

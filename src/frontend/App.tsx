@@ -19,9 +19,9 @@ function App() {
     const [spendingsModalVisible, setSpendingsModalVisible] = useState(false);
 
     useEffect(() => {
-        dispatch(fetchAllSpendings());
-        dispatch(fetchMeetings());
-        dispatch(fetchGoal());
+        dispatch(fetchAllSpendings()).unwrap();
+        dispatch(fetchMeetings()).unwrap();
+        dispatch(fetchGoal()).unwrap();
     }, [dispatch]);
 
     return (

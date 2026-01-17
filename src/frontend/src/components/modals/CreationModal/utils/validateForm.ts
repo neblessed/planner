@@ -1,5 +1,5 @@
-import type { MeetingType } from "../../../../../types/MeetingType";
-import type { SpendingType } from "../../../../../types/SpendingType";
+import type { MeetingType } from "../../../../types/MeetingType";
+import type { SpendingType } from "../../../../types/SpendingType";
 import { CreationFormError } from "../enum/errors.enum";
 
 export const validateForm = (object: MeetingType | SpendingType) => {
@@ -13,7 +13,7 @@ export const validateForm = (object: MeetingType | SpendingType) => {
             );
         }
 
-        if (object.links.telegram.replace("https://t.me/", "").length === 0) {
+        if (object.telegram.replace("https://t.me/", "").length === 0) {
             throw new Error(
                 JSON.stringify({
                     field: "telegram",
@@ -22,7 +22,7 @@ export const validateForm = (object: MeetingType | SpendingType) => {
             );
         }
 
-        if (object.links.wfolio && object.links.wfolio.length === 0) {
+        if (object.wfolio && object.wfolio.length === 0) {
             throw new Error(
                 JSON.stringify({
                     field: "wfolio",

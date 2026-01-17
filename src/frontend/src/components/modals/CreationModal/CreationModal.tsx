@@ -3,7 +3,7 @@ import Modal from "../../common/Modal/Modal";
 import "./CreationModal.css";
 import MeetingForm from "./components/MeetingForm";
 import SpendingForm from "./components/SpendingForm";
-import type { MeetingType } from "../../../../types/MeetingType";
+import type { MeetingType } from "../../../types/MeetingType";
 import UpdateMeetingForm from "./components/UpdateMeetingForm";
 
 type CreationModalProps = {

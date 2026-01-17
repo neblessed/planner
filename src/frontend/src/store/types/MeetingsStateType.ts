@@ -5,7 +5,7 @@ import type { Balance } from "./BalanceType";
 export type InitialMeetingsStateType = {
     meetings: MeetingType[];
     goal: number;
-    balance: Balance;
+    balance: Balance | null;
     spendings: SpendingType[];
     loading: boolean;
     error: null | string;

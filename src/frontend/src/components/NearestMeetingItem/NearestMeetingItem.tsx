@@ -3,9 +3,11 @@ import "./NearestMeetingItem.css";
 
 type NearestMeetingItemProps = Omit<MeetingType, "location" | "id" | "status">;
 
-function NearestMeetingItem({ person, date, links }: NearestMeetingItemProps) {
-    const { telegram } = links;
-
+function NearestMeetingItem({
+    person,
+    date,
+    telegram,
+}: NearestMeetingItemProps) {
     return (
         <div className="nearest_meeting_row">
             <div className="nearest_meeting_row__info">

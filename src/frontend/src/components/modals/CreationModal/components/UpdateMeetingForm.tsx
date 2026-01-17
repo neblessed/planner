@@ -1,6 +1,6 @@
 import { useState } from "react";
-import type { MeetingType } from "../../../../../types/MeetingType";
-import type { FormErrorType } from "../../../../../types/FormErrorType";
+import type { MeetingType } from "../../../../types/MeetingType";
+import type { FormErrorType } from "../../../../types/FormErrorType";
 import Field from "../../../common/Field/Field";
 import DatePicker from "../../../common/DatePicker/DatePicker";
 import Textarea from "../../../common/Textarea/Textarea";
@@ -10,6 +10,10 @@ import {
     deleteMeeting,
     updateMeeting,
 } from "../../../../store/slice/meetings.slice";
+import {
+    deleteExistedMeeting,
+    updateExistedMeeting,
+} from "../../../../store/thunks/meeting.thunk";
 
 type UpdateMeetingFormProps = {
     meeting: MeetingType;
@@ -21,9 +25,9 @@ function UpdateMeetingForm({ meeting, setOpen }: UpdateMeetingFormProps) {
 
     const [person, setPerson] = useState(meeting.person);
     const [telegram, setTelegram] = useState(
-        meeting.links.telegram.replace("https://t.me/", ""),
+        meeting.telegram.replace("https://t.me/", ""),
     );
-    const [wfolio, setWfolio] = useState(meeting.links.wfolio ?? null);
+    const [wfolio, setWfolio] = useState(meeting.wfolio ?? null);
     const [date, setDate] = useState(meeting.date);
     const [amount, setAmount] = useState(
         meeting.amount ? meeting.amount.toString() : null,
@@ -128,7 +132,7 @@ function UpdateMeetingForm({ meeting, setOpen }: UpdateMeetingFormProps) {
                         opacity: "0.25",
                     }}
                     onClick={() => {
-                        dispatch(deleteMeeting(meeting.id));
+                        dispatch(deleteExistedMeeting(meeting.id));
                         setOpen(false);
                     }}
                 >
@@ -140,10 +144,8 @@ function UpdateMeetingForm({ meeting, setOpen }: UpdateMeetingFormProps) {
                         const updated: MeetingType = {
                             id: meeting.id,
                             person,
-                            links: {
-                                telegram,
-                                ...(wfolio && { wfolio }),
-                            },
+                            telegram,
+                            ...(wfolio && { wfolio }),
                             status: meeting.status,
                             date,
                             ...(amount && { amount: Number(amount) }),
@@ -153,7 +155,7 @@ function UpdateMeetingForm({ meeting, setOpen }: UpdateMeetingFormProps) {
 
                         try {
                             validateForm(updated);
-                            dispatch(updateMeeting(updated));
+                            dispatch(updateExistedMeeting(updated));
                             setOpen(false);
                         } catch (e) {
                             setError(

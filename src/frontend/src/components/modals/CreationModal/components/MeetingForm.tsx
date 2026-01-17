@@ -3,10 +3,10 @@ import DatePicker from "../../../common/DatePicker/DatePicker";
 import Field from "../../../common/Field/Field";
 import Textarea from "../../../common/Textarea/Textarea";
 import { useAppDispatch } from "../../../../hooks/redux";
-import { addMeeting } from "../../../../store/slice/meetings.slice";
 import { validateForm } from "../utils/validateForm";
 import type { MeetingType } from "../../../../types/MeetingType";
 import type { FormErrorType } from "../../../../types/FormErrorType";
+import { createNewMeeting } from "../../../../store/thunks/meeting.thunk";
 
 type MeetingFormProps = {
     setOpen: (state: boolean) => void;
@@ -82,19 +82,14 @@ function MeetingForm({ setOpen }: MeetingFormProps) {
                         person,
                         location,
                         date,
-                        links: {
-                            telegram: `https://t.me/${telegram.replace(
-                                "@",
-                                "",
-                            )}`,
-                        },
+                        telegram: `https://t.me/${telegram.replace("@", "")}`,
                         comment,
                         status: "Назначено",
                     };
 
                     try {
                         validateForm(meeting);
-                        dispatch(addMeeting(meeting));
+                        dispatch(createNewMeeting(meeting));
                         setOpen(false);
                     } catch (e) {
                         setError(

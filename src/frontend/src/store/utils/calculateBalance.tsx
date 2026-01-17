@@ -12,7 +12,7 @@ import type { Balance } from "../types/BalanceType";
 export const calculateBalance = (
     meetings: MeetingType[],
     spendings: SpendingType[],
-): Balance => {
+): Balance | null => {
     const now = new Date();
     const todayStart = new Date(
         now.getFullYear(),

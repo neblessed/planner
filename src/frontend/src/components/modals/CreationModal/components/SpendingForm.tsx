@@ -4,8 +4,8 @@ import DatePicker from "../../../common/DatePicker/DatePicker";
 import type { FormErrorType } from "../../../../types/FormErrorType";
 import { validateForm } from "../utils/validateForm";
 import { useAppDispatch } from "../../../../hooks/redux";
-import { addSpending } from "../../../../store/slice/meetings.slice";
 import type { SpendingType } from "../../../../types/SpendingType";
+import { createNewSpending } from "../../../../store/thunks/spending.thunk";
 
 type SpendingFormProps = {
     setOpen: (state: boolean) => void;
@@ -67,7 +67,7 @@ function SpendingForm({ setOpen }: SpendingFormProps) {
 
                     try {
                         validateForm(spendingObj);
-                        dispatch(addSpending(spendingObj));
+                        dispatch(createNewSpending(spendingObj));
                         setOpen(false);
                     } catch (e) {
                         setError(JSON.parse((e as Error).message));

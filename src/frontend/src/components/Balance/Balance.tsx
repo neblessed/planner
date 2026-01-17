@@ -11,17 +11,63 @@ import { fetchGoal, renewGoal } from "../../store/thunks/goal.thunk";
 /** Блок балансом */
 function Balance() {
     const dispatch = useAppDispatch();
-    const { balance, goal } = useAppSelector((store) => store.meetingsReducer);
+
+    // Проверь имя редьюсера в store!
+    const { balance, goal, loading, error } = useAppSelector(
+        (store) => store.meetingsReducer,
+    );
+    // ИЛИ store.meetingsSlice или store.meetingsReducer - смотри в store/index.ts
+
     const [period, setPeriod] = useState<"week" | "month" | "all">("all");
     const [goalOpened, setGoalOpened] = useState(false);
-    const [tempGoal, setTempGoal] = useState(goal);
-    const balanceByPeriod = getBalanceByPeriod(balance, period);
-    const progress = (balance.all.total / tempGoal) * 100;
+    const [tempGoal, setTempGoal] = useState(goal || 0);
+
+    // Защита от null/undefined
+    const safeBalance = balance || {
+        all: { total: 0, spendings: 0 },
+        week: { total: 0, spendings: 0 },
+        month: { total: 0, spendings: 0 },
+    };
+
+    const balanceByPeriod = getBalanceByPeriod(safeBalance, period);
+    const progress = (safeBalance.all.total / (tempGoal || 1)) * 100;
 
     // Синхронизируем tempGoal при изменении goal из store
     useEffect(() => {
-        setTempGoal(goal);
+        setTempGoal(goal || 0);
     }, [goal]);
+
+    const handleSetGoal = async () => {
+        if (!tempGoal || tempGoal <= 0) {
+            const input = document.getElementsByClassName(
+                "balance_popover_content__input",
+            );
+            input[0]?.classList.add("input-error");
+            return;
+        }
+
+        try {
+            await dispatch(renewGoal(tempGoal)).unwrap();
+            setGoalOpened(false);
+        } catch (error) {
+            console.error("Failed to update goal:", error);
+            // Можно показать уведомление об ошибке
+        }
+    };
+
+    // Показываем заглушку если данные не загружены
+    if (!balance && loading) {
+        return (
+            <Block title="Мой баланс">
+                <div className="balance_block">
+                    <div className="balance_block__amounts">
+                        <Amount amount={0} size="large" />
+                    </div>
+                    <div className="balance_loading">Загрузка баланса...</div>
+                </div>
+            </Block>
+        );
+    }
 
     return (
         <Block title="Мой баланс">
@@ -41,9 +87,7 @@ function Balance() {
                             className="balance_block__goal_progress_current"
                             style={{
                                 width: `${progress > 100 ? 100 : progress}%`,
-                                backgroundColor: `${
-                                    progress < 100 ? '"#ffd875"' : ""
-                                }`,
+                                backgroundColor: `${progress < 100 ? '"#ffd875"' : ""}`,
                             }}
                         />
                     </div>
@@ -90,9 +134,13 @@ function Balance() {
                         className="balance_block__flag"
                         src="./icons/flag.svg"
                         onClick={() => setGoalOpened(true)}
+                        alt="Установить цель"
                     />
                 </div>
             </div>
+
+            {error && <div className="balance_error">Ошибка: {error}</div>}
+
             <Popover
                 title="Поставить цель"
                 isOpen={goalOpened}
@@ -105,23 +153,14 @@ function Balance() {
                         type="number"
                         value={tempGoal}
                         onChange={(e) => setTempGoal(Number(e.target.value))}
+                        min="1"
                     />
                     <img
                         className="balance_popover_content__arrow"
                         src="./icons/arrow-right.svg"
-                        onClick={() => {
-                            if (!tempGoal || tempGoal <= 0) {
-                                const input = document.getElementsByClassName(
-                                    "balance_popover_content__input",
-                                );
-
-                                input[0].classList.add("input-error");
-                            } else {
-                                dispatch(setupGoal(tempGoal));
-                                dispatch(renewGoal(tempGoal));
-                                setGoalOpened(false);
-                            }
-                        }}
+                        onClick={handleSetGoal}
+                        alt="Сохранить цель"
+                        style={{ cursor: "pointer" }}
                     />
                 </div>
             </Popover>

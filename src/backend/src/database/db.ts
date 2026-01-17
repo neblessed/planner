@@ -2,11 +2,8 @@ import Database from "better-sqlite3";
 import path from "path";
 
 const DB_PATH = path.join(__dirname, "../../planner.db");
-console.log("📁 Database path:", DB_PATH);
 
-const db: Database.Database = new Database(DB_PATH, {
-    verbose: console.log,
-});
+const db: Database.Database = new Database(DB_PATH);
 
 export const initDatabase = (): void => {
     try {

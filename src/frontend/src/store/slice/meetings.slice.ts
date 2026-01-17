@@ -7,7 +7,6 @@ import type { InitialMeetingsStateType } from "../types/MeetingsStateType";
 import type { MeetingType } from "../../types/MeetingType";
 import type { SpendingType } from "../../types/SpendingType";
 import { calculateBalance } from "../utils/calculateBalance";
-import { initialMeetings, initialSpendings } from "../initial/inititialValues";
 import { api } from "../../api/client";
 import {
     createNewMeeting,
@@ -25,7 +24,7 @@ import { fetchGoal, renewGoal } from "../thunks/goal.thunk";
 const initialMeetingsState: InitialMeetingsStateType = {
     meetings: [],
     goal: 50,
-    balance: calculateBalance(initialMeetings, initialSpendings),
+    balance: null,
     spendings: [],
     loading: false,
     error: null,
@@ -37,58 +36,6 @@ const meetingsSlice = createSlice({
     name: "meetingsSlice",
     initialState: initialMeetingsState,
     reducers: {
-        setupGoal: (state, action: PayloadAction<number>) => {
-            state.goal = action.payload;
-        },
-        addMeeting: (state, action: PayloadAction<MeetingType>) => {
-            state.meetings.push(action.payload);
-
-            state.balance = calculateBalance(state.meetings, state.spendings);
-        },
-        addSpending: (state, action: PayloadAction<SpendingType>) => {
-            state.spendings.push(action.payload);
-
-            state.balance = calculateBalance(state.meetings, state.spendings);
-        },
-        deleteSpending: (state, action: PayloadAction<number>) => {
-            state.spendings = state.spendings.filter(
-                (spending) => spending.id !== action.payload,
-            );
-
-            state.balance = calculateBalance(state.meetings, state.spendings);
-        },
-        updateMeeting: (state, action: PayloadAction<OptionalMeetingType>) => {
-            const id = action.payload.id;
-            const meeting = state.meetings.find((meeting) => meeting.id === id);
-
-            if (meeting) {
-                const updated = {
-                    ...meeting,
-                    ...action.payload,
-                };
-
-                state.meetings = state.meetings.map((meeting) => {
-                    if (meeting.id === id) {
-                        return updated;
-                    }
-
-                    return meeting;
-                });
-
-                state.balance = calculateBalance(
-                    state.meetings,
-                    state.spendings,
-                );
-            }
-        },
-        deleteMeeting: (state, action: PayloadAction<number>) => {
-            state.meetings = state.meetings.filter(
-                (meeting) => meeting.id !== action.payload,
-            );
-
-            state.balance = calculateBalance(state.meetings, state.spendings);
-        },
-        // Синхронные редьюсеры (если ещё нужны для локальных изменений)
         clearError: (state) => {
             state.error = null;
         },
@@ -117,6 +64,7 @@ const meetingsSlice = createSlice({
             })
             .addCase(fetchMeetings.fulfilled, (state, action) => {
                 state.loading = false;
+
                 state.meetings = action.payload;
                 state.balance = calculateBalance(
                     state.meetings,
@@ -239,12 +187,6 @@ const meetingsSlice = createSlice({
 });
 
 export const {
-    setupGoal,
-    addSpending,
-    deleteSpending,
-    addMeeting,
-    updateMeeting,
-    deleteMeeting,
     clearError,
     optimisticallyAddMeeting,
     optimisticallyAddSpending,
