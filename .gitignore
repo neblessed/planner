@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+src/backend/node_modules
+src/backend/planner.db
