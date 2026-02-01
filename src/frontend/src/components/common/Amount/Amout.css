@@ -1,5 +1,6 @@
 .amount {
     color: var(--dark-grey);
+    margin: auto;
 }
 
 .loss {

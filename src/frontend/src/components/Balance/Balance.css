@@ -11,6 +11,29 @@
     align-items: center;
 }
 
+.balance_block__amount_cell {
+    min-width: 80px;
+    display: flex;
+    flex-direction: column;
+
+    border: 1px solid var(--light-grey);
+    border-radius: 8px;
+    padding: 5px 8px;
+}
+
+.balance_block_payback {
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--green);
+    margin: auto;
+}
+
+.balance_block__amount_cell_title {
+    font-size: 11px;
+    color: rgba(0, 0, 0, 0.321);
+    margin: auto;
+}
+
 .balance_block__switcher {
     box-sizing: border-box;
     display: flex;
@@ -48,6 +71,8 @@
     display: flex;
     justify-content: space-between;
     gap: 10px;
+
+    margin: auto;
 }
 
 .balance_block__flag {

@@ -4,25 +4,20 @@ import Block from "../common/Block/Block";
 import "./Balance.css";
 import Popover from "../common/Popover/Popover";
 import { useAppDispatch, useAppSelector } from "../../hooks/redux";
-import { setupGoal } from "../../store/slice/meetings.slice";
 import { getBalanceByPeriod } from "./utils/getBalanceByPeriod";
-import { fetchGoal, renewGoal } from "../../store/thunks/goal.thunk";
+import { renewGoal } from "../../store/thunks/goal.thunk";
 
-/** Блок балансом */
 function Balance() {
     const dispatch = useAppDispatch();
 
-    // Проверь имя редьюсера в store!
     const { balance, goal, loading, error } = useAppSelector(
         (store) => store.meetingsReducer,
     );
-    // ИЛИ store.meetingsSlice или store.meetingsReducer - смотри в store/index.ts
 
     const [period, setPeriod] = useState<"week" | "month" | "all">("all");
     const [goalOpened, setGoalOpened] = useState(false);
     const [tempGoal, setTempGoal] = useState(goal || 0);
 
-    // Защита от null/undefined
     const safeBalance = balance || {
         all: { total: 0, spendings: 0 },
         week: { total: 0, spendings: 0 },
@@ -31,8 +26,11 @@ function Balance() {
 
     const balanceByPeriod = getBalanceByPeriod(safeBalance, period);
     const progress = (safeBalance.all.total / (tempGoal || 1)) * 100;
+    const progressByFull =
+        ((safeBalance.all.total - safeBalance.all.spendings) /
+            (tempGoal || 1)) *
+        100;
 
-    // Синхронизируем tempGoal при изменении goal из store
     useEffect(() => {
         setTempGoal(goal || 0);
     }, [goal]);
@@ -51,14 +49,12 @@ function Balance() {
             setGoalOpened(false);
         } catch (error) {
             console.error("Failed to update goal:", error);
-            // Можно показать уведомление об ошибке
         }
     };
 
-    // Показываем заглушку если данные не загружены
     if (!balance && loading) {
         return (
-            <Block title="Мой баланс">
+            <Block title="Финансовый учёт">
                 <div className="balance_block">
                     <div className="balance_block__amounts">
                         <Amount amount={0} size="large" />
@@ -70,29 +66,65 @@ function Balance() {
     }
 
     return (
-        <Block title="Мой баланс">
+        <Block title="Финансовый учёт">
             <div className="balance_block">
                 <div className="balance_block__amounts">
-                    <Amount amount={balanceByPeriod.total} size="large" />
-                    {balanceByPeriod.spendings < 0 && (
+                    <div className="balance_block__amount_cell">
+                        <span className="balance_block__amount_cell_title">
+                            Всего
+                        </span>
                         <Amount
-                            amount={balanceByPeriod.spendings}
-                            size="small"
+                            amount={
+                                balanceByPeriod.total -
+                                balanceByPeriod.spendings
+                            }
+                            size="large"
                         />
-                    )}
+                    </div>
+                    <div className="balance_block__amount_cell">
+                        <span className="balance_block__amount_cell_title">
+                            Чистый доход
+                        </span>
+                        <Amount amount={balanceByPeriod.total} size="large" />
+                    </div>
+                    <div className="balance_block__amount_cell">
+                        <span className="balance_block__amount_cell_title">
+                            Payback Full
+                        </span>
+                        <span className="balance_block_payback">
+                            {progressByFull.toFixed(0)}%
+                        </span>
+                    </div>
+                    <div className="balance_block__amount_cell">
+                        <span className="balance_block__amount_cell_title">
+                            Payback Clear
+                        </span>
+                        <span className="balance_block_payback">
+                            {progress.toFixed(0)}%
+                        </span>
+                    </div>
+                    <div className="balance_block__amount_cell">
+                        <span className="balance_block__amount_cell_title">
+                            Расходники
+                        </span>
+                        <Amount
+                            amount={-balanceByPeriod.spendings}
+                            size="large"
+                        />
+                    </div>
                 </div>
                 <div className="balance_block__goal">
                     <div className="balance_block__goal_progress">
                         <div
                             className="balance_block__goal_progress_current"
                             style={{
-                                width: `${progress > 100 ? 100 : progress}%`,
+                                width: `${progress > 100 ? 100 : progress.toFixed(0)}%`,
                                 backgroundColor: `${progress < 100 ? '"#ffd875"' : ""}`,
                             }}
                         />
                     </div>
                     <span className="balance_block__goal_progress_percent">
-                        {progress > 100 ? 100 : progress.toFixed(1)}%
+                        {progress > 100 ? 100 : progress.toFixed(0)}%
                     </span>
                 </div>
                 <div className="balance_block__controls">
