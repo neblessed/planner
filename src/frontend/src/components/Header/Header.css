@@ -10,11 +10,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 10px;
+    border-radius: 8px;
     gap: 15px;
 
     background: white;
-    padding: 2px 13px;
+    padding: 5px 13px;
 }
 
 .header_container__main_page_img {
@@ -24,14 +24,8 @@
 }
 
 .header_container__main_page_img img {
-    width: 20px;
+    width: 17px;
     height: auto;
-
-    background: #fff9c7;
-    border-radius: 10px;
-    padding: 4px;
-    border: 1px solid var(--light-grey);
-
     cursor: pointer;
 }
 

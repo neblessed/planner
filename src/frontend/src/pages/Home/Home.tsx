@@ -11,7 +11,6 @@ import { useAppDispatch } from "../../hooks/redux";
 import { fetchGoal } from "../../store/thunks/goal.thunk";
 import { fetchMeetings } from "../../store/thunks/meeting.thunk";
 import { fetchAllSpendings } from "../../store/thunks/spending.thunk";
-import Header from "../../components/Header/Header";
 import "./Home.css";
 
 function HomePage() {
@@ -27,7 +26,6 @@ function HomePage() {
 
     return (
         <div className="planner">
-            <Header />
             <div className="widgets_row__1">
                 <NearestMeetingsList />
             </div>

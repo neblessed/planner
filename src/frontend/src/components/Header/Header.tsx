@@ -4,7 +4,7 @@ import { useState } from "react";
 
 const links = [
     { path: "/", title: "Встречи" },
-    { path: "/users", title: "Пользователи" },
+    { path: "/users", title: "Клиенты" },
     { path: "/123", title: "Аналитика" },
 ];
 
