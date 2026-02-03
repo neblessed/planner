@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./Clients.css";
+import ClientAtom from "../../components/ClientAtom/ClientAtom";
 
 function ClientsPage() {
     const [sort, setSort] = useState("desc"); // desc - самые новые, asc - самые старые
@@ -54,9 +55,7 @@ function ClientsPage() {
                 </div>
             </div>
             <div className="client_block__content">
-                <span>Client 1</span>
-                <span>Client 2</span>
-                <span>Client 3</span>
+                <ClientAtom />
             </div>
         </div>
     );

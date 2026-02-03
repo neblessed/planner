@@ -1,0 +1,63 @@
+.client_block {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+
+    background-color: rgb(163, 201, 250);
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+.client_block__personal_info {
+    display: flex;
+    gap: 4px;
+    justify-content: start;
+    align-items: center;
+}
+.client_block__personal_info_name {
+    font-size: 15px;
+    font-weight: 700;
+    cursor: default;
+}
+.client_block__personal_info_tg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & img {
+        width: 18px;
+        height: auto;
+    }
+}
+.client_block__info_label {
+    font-size: 13px;
+    color: var(--dark-grey);
+    cursor: default;
+}
+.client_block__meetings_stats {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    cursor: default;
+}
+.client_block__meetings_stats_quantity {
+    font-size: 13px;
+    background-color: white;
+    padding: 1px 8px;
+    border-radius: 8px;
+    box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.181);
+}
+.client_block__meetings_stats_feedback {
+    font-size: 13px;
+    background-color: white;
+    padding: 1px 8px;
+    border-radius: 8px;
+    box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.181);
+}
+.client_block__meetings_stats_comment {
+}
+.client_block__meetings_block {
+    display: flex;
+    flex-direction: column;
+}

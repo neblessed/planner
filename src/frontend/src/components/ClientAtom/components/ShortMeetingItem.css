@@ -1,0 +1,14 @@
+.short_meeting_item {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 5px;
+
+    font-size: 13px;
+}
+.short_meeting_item_date {
+}
+.short_meeting_item_amount {
+}
+.short_meeting_item_status {
+}
