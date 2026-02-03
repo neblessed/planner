@@ -17,7 +17,9 @@
     --bg-light-purple: rgba(193, 49, 255, 0.15);
     --bg-light-green: rgba(49, 255, 94, 0.15);
 
-    background-color: rgb(145, 176, 215);
+    background-color: #91b0d7;
+
+    padding: 10px 10px;
 }
 
 p {
@@ -83,4 +85,13 @@ textarea {
     padding: 3px 4px;
     background-color: var(--error-red-transparent);
     color: rgba(0, 0, 0, 0.785);
+}
+
+a {
+    color: inherit;
+}
+
+a:active {
+    color: inherit;
+    background-color: transparent;
 }
