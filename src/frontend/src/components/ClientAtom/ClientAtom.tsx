@@ -3,31 +3,38 @@ import ShortMeetingItem from "./components/ShortMeetingItem";
 
 function ClientAtom() {
     return (
-        <div className="client_block">
-            <div className="client_block__personal_info">
-                <span className="client_block__personal_info_name">
-                    Альбина
-                </span>
-                <a className="client_block__personal_info_tg" href="t.me">
-                    <img src="./icons/telegram.svg" />
-                </a>
+        <div className="client">
+            <img className="client_avatar" src="./icons/person.svg" />
+            <div className="client_info">
+                <span className="client_name">Вадим</span>
+                <div className="client_stats">
+                    <span className="client_stat">🤝 3</span>
+                    <span className="client_stat">Без отзыва</span>
+                </div>
             </div>
-            <div className="client_block__meetings_stats">
-                <span className="client_block__info_label">
-                    Статистика записей:
-                </span>
-                <span className="client_block__meetings_stats_quantity">
-                    🤝 3
-                </span>
-                <span className="client_block__meetings_stats_feedback">
-                    Нет отзыва
-                </span>
-                <span className="client_block__meetings_stats_comment"></span>
-            </div>
-            <span className="client_block__info_label">Последние записи:</span>
-            <div className="client_block__meetings_block">
+            <div className="client_recent_meetings">
                 <ShortMeetingItem
                     date="02.02.2026"
+                    amount="3500"
+                    status="Сдано"
+                />
+                <ShortMeetingItem
+                    date="02.06.2026"
+                    amount="7500"
+                    status="Сдано"
+                />
+                <ShortMeetingItem
+                    date="01.17.2026"
+                    amount="3500"
+                    status="Сдано"
+                />
+                <ShortMeetingItem
+                    date="01.17.2026"
+                    amount="3500"
+                    status="Сдано"
+                />
+                <ShortMeetingItem
+                    date="01.17.2026"
                     amount="3500"
                     status="Сдано"
                 />

@@ -56,6 +56,8 @@ function ClientsPage() {
             </div>
             <div className="client_block__content">
                 <ClientAtom />
+                <ClientAtom />
+                <ClientAtom />
             </div>
         </div>
     );

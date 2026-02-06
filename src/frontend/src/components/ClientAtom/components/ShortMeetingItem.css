@@ -1,14 +1,45 @@
 .short_meeting_item {
     display: flex;
-    justify-content: start;
+    justify-content: space-between;
     align-items: center;
-    gap: 5px;
+    gap: 15px;
 
     font-size: 13px;
+    background-color: rgba(252, 252, 252, 0.736);
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding: 2px 30px;
+
+    width: 330px;
+
+    cursor: default;
 }
 .short_meeting_item_date {
+    font-weight: 700;
+    width: 120px;
+}
+.short_meeting_item_amount_block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
 }
 .short_meeting_item_amount {
+    font-weight: 400;
+    border: 1px solid var(--light-grey);
+    padding: 0px 3px;
+    border-radius: 4px;
+    font-size: 12px;
+    background-color: rgba(255, 255, 255, 0.65);
 }
-.short_meeting_item_status {
+.short_meeting_item_status_block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+}
+.shot_meeting_item_devider {
+    background-color: var(--light-grey);
+    width: 1px;
+    height: 14px;
 }
