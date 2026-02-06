@@ -1,43 +1,45 @@
+import { MeetingType } from "../../types/MeetingType";
 import "./ClientAtom.css";
 import ShortMeetingItem from "./components/ShortMeetingItem";
 
-function ClientAtom() {
+type ClientAtomProps = {
+    clientMeetings: MeetingType[];
+};
+
+function ClientAtom({ clientMeetings }: ClientAtomProps) {
+    const [staticData] = clientMeetings;
+    const totalEarnings = clientMeetings
+        .map((meeting) => meeting.amount ?? 0)
+        .reduce((a, b) => a + b, 0);
+
     return (
         <div className="client">
             <img className="client_avatar" src="./icons/person.svg" />
             <div className="client_info">
-                <span className="client_name">Вадим</span>
+                <span className="client_name">{staticData?.person}</span>
                 <div className="client_stats">
-                    <span className="client_stat">🤝 3</span>
+                    <a
+                        className="client_tg client_stat"
+                        href={staticData?.telegram}
+                    >
+                        <img src="./icons/telegram.svg" />
+                    </a>
+                    <span className="client_stat">
+                        ♥️ {clientMeetings.length}
+                    </span>
                     <span className="client_stat">Без отзыва</span>
+                    <span className="client_stat">💸 {totalEarnings} ₽</span>
                 </div>
             </div>
             <div className="client_recent_meetings">
-                <ShortMeetingItem
-                    date="02.02.2026"
-                    amount="3500"
-                    status="Сдано"
-                />
-                <ShortMeetingItem
-                    date="02.06.2026"
-                    amount="7500"
-                    status="Сдано"
-                />
-                <ShortMeetingItem
-                    date="01.17.2026"
-                    amount="3500"
-                    status="Сдано"
-                />
-                <ShortMeetingItem
-                    date="01.17.2026"
-                    amount="3500"
-                    status="Сдано"
-                />
-                <ShortMeetingItem
-                    date="01.17.2026"
-                    amount="3500"
-                    status="Сдано"
-                />
+                {clientMeetings.map((meeting) => (
+                    <ShortMeetingItem
+                        key={meeting.id}
+                        date={meeting.date}
+                        amount={meeting.amount}
+                        status={meeting.status}
+                    />
+                ))}
             </div>
         </div>
     );

@@ -6,23 +6,24 @@
 
     font-size: 13px;
     background-color: rgba(252, 252, 252, 0.736);
-    border-radius: 5px;
+    border-radius: 10px;
     box-sizing: border-box;
     padding: 2px 30px;
 
-    width: 330px;
-
+    width: 430px;
     cursor: default;
+
+    border: 1px solid var(--light-grey);
 }
 .short_meeting_item_date {
     font-weight: 700;
-    width: 120px;
+    width: 150px;
 }
 .short_meeting_item_amount_block {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 60px;
+    width: 30px;
 }
 .short_meeting_item_amount {
     font-weight: 400;
@@ -34,9 +35,9 @@
 }
 .short_meeting_item_status_block {
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
-    width: 60px;
+    width: 120px;
 }
 .shot_meeting_item_devider {
     background-color: var(--light-grey);

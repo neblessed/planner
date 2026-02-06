@@ -1,15 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Clients.css";
 import ClientAtom from "../../components/ClientAtom/ClientAtom";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
+import { fetchMeetings } from "../../store/thunks/meeting.thunk";
+import { groupMeetingsByClient } from "./utils/groupMeetingsByClient";
 
 function ClientsPage() {
+    const dispatch = useAppDispatch();
     const [sort, setSort] = useState("desc"); // desc - самые новые, asc - самые старые
     const [searchQuery, setSearchQuery] = useState("");
+    const { meetings } = useAppSelector((store) => store.meetingsReducer);
+    const [frequency, setFrequency] = useState(false);
+
+    useEffect(() => {
+        dispatch(fetchMeetings()).unwrap();
+    }, [dispatch]);
+
+    const groupedMeetings = groupMeetingsByClient(meetings);
 
     return (
         <div className="clients_block">
             <div className="clients_block__filters">
-                <div className="clients_block__filters_sort_by_date">
+                <div className="clients_block__filters_base_chip">
                     {sort === "desc" ? (
                         <div
                             className="clients_block__filters_chip"
@@ -34,6 +46,12 @@ function ClientsPage() {
                         </div>
                     )}
                 </div>
+                <span
+                    className={`clients_block__filters_base_chip ${frequency ? "clients_block__filters_base_chip_active" : ""}`}
+                    onClick={() => setFrequency((prev) => !prev)}
+                >
+                    🔥 Самые частые
+                </span>
                 <div className="clients_block__search_field">
                     <input
                         className="search_input"
@@ -55,9 +73,22 @@ function ClientsPage() {
                 </div>
             </div>
             <div className="client_block__content">
-                <ClientAtom />
-                <ClientAtom />
-                <ClientAtom />
+                {groupedMeetings
+                    .filter((flat) => {
+                        const { person, telegram } = flat[0];
+
+                        return (
+                            person
+                                .toLowerCase()
+                                .includes(searchQuery.toLowerCase()) ||
+                            telegram
+                                .toLowerCase()
+                                .includes(searchQuery.toLowerCase())
+                        );
+                    })
+                    .map((m, index) => (
+                        <ClientAtom key={index} clientMeetings={m} />
+                    ))}
             </div>
         </div>
     );

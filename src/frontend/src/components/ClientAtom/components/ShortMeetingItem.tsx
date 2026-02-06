@@ -4,19 +4,19 @@ import "./ShortMeetingItem.css";
 
 type ShortMeetingItemProps = {
     date: string;
-    amount: string;
+    amount?: number;
     status: StatusType;
 };
-function ShortMeetingItem({ date, amount, status }: ShortMeetingItemProps) {
+function ShortMeetingItem({ date, amount = 0, status }: ShortMeetingItemProps) {
     const formatDate = useCallback((dateString: string) => {
         const d = new Date(dateString);
 
         return d.toLocaleDateString("ru-RU", {
-            day: "2-digit",
+            day: "numeric",
             month: "long",
-            ...(d.getFullYear() === new Date().getFullYear()
-                ? {}
-                : { year: "numeric" }),
+            ...(new Date().getFullYear() !== d.getFullYear()
+                ? { year: "numeric" }
+                : {}),
         });
     }, []);
 

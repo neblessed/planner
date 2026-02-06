@@ -14,7 +14,7 @@
     align-items: center;
     gap: 8px;
 }
-.clients_block__filters_sort_by_date {
+.clients_block__filters_base_chip {
     font-size: 12px;
     padding: 3px 10px;
 
@@ -26,6 +26,9 @@
     border-radius: 8px;
 
     cursor: pointer;
+}
+.clients_block__filters_base_chip_active {
+    background: linear-gradient(#7af7ee6f, rgb(176, 244, 185));
 }
 .clients_block__filters_chip {
     display: flex;
