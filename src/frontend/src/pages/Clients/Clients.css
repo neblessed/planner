@@ -27,9 +27,6 @@
 
     cursor: pointer;
 }
-.clients_block__filters_base_chip_active {
-    background: linear-gradient(#7af7ee6f, rgb(176, 244, 185));
-}
 .clients_block__filters_chip {
     display: flex;
     justify-content: center;

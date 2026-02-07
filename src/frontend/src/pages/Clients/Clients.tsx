@@ -10,7 +10,6 @@ function ClientsPage() {
     const [sort, setSort] = useState("desc"); // desc - самые новые, asc - самые старые
     const [searchQuery, setSearchQuery] = useState("");
     const { meetings } = useAppSelector((store) => store.meetingsReducer);
-    const [frequency, setFrequency] = useState(false);
 
     useEffect(() => {
         dispatch(fetchMeetings()).unwrap();
@@ -46,12 +45,6 @@ function ClientsPage() {
                         </div>
                     )}
                 </div>
-                <span
-                    className={`clients_block__filters_base_chip ${frequency ? "clients_block__filters_base_chip_active" : ""}`}
-                    onClick={() => setFrequency((prev) => !prev)}
-                >
-                    🔥 Самые частые
-                </span>
                 <div className="clients_block__search_field">
                     <input
                         className="search_input"
