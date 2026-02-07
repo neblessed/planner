@@ -79,6 +79,18 @@ function ClientsPage() {
                                 .includes(searchQuery.toLowerCase())
                         );
                     })
+                    .sort((flatA, flatB) => {
+                        const latestDateA = Math.max(
+                            ...flatA.map((m) => new Date(m.date).getTime()),
+                        );
+                        const latestDateB = Math.max(
+                            ...flatB.map((m) => new Date(m.date).getTime()),
+                        );
+
+                        return sort === "asc"
+                            ? latestDateB + latestDateA
+                            : latestDateB - latestDateA;
+                    })
                     .map((m, index) => (
                         <ClientAtom key={index} clientMeetings={m} />
                     ))}
