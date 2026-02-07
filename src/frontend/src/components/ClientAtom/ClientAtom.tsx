@@ -38,6 +38,7 @@ function ClientAtom({ clientMeetings }: ClientAtomProps) {
                         date={meeting.date}
                         amount={meeting.amount}
                         status={meeting.status}
+                        wfolio={meeting.wfolio}
                     />
                 ))}
             </div>
