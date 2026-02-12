@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { RefObject, useState } from "react";
 import Modal from "../../common/Modal/Modal";
 import "./CreationModal.css";
 import MeetingForm from "./components/MeetingForm";
@@ -9,9 +9,14 @@ import UpdateMeetingForm from "./components/UpdateMeetingForm";
 type CreationModalProps = {
     setOpen: (state: boolean) => void;
     meeting?: MeetingType;
+    updatingRowRef: RefObject<any>;
 };
 
-function CreationModal({ setOpen, meeting }: CreationModalProps) {
+function CreationModal({
+    setOpen,
+    meeting,
+    updatingRowRef,
+}: CreationModalProps) {
     const [creationType, setCreationType] = useState<"meeting" | "spending">(
         "meeting",
     );
@@ -49,7 +54,11 @@ function CreationModal({ setOpen, meeting }: CreationModalProps) {
             )}
             <div className="modal_form">
                 {meeting && (
-                    <UpdateMeetingForm meeting={meeting} setOpen={setOpen} />
+                    <UpdateMeetingForm
+                        updatingRowRef={updatingRowRef}
+                        meeting={meeting}
+                        setOpen={setOpen}
+                    />
                 )}
                 {creationType === "meeting" && !meeting ? (
                     <MeetingForm setOpen={setOpen} />

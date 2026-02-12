@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import type { MeetingType } from "../../types/MeetingType";
 import Status from "./components/Status";
 import "./MeetingItem.css";
@@ -16,6 +16,7 @@ function MeetingItem({
     enableDeadlineCell = true,
     isDisabled = false,
 }: MeetingItemProps) {
+    const rowRef = useRef(null);
     const {
         id,
         person,
@@ -51,6 +52,7 @@ function MeetingItem({
     };
     return (
         <div
+            ref={rowRef}
             className={`${
                 isDisabled ? "meeting_row_disabled" : "meeting_row"
             } ${rowBackgroundByStatus(status, date)}`}
@@ -174,7 +176,11 @@ function MeetingItem({
                 )}
             </div>
             {isEditModalOpen && (
-                <CreationModal setOpen={setIsEditModalOpen} meeting={meeting} />
+                <CreationModal
+                    updatingRowRef={rowRef}
+                    setOpen={setIsEditModalOpen}
+                    meeting={meeting}
+                />
             )}
         </div>
     );

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { RefObject, useState } from "react";
 import type { MeetingType } from "../../../../types/MeetingType";
 import type { FormErrorType } from "../../../../types/FormErrorType";
 import Field from "../../../common/Field/Field";
@@ -7,10 +7,6 @@ import Textarea from "../../../common/Textarea/Textarea";
 import { validateForm } from "../utils/validateForm";
 import { useAppDispatch } from "../../../../hooks/redux";
 import {
-    deleteMeeting,
-    updateMeeting,
-} from "../../../../store/slice/meetings.slice";
-import {
     deleteExistedMeeting,
     updateExistedMeeting,
 } from "../../../../store/thunks/meeting.thunk";
@@ -18,9 +14,14 @@ import {
 type UpdateMeetingFormProps = {
     meeting: MeetingType;
     setOpen: (state: boolean) => void;
+    updatingRowRef: RefObject<any>;
 };
 
-function UpdateMeetingForm({ meeting, setOpen }: UpdateMeetingFormProps) {
+function UpdateMeetingForm({
+    meeting,
+    setOpen,
+    updatingRowRef,
+}: UpdateMeetingFormProps) {
     const dispatch = useAppDispatch();
 
     const [person, setPerson] = useState(meeting.person);
@@ -132,8 +133,11 @@ function UpdateMeetingForm({ meeting, setOpen }: UpdateMeetingFormProps) {
                         opacity: "0.25",
                     }}
                     onClick={() => {
-                        dispatch(deleteExistedMeeting(meeting.id));
+                        updatingRowRef.current.classList.add("deleting");
                         setOpen(false);
+                        setTimeout(() => {
+                            dispatch(deleteExistedMeeting(meeting.id));
+                        }, 200);
                     }}
                 >
                     Удалить

@@ -1,6 +1,33 @@
+@keyframes scale-down {
+    from {
+        transform: scale(1.1);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+@keyframes pass-away-to-top {
+    from {
+        position: absolute;
+        transform: translateY(0%);
+        opacity: 1;
+    }
+
+    to {
+        position: absolute;
+        transform: translateY(-150%);
+        opacity: 0.2;
+    }
+}
+
+.meeting_row.deleting {
+    animation: pass-away-to-top ease-in-out 0.3s;
+}
+
 .meeting_row {
     display: flex;
-    /* width: 1150px; */
     min-width: 700px;
     max-width: auto;
     align-items: center;
@@ -13,6 +40,7 @@
     border-radius: 4px;
 
     background-color: rgb(252, 252, 252);
+    animation: scale-down ease-in-out 0.1s;
 }
 
 .meeting_row_disabled {
