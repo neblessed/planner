@@ -42,6 +42,16 @@ export const initDatabase = (): void => {
             INSERT OR IGNORE INTO goal (id, goal) VALUES (1, 0);
         `);
 
+        db.exec(`
+            CREATE TABLE IF NOT EXISTS clients (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                name TEXT NOT NULL,
+                telegram TEXT NOT NULL UNIQUE,
+                feedback INTEGER NOT NULL DEFAULT 0,
+                note TEXT DEFAULT ''
+            );
+        `);
+
         console.log("✅ Database initialized");
     } catch (error) {
         console.error("❌ Database init error:", error);
