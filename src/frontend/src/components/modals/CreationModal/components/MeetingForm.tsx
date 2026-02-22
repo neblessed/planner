@@ -52,7 +52,7 @@ function MeetingForm({ setOpen }: MeetingFormProps) {
                 />
                 <Textarea
                     label="Комментарий"
-                    placeholder="Комментарий к клиенту"
+                    placeholder="Комментарий к встрече"
                     value={comment}
                     setValue={setComment}
                 />

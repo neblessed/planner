@@ -106,3 +106,8 @@ li {
     margin: 0;
     list-style: none;
 }
+textarea,
+input::placeholder {
+    font-weight: 200;
+    font-size: 12.5px;
+}

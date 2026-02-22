@@ -55,7 +55,7 @@ function DatePicker({
                             {formatISODateToFieldValue(date)}
                         </span>
                     ) : (
-                        <>
+                        <div className="datepicker__root_field_container">
                             <img
                                 className="datepicker__root_icon"
                                 src="./icons/calendar.svg"
@@ -63,7 +63,7 @@ function DatePicker({
                             <span className="datepicker__root_field_placeholder">
                                 {placeholder}
                             </span>
-                        </>
+                        </div>
                     )}
                 </div>
             </div>
@@ -149,7 +149,7 @@ function DatePicker({
                                                     hours,
                                                     minutes,
                                                     0,
-                                                    0
+                                                    0,
                                                 );
                                                 return newDate;
                                             });
