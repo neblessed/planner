@@ -8,6 +8,7 @@ import type { MeetingType } from "../../../../types/MeetingType";
 import type { FormErrorType } from "../../../../types/FormErrorType";
 import { createNewMeeting } from "../../../../store/thunks/meeting.thunk";
 import FormPlate from "../../../common/Plate/FormPlate";
+import ClientPlate from "./ClientPlate";
 
 type MeetingFormProps = {
     setOpen: (state: boolean) => void;
@@ -25,33 +26,7 @@ function MeetingForm({ setOpen }: MeetingFormProps) {
     return (
         <>
             {error && <span className="error-text">❌ {error.message}</span>}
-            <FormPlate
-                title="Данные о клиенте"
-                hintText="Блок поиска/создания клиентов"
-            >
-                <Field
-                    label="Имя клиента"
-                    placeholder="Введите имя"
-                    value={person}
-                    setValue={setPerson}
-                    error={
-                        error?.field === "person" && person.length === 0
-                            ? error?.message
-                            : undefined
-                    }
-                />
-                <Field
-                    label="Telegram"
-                    placeholder="Введите @username"
-                    value={telegram}
-                    setValue={setTelegram}
-                    error={
-                        error?.field === "telegram" && telegram.length === 0
-                            ? error?.message
-                            : undefined
-                    }
-                />
-            </FormPlate>
+            <ClientPlate error={error} />
             <FormPlate title="Информация о съемке">
                 <Field
                     label="Место"

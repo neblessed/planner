@@ -71,7 +71,3 @@
     scrollbar-width: none;
     -ms-overflow-style: none;
 }
-
-.block__content::-webkit-scrollbar {
-    display: none;
-}

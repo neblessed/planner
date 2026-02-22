@@ -1,0 +1,36 @@
+.dropdown {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    position: relative;
+}
+
+.dropdown_field_label {
+    margin-left: 4px;
+}
+
+.dropdown_options {
+    position: absolute;
+    background-color: rgb(255, 255, 255);
+    border-radius: 5px;
+
+    left: 0;
+    right: 0;
+    top: 100%;
+
+    min-height: auto;
+    max-height: 90px;
+    overflow: scroll;
+
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.dropdown_option {
+    box-sizing: border-box;
+    margin: 3px auto;
+    width: 98%;
+    height: 18px;
+    padding: 2px 7px;
+    cursor: pointer;
+}

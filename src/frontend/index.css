@@ -22,6 +22,10 @@
     padding: 10px 10px;
 }
 
+::-webkit-scrollbar {
+    display: none;
+}
+
 p {
     margin: 0;
 }
@@ -94,4 +98,11 @@ a {
 a:active {
     color: inherit;
     background-color: transparent;
+}
+
+ul,
+li {
+    padding: 0;
+    margin: 0;
+    list-style: none;
 }
