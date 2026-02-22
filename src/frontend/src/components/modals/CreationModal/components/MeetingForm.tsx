@@ -7,6 +7,7 @@ import { validateForm } from "../utils/validateForm";
 import type { MeetingType } from "../../../../types/MeetingType";
 import type { FormErrorType } from "../../../../types/FormErrorType";
 import { createNewMeeting } from "../../../../store/thunks/meeting.thunk";
+import FormPlate from "../../../common/Plate/FormPlate";
 
 type MeetingFormProps = {
     setOpen: (state: boolean) => void;
@@ -24,56 +25,63 @@ function MeetingForm({ setOpen }: MeetingFormProps) {
     return (
         <>
             {error && <span className="error-text">❌ {error.message}</span>}
-            <Field
-                label="Имя клиента"
-                placeholder="Введите имя"
-                value={person}
-                setValue={setPerson}
-                error={
-                    error?.field === "person" && person.length === 0
-                        ? error?.message
-                        : undefined
-                }
-            />
-            <Field
-                label="Telegram"
-                placeholder="Введите @username"
-                value={telegram}
-                setValue={setTelegram}
-                error={
-                    error?.field === "telegram" && telegram.length === 0
-                        ? error?.message
-                        : undefined
-                }
-            />
-            <Field
-                label="Место"
-                placeholder="Место проведения съемки"
-                value={location}
-                setValue={setLocation}
-                error={
-                    error?.field === "location" && location.length === 0
-                        ? error?.message
-                        : undefined
-                }
-            />
-            <DatePicker
-                label="Дата и время"
-                placeholder="Время съемки"
-                date={date}
-                setDate={setDate}
-                error={
-                    error?.field === "date" && date.length === 0
-                        ? error?.message
-                        : undefined
-                }
-            />
-            <Textarea
-                label="Комментарий"
-                placeholder="Комментарий к клиенту"
-                value={comment}
-                setValue={setComment}
-            />
+            <FormPlate
+                title="Данные о клиенте"
+                hintText="Блок поиска/создания клиентов"
+            >
+                <Field
+                    label="Имя клиента"
+                    placeholder="Введите имя"
+                    value={person}
+                    setValue={setPerson}
+                    error={
+                        error?.field === "person" && person.length === 0
+                            ? error?.message
+                            : undefined
+                    }
+                />
+                <Field
+                    label="Telegram"
+                    placeholder="Введите @username"
+                    value={telegram}
+                    setValue={setTelegram}
+                    error={
+                        error?.field === "telegram" && telegram.length === 0
+                            ? error?.message
+                            : undefined
+                    }
+                />
+            </FormPlate>
+            <FormPlate title="Информация о съемке">
+                <Field
+                    label="Место"
+                    placeholder="Место проведения съемки"
+                    value={location}
+                    setValue={setLocation}
+                    error={
+                        error?.field === "location" && location.length === 0
+                            ? error?.message
+                            : undefined
+                    }
+                />
+                <DatePicker
+                    label="Дата и время"
+                    placeholder="Время съемки"
+                    date={date}
+                    setDate={setDate}
+                    error={
+                        error?.field === "date" && date.length === 0
+                            ? error?.message
+                            : undefined
+                    }
+                />
+                <Textarea
+                    label="Комментарий"
+                    placeholder="Комментарий к клиенту"
+                    value={comment}
+                    setValue={setComment}
+                />
+            </FormPlate>
             <button
                 style={{ width: "80px", alignSelf: "flex-end" }}
                 onClick={() => {

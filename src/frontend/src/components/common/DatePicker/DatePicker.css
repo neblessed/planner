@@ -26,6 +26,8 @@
     border-radius: 4px;
     padding: 2px 5px;
     outline: none;
+
+    background-color: white;
 }
 
 .datepicker__root_icon {

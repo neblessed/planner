@@ -1,0 +1,63 @@
+.plate {
+    background-color: rgb(239, 246, 253);
+    border-radius: 7px;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+}
+.plate_head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(218, 237, 255);
+    padding: 2px 5px;
+}
+.plate_title {
+    font-weight: 800;
+    margin-left: 4px;
+}
+.plate_info img {
+    width: 15px;
+    height: auto;
+    opacity: 0.8;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.plate_info::before {
+    position: absolute;
+    content: attr(plate-info);
+    transform: translate(15px, -20px);
+    background-color: white;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid var(--light-grey);
+    opacity: 0;
+    transition: opacity ease-in 100ms;
+
+    min-width: 40px;
+    max-width: 200px;
+    min-height: auto;
+    max-height: 250px;
+
+    white-space: normal;
+    word-wrap: break-word;
+    word-break: break-word;
+    overflow-wrap: break-word;
+
+    text-align: center;
+
+    font-size: 10px;
+}
+.plate_info:hover::before {
+    opacity: 1;
+}
+.plate_content {
+    display: flex;
+    flex-direction: column;
+    padding: 5px 8px;
+}
