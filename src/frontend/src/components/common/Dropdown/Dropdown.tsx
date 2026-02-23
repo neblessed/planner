@@ -1,5 +1,6 @@
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useRef, useState } from "react";
 import "./Dropdown.css";
+import { useOnClickOutside } from "../../../hooks/useOnClickOutside";
 
 interface DropdownProps {
     id: string;
@@ -18,12 +19,16 @@ const Dropdown: React.FC<DropdownProps> = ({
     selected,
     setSelected,
 }) => {
-    const [query, setQuery] = useState("");
-
+    const [open, setIsOpen] = useState(false);
+    const dropdownRef = useRef<HTMLDivElement>(null);
     const handleChoice = (option: string) => {
-        setQuery("");
         setSelected(option);
+        setIsOpen(false);
     };
+
+    useOnClickOutside(dropdownRef, () => {
+        setIsOpen(false);
+    });
 
     return (
         <div className="dropdown">
@@ -33,17 +38,22 @@ const Dropdown: React.FC<DropdownProps> = ({
             <input
                 id={id}
                 placeholder={placeholder}
+                autoComplete="off"
                 value={selected}
-                onChange={(e) => setQuery(e.target.value)}
+                onClick={() => setIsOpen(true)}
+                onChange={(e) => {
+                    setSelected(e.target.value);
+                    setIsOpen(true);
+                }}
             />
-            {query.length > 0 && (
-                <div>
+            {open && (
+                <div ref={dropdownRef}>
                     <ul className="dropdown_options">
                         {options
                             .filter((option) =>
                                 option
                                     .toLowerCase()
-                                    .includes(query.toLowerCase()),
+                                    .includes(selected.toLowerCase()),
                             )
                             .map((option, index) => (
                                 <li

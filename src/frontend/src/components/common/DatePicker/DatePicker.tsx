@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import "./DatePicker.css";
+import { useOnClickOutside } from "../../../hooks/useOnClickOutside";
 
 type DatePickerProps = {
     label?: string;
@@ -21,6 +22,11 @@ function DatePicker({
     const now = new Date();
     const [calendarDate, setCalendarDate] = useState(now);
     const [isOpen, setIsOpen] = useState(false);
+    const calendarRef = useRef(null);
+
+    useOnClickOutside(calendarRef, () => {
+        setIsOpen(false);
+    });
 
     const formatISODateToFieldValue = (isoDate: string) => {
         const date = new Date(isoDate);
@@ -68,7 +74,7 @@ function DatePicker({
                 </div>
             </div>
             {isOpen && (
-                <div className="calendar">
+                <div className="calendar" ref={calendarRef}>
                     <div className="calendar__header">
                         <span className="calendar__header_period">
                             {calendarDate.toLocaleDateString("ru-RU", {

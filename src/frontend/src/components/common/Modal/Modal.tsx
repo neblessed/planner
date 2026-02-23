@@ -1,5 +1,6 @@
-import type { ReactNode } from "react";
+import { useRef, type ReactNode } from "react";
 import "./Modal.css";
+import { useOnClickOutside } from "../../../hooks/useOnClickOutside";
 
 type ModalProps = {
     title: string;
@@ -8,9 +9,13 @@ type ModalProps = {
 };
 
 function Modal({ title, children, setOpen }: ModalProps) {
+    const modalRef = useRef(null);
+
+    useOnClickOutside(modalRef, () => setOpen(false));
+
     return (
         <div className="overlay">
-            <div className="modal">
+            <div className="modal" ref={modalRef}>
                 <div className="modal__header">
                     <div
                         className="modal__header_controls"

@@ -23,5 +23,8 @@ export default defineConfig([
             project: "./tsconfig.json",
             tsconfigRootDir: "__dirname",
         },
+        rules: {
+            quotes: ["error", "single"],
+        },
     },
 ]);
