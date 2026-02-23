@@ -1,3 +1,4 @@
+import { ClientType } from '../types/ClientType';
 import { MeetingType } from '../types/MeetingType';
 import { SpendingType } from '../types/SpendingType';
 
@@ -57,4 +58,10 @@ export const api = {
 
 	// CLIENTS
 	getClients: () => fetch(`${API_BASE}/clients`).then((res) => res.json()),
+	createClient: (client: Omit<ClientType, 'id'>) =>
+		fetch(`${API_BASE}/clients`, {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify(client),
+		}).then((res) => res.json()),
 };

@@ -10,3 +10,12 @@ export const fetchClients = createAsyncThunk(
 		return response;
 	},
 );
+
+export const createNewClient = createAsyncThunk(
+	'clients/createNewClient',
+	async (client: Omit<ClientType, 'id'>) => {
+		const response = await api.createClient(client);
+
+		return response;
+	},
+);
