@@ -16,8 +16,7 @@ type MeetingFormProps = {
 
 function MeetingForm({ setOpen }: MeetingFormProps) {
 	const dispatch = useAppDispatch();
-	const [person, setPerson] = useState('');
-	const [telegram, setTelegram] = useState('');
+	const [client, setClient] = useState({ name: '', telegram: '' });
 	const [location, setLocation] = useState('');
 	const [date, setDate] = useState<string>('');
 	const [comment, setComment] = useState('');
@@ -26,7 +25,7 @@ function MeetingForm({ setOpen }: MeetingFormProps) {
 	return (
 		<>
 			{error && <span className="error-text">❌ {error.message}</span>}
-			<ClientPlate error={error} />
+			<ClientPlate error={error} setClient={setClient} />
 			<FormPlate title="Информация о съемке">
 				<Field
 					label="Место"
@@ -62,10 +61,10 @@ function MeetingForm({ setOpen }: MeetingFormProps) {
 				onClick={() => {
 					const meeting: MeetingType = {
 						id: Date.now(),
-						person: person.trim(),
+						person: client.name.trim(),
 						location: location.trim(),
 						date: date.trim(),
-						telegram: `https://t.me/${telegram.trim().replace('@', '')}`,
+						telegram: `https://t.me/${client.telegram.trim().replace('@', '')}`,
 						comment: comment.trim(),
 						status: 'Назначено',
 					};

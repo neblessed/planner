@@ -1,35 +1,38 @@
-import type { HTMLInputTypeAttribute } from "react";
-import "./Field.css";
+import type { HTMLInputTypeAttribute } from 'react';
+import './Field.css';
 
 type FieldProps = {
-    label: string;
-    placeholder?: string;
-    value: string;
-    setValue: (value: string) => void;
-    type?: HTMLInputTypeAttribute;
-    error?: string;
+	label: string;
+	placeholder?: string;
+	value: string;
+	setValue: (value: string) => void;
+	type?: HTMLInputTypeAttribute;
+	error?: string;
+	disabled?: boolean;
 };
 
 function Field({
-    label,
-    placeholder = "",
-    value,
-    setValue,
-    type = "text",
-    error,
+	label,
+	placeholder = '',
+	value,
+	setValue,
+	type = 'text',
+	error,
+	disabled,
 }: FieldProps) {
-    return (
-        <div className="field">
-            <span className="field__label">{label}:</span>
-            <input
-                type={type}
-                placeholder={placeholder}
-                value={type === "number" && value === "0" ? "" : value}
-                onChange={(e) => setValue(e.target.value)}
-                className={error ? "input-error" : ""}
-            />
-        </div>
-    );
+	return (
+		<div className="field">
+			<span className="field__label">{label}:</span>
+			<input
+				disabled={disabled}
+				type={type}
+				placeholder={placeholder}
+				value={type === 'number' && value === '0' ? '' : value}
+				onChange={(e) => setValue(e.target.value)}
+				className={error ? 'input-error' : ''}
+			/>
+		</div>
+	);
 }
 
 export default Field;
