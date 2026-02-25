@@ -1,67 +1,67 @@
 .short_meeting_item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 15px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 15px;
 
-    font-size: 13px;
-    background-color: rgba(252, 252, 252, 0.736);
-    border-radius: 7px;
-    box-sizing: border-box;
-    padding: 2px 30px;
+	font-size: 13px;
+	background-color: rgba(252, 252, 252, 0.736);
+	border-radius: 7px;
+	box-sizing: border-box;
+	padding: 2px 30px;
 
-    width: 450px;
-    cursor: default;
+	width: 450px;
+	cursor: default;
 
-    border: 1px solid var(--light-grey);
+	border: 1px solid var(--light-grey);
 }
 .short_meeting_item_date {
-    font-weight: 700;
-    width: 150px;
-    text-align: start;
+	font-weight: 700;
+	width: 150px;
+	text-align: start;
 }
 .short_meeting_item_amount_block {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 30px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 30px;
 }
 .short_meeting_item_amount {
-    font-weight: 400;
-    border: 1px solid var(--light-grey);
-    padding: 0px 3px;
-    border-radius: 4px;
-    font-size: 12px;
-    background-color: rgba(255, 255, 255, 0.65);
+	font-weight: 400;
+	border: 1px solid var(--light-grey);
+	padding: 0px 3px;
+	border-radius: 4px;
+	font-size: 12px;
+	background-color: rgba(255, 255, 255, 0.65);
 
-    text-align: center;
+	text-align: center;
 }
 .short_meeting_item_status_block {
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    width: 120px;
+	display: flex;
+	justify-content: start;
+	align-items: center;
+	width: 120px;
 }
 .shot_meeting_item_devider {
-    background-color: var(--light-grey);
-    width: 1px;
-    height: 14px;
+	background-color: var(--light-grey);
+	width: 1px;
+	height: 14px;
 }
 .short_meeting__links_icon_wfolio {
-    display: inherit;
-    align-content: center;
-    opacity: 0.6;
+	display: inherit;
+	align-content: center;
+	opacity: 0.6;
 
-    transition: opacity 0.18s ease-in-out;
+	transition: opacity 0.18s ease-in-out;
 
-    cursor: pointer;
+	cursor: pointer;
 }
 
 .short_meeting__links_icon_wfolio:hover {
-    opacity: 1;
+	opacity: 1;
 }
 
 .short_meeting__links_icon_wfolio img {
-    width: 12px;
-    height: auto;
+	width: 12px;
+	height: auto;
 }

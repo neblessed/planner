@@ -1,80 +1,80 @@
 .client {
-    width: 875px;
-    height: 90px;
+	width: 875px;
+	height: 90px;
 
-    display: flex;
-    gap: 25px;
-    box-sizing: border-box;
-    background-color: white;
-    padding: 10px 20px;
-    border-radius: 20px;
-    align-items: center;
+	display: flex;
+	gap: 25px;
+	box-sizing: border-box;
+	background-color: white;
+	padding: 10px 20px;
+	border-radius: 20px;
+	align-items: center;
 
-    overflow: hidden;
+	overflow: hidden;
 
-    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.139);
+	box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.139);
 }
 .client_avatar {
-    background-color: rgb(193, 211, 234);
-    width: 45px;
-    height: auto;
-    border-radius: 50%;
-    padding: 10px;
+	background-color: rgb(193, 211, 234);
+	width: 45px;
+	height: auto;
+	border-radius: 50%;
+	padding: 10px;
 
-    box-shadow: inset 0 0 15px rgba(77, 134, 214, 0.435);
-    border: solid 1px rgba(0, 0, 0, 0.194);
+	box-shadow: inset 0 0 15px rgba(77, 134, 214, 0.435);
+	border: solid 1px rgba(0, 0, 0, 0.194);
 }
 .client_info {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    width: 260px;
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+	width: 260px;
 
-    cursor: default;
+	cursor: default;
 }
 .client_info_personal_info {
-    display: flex;
-    gap: 5px;
+	display: flex;
+	gap: 5px;
 
-    align-items: center;
+	align-items: center;
 }
 .client_name {
-    font-size: 25px;
-    font-weight: 700;
+	font-size: 25px;
+	font-weight: 700;
 }
 .client_tg {
-    display: flex;
-    place-items: center;
+	display: flex;
+	place-items: center;
 
-    & img {
-        width: 16px;
-        height: auto;
-    }
+	& img {
+		width: 16px;
+		height: auto;
+	}
 }
 .client_stats {
-    display: flex;
-    gap: 5px;
-    justify-content: start;
-    align-items: center;
+	display: flex;
+	gap: 5px;
+	justify-content: start;
+	align-items: center;
 }
 .client_stat {
-    box-sizing: border-box;
-    font-size: 12px;
-    background-color: #4dd6cd6f;
-    padding: 1px 5px;
+	box-sizing: border-box;
+	font-size: 12px;
+	background-color: #4dd6cd6f;
+	padding: 1px 5px;
 
-    border-radius: 8px;
+	border-radius: 8px;
 
-    border: solid 1px rgba(0, 0, 0, 0.194);
+	border: solid 1px rgba(0, 0, 0, 0.194);
 }
 .client_recent_meetings {
-    padding: 5px;
-    height: 71px;
-    border-radius: 10px;
-    overflow-y: scroll;
-    overflow-x: hidden;
+	padding: 5px;
+	height: 71px;
+	border-radius: 10px;
+	overflow-y: scroll;
+	overflow-x: hidden;
 
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
 }

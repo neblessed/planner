@@ -1,13 +1,13 @@
 .textarea {
-    display: flex;
-    flex-direction: column;
+	display: flex;
+	flex-direction: column;
 
-    text-align: start;
+	text-align: start;
 }
 
 .textarea__label {
-    margin-left: 4px;
+	margin-left: 4px;
 
-    font-weight: 500;
-    cursor: default;
+	font-weight: 500;
+	cursor: default;
 }

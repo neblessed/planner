@@ -1,131 +1,131 @@
 .balance_block {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
 }
 
 .balance_block__amounts {
-    display: flex;
-    gap: 8px;
-    justify-content: center;
-    align-items: center;
+	display: flex;
+	gap: 8px;
+	justify-content: center;
+	align-items: center;
 }
 
 .balance_block__amount_cell {
-    min-width: 80px;
-    display: flex;
-    flex-direction: column;
+	min-width: 80px;
+	display: flex;
+	flex-direction: column;
 
-    border: 1px solid var(--light-grey);
-    border-radius: 8px;
-    padding: 5px 8px;
+	border: 1px solid var(--light-grey);
+	border-radius: 8px;
+	padding: 5px 8px;
 }
 
 .balance_block_payback {
-    font-size: 28px;
-    font-weight: 900;
-    color: var(--green);
-    margin: auto;
+	font-size: 28px;
+	font-weight: 900;
+	color: var(--green);
+	margin: auto;
 }
 
 .balance_block__amount_cell_title {
-    font-size: 11px;
-    color: rgba(0, 0, 0, 0.321);
-    margin: auto;
+	font-size: 11px;
+	color: rgba(0, 0, 0, 0.321);
+	margin: auto;
 }
 
 .balance_block__switcher {
-    box-sizing: border-box;
-    display: flex;
-    justify-content: space-between;
+	box-sizing: border-box;
+	display: flex;
+	justify-content: space-between;
 
-    border: 1px solid var(--light-grey);
-    border-radius: 8px;
-    background-color: rgba(0, 0, 0, 0.021);
+	border: 1px solid var(--light-grey);
+	border-radius: 8px;
+	background-color: rgba(0, 0, 0, 0.021);
 
-    overflow: hidden;
+	overflow: hidden;
 }
 
 .balance_block__switcher_period {
-    padding: 4px 10px;
-    width: auto;
-    font-weight: 300;
-    font-size: 12px;
-    cursor: pointer;
+	padding: 4px 10px;
+	width: auto;
+	font-weight: 300;
+	font-size: 12px;
+	cursor: pointer;
 }
 
 .switcher_period_selected {
-    background-color: rgba(121, 121, 121, 0.027);
-    box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.106);
+	background-color: rgba(121, 121, 121, 0.027);
+	box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.106);
 }
 
 .balance_block__switcher_line {
-    box-sizing: border-box;
-    width: 1px;
-    height: auto;
+	box-sizing: border-box;
+	width: 1px;
+	height: auto;
 
-    background: var(--light-grey);
+	background: var(--light-grey);
 }
 
 .balance_block__controls {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
+	display: flex;
+	justify-content: space-between;
+	gap: 10px;
 
-    margin: auto;
+	margin: auto;
 }
 
 .balance_block__flag {
-    width: 14px;
-    height: auto;
+	width: 14px;
+	height: auto;
 
-    border: 1px solid var(--light-grey);
-    padding: 0px 4px;
-    border-radius: 8px;
+	border: 1px solid var(--light-grey);
+	padding: 0px 4px;
+	border-radius: 8px;
 
-    cursor: pointer;
+	cursor: pointer;
 }
 
 .balance_popover_content {
-    display: flex;
-    gap: 6px;
-    align-items: center;
-    padding-block: 10px;
+	display: flex;
+	gap: 6px;
+	align-items: center;
+	padding-block: 10px;
 }
 
 .balance_popover_content__arrow {
-    width: 14px;
-    height: auto;
+	width: 14px;
+	height: auto;
 
-    opacity: 0.7;
+	opacity: 0.7;
 
-    cursor: pointer;
+	cursor: pointer;
 
-    background: var(--green);
-    border-radius: 50%;
+	background: var(--green);
+	border-radius: 50%;
 }
 
 .balance_block__goal {
-    display: flex;
-    gap: 8px;
-    align-items: center;
+	display: flex;
+	gap: 8px;
+	align-items: center;
 }
 
 .balance_block__goal_progress_percent {
-    font-size: 11px;
-    color: rgba(0, 0, 0, 0.62);
+	font-size: 11px;
+	color: rgba(0, 0, 0, 0.62);
 }
 
 .balance_block__goal_progress {
-    height: 6px;
-    width: 100%;
+	height: 6px;
+	width: 100%;
 
-    border: 1px solid var(--light-grey);
-    border-radius: 8px;
-    overflow: hidden;
+	border: 1px solid var(--light-grey);
+	border-radius: 8px;
+	overflow: hidden;
 }
 
 .balance_block__goal_progress_current {
-    height: 100%;
-    background-color: var(--green);
+	height: 100%;
+	background-color: var(--green);
 }

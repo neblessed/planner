@@ -1,3 +1,3 @@
-import { Meeting } from "./Meeting.type";
+import { Meeting } from './Meeting.type';
 
-export type UpdateMeetingDTO = Partial<Omit<Meeting, "id">>;
+export type UpdateMeetingDTO = Partial<Omit<Meeting, 'id'>>;

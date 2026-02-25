@@ -1,23 +1,23 @@
 .amount {
-    color: var(--dark-grey);
-    margin: auto;
+	color: var(--dark-grey);
+	margin: auto;
 }
 
 .loss {
-    color: rgb(241, 95, 95);
+	color: rgb(241, 95, 95);
 }
 
 .small {
-    font-size: 14px;
-    font-weight: 600;
+	font-size: 14px;
+	font-weight: 600;
 }
 
 .medium {
-    font-size: 18px;
-    font-weight: 700;
+	font-size: 18px;
+	font-weight: 700;
 }
 
 .large {
-    font-size: 28px;
-    font-weight: 900;
+	font-size: 28px;
+	font-weight: 900;
 }

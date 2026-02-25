@@ -1,12 +1,12 @@
 .field {
-    display: flex;
-    flex-direction: column;
-    text-align: start;
+	display: flex;
+	flex-direction: column;
+	text-align: start;
 }
 
 .field__label {
-    margin-left: 4px;
+	margin-left: 4px;
 
-    font-weight: 500;
-    cursor: default;
+	font-weight: 500;
+	cursor: default;
 }

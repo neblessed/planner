@@ -35,13 +35,6 @@ function MeetingForm({ setOpen }: MeetingFormProps) {
 	const [comment, setComment] = useState('');
 	const [error, setError] = useState<null | FormErrorType>(null);
 
-	useEffect(() => {
-		return () => {
-			dispatch(fetchMeetings()).unwrap();
-			dispatch(fetchClients()).unwrap();
-		};
-	}, []);
-
 	return (
 		<>
 			{error && <span className="error-text">❌ {error.message}</span>}
@@ -116,7 +109,10 @@ function MeetingForm({ setOpen }: MeetingFormProps) {
 									...meeting,
 									personId: client.id!,
 								}),
-							).then(() => setOpen(false));
+							).then(() => {
+								dispatch(fetchMeetings()).unwrap();
+								setOpen(false);
+							});
 						} else {
 							dispatch(createNewClient(clientToCreate)).then(
 								(res) => {
@@ -128,7 +124,11 @@ function MeetingForm({ setOpen }: MeetingFormProps) {
 											...meeting,
 											personId: id,
 										}),
-									).then(() => setOpen(false));
+									).then(() => {
+										dispatch(fetchMeetings()).unwrap();
+										dispatch(fetchClients()).unwrap();
+										setOpen(false);
+									});
 								},
 							);
 						}

@@ -1,27 +1,27 @@
 .planner {
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    gap: 30px;
+	display: flex;
+	flex-direction: column;
+	align-content: center;
+	gap: 30px;
 }
 
 .widgets_row__1 {
-    align-self: flex-end;
+	align-self: flex-end;
 }
 
 .widgets_row__2 {
-    align-self: center;
+	align-self: center;
 }
 
 .widgets_row__3 {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    justify-content: center;
-    align-items: center;
-    margin: auto;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	justify-content: center;
+	align-items: center;
+	margin: auto;
 }
 
 .menu_row {
-    align-self: center;
+	align-self: center;
 }

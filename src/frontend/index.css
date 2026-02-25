@@ -1,113 +1,113 @@
-@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
 
 :root {
-    font-family: "JetBrains Mono", monospace;
-    font-weight: 500;
+	font-family: 'JetBrains Mono', monospace;
+	font-weight: 500;
 
-    --block-raduis: 14px;
-    --green: rgb(69, 240, 163);
-    --aqua-green: rgba(137, 237, 192, 0.973);
-    --light-grey: rgba(0, 0, 0, 0.097);
-    --dark-grey: rgba(0, 0, 0, 0.551);
-    --error-red: rgba(239, 55, 38, 0.642);
-    --error-red-transparent: rgba(239, 55, 38, 0.069);
-    --bg-light-blue: rgba(49, 172, 255, 0.15);
-    --bg-light-yellow: rgba(255, 228, 49, 0.15);
-    --bg-light-red: rgba(255, 49, 49, 0.15);
-    --bg-light-purple: rgba(193, 49, 255, 0.15);
-    --bg-light-green: rgba(49, 255, 94, 0.15);
+	--block-raduis: 14px;
+	--green: rgb(69, 240, 163);
+	--aqua-green: rgba(137, 237, 192, 0.973);
+	--light-grey: rgba(0, 0, 0, 0.097);
+	--dark-grey: rgba(0, 0, 0, 0.551);
+	--error-red: rgba(239, 55, 38, 0.642);
+	--error-red-transparent: rgba(239, 55, 38, 0.069);
+	--bg-light-blue: rgba(49, 172, 255, 0.15);
+	--bg-light-yellow: rgba(255, 228, 49, 0.15);
+	--bg-light-red: rgba(255, 49, 49, 0.15);
+	--bg-light-purple: rgba(193, 49, 255, 0.15);
+	--bg-light-green: rgba(49, 255, 94, 0.15);
 
-    background-color: #91b0d7;
+	background-color: #91b0d7;
 
-    padding: 10px 10px;
+	padding: 10px 10px;
 }
 
 ::-webkit-scrollbar {
-    display: none;
+	display: none;
 }
 
 p {
-    margin: 0;
+	margin: 0;
 }
 
 button {
-    font-family: "JetBrains Mono", monospace;
-    border-radius: 6px;
-    border: none;
+	font-family: 'JetBrains Mono', monospace;
+	border-radius: 6px;
+	border: none;
 
-    padding: 4px 14px;
-    background: linear-gradient(#4b91f7, #367af6);
-    color: #ffffff;
+	padding: 4px 14px;
+	background: linear-gradient(#4b91f7, #367af6);
+	color: #ffffff;
 
-    cursor: pointer;
-    transition: padding 0.1s ease-in;
+	cursor: pointer;
+	transition: padding 0.1s ease-in;
 
-    text-align: center;
+	text-align: center;
 }
 
 button:active {
-    padding: 4.4px 15px;
+	padding: 4.4px 15px;
 }
 
 input {
-    font-family: "JetBrains Mono", monospace;
-    border: 1px solid var(--light-grey);
-    border-radius: 4px;
-    padding: 2px 5px;
-    outline: none;
+	font-family: 'JetBrains Mono', monospace;
+	border: 1px solid var(--light-grey);
+	border-radius: 4px;
+	padding: 2px 5px;
+	outline: none;
 }
 
 .input-error {
-    border: 1px solid var(--error-red) !important;
-    background-color: var(--error-red-transparent) !important;
+	border: 1px solid var(--error-red) !important;
+	background-color: var(--error-red-transparent) !important;
 }
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-    /* display: none; <- Crashes Chrome on hover */
-    -webkit-appearance: none;
-    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+	/* display: none; <- Crashes Chrome on hover */
+	-webkit-appearance: none;
+	margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
 
 textarea {
-    font-family: "JetBrains Mono", monospace;
-    border: 1px solid var(--light-grey);
-    border-radius: 4px;
-    padding: 2px 5px;
+	font-family: 'JetBrains Mono', monospace;
+	border: 1px solid var(--light-grey);
+	border-radius: 4px;
+	padding: 2px 5px;
 
-    height: 55px;
+	height: 55px;
 
-    outline: none;
-    resize: none;
+	outline: none;
+	resize: none;
 }
 
 .error-text {
-    text-align: center;
-    font-weight: 400;
-    border: 1px solid var(--error-red);
-    border-radius: 4px;
-    padding: 3px 4px;
-    background-color: var(--error-red-transparent);
-    color: rgba(0, 0, 0, 0.785);
+	text-align: center;
+	font-weight: 400;
+	border: 1px solid var(--error-red);
+	border-radius: 4px;
+	padding: 3px 4px;
+	background-color: var(--error-red-transparent);
+	color: rgba(0, 0, 0, 0.785);
 }
 
 a {
-    color: inherit;
+	color: inherit;
 }
 
 a:active {
-    color: inherit;
-    background-color: transparent;
+	color: inherit;
+	background-color: transparent;
 }
 
 ul,
 li {
-    padding: 0;
-    margin: 0;
-    list-style: none;
+	padding: 0;
+	margin: 0;
+	list-style: none;
 }
 textarea,
 input::placeholder {
-    font-weight: 200;
-    font-size: 12.5px;
+	font-weight: 200;
+	font-size: 12.5px;
 }

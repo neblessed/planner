@@ -1,19 +1,19 @@
 {
-    "name": "planner",
-    "private": true,
-    "workspaces": [
-        "src/backend",
-        "src/frontend"
-    ],
-    "scripts": {
-        "dev": "concurrently \"npm run dev -w backend\" \"npm run dev -w frontend\"",
-        "dev:frontend": "npm run dev -w frontend"
-    },
-    "devDependencies": {
-        "@types/cors": "^2.8.19",
-        "concurrently": "^8.2.2"
-    },
-    "dependencies": {
-        "react-router-dom": "^7.13.0"
-    }
+	"name": "planner",
+	"private": true,
+	"workspaces": [
+		"src/backend",
+		"src/frontend"
+	],
+	"scripts": {
+		"dev": "concurrently \"npm run dev -w backend\" \"npm run dev -w frontend\"",
+		"dev:frontend": "npm run dev -w frontend"
+	},
+	"devDependencies": {
+		"@types/cors": "^2.8.19",
+		"concurrently": "^8.2.2"
+	},
+	"dependencies": {
+		"react-router-dom": "^7.13.0"
+	}
 }
