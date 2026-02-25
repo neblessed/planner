@@ -1,10 +1,12 @@
 import { useAppSelector } from '../../hooks/redux';
+import { getMergedMeetingsWithClients } from '../../utils/getMergedMeetingsWithClients';
 import Block from '../common/Block/Block';
 import MeetingItem from '../MeetingItem/MeetingItem';
 import { getDeadlineDays } from '../MeetingItem/utils/getDeadlineDays';
 
 function InProgressBlock() {
-	const { meetings } = useAppSelector((store) => store.meetingsReducer);
+	const meetings = getMergedMeetingsWithClients();
+
 	const inProgressMeetings = meetings
 		.filter(
 			(meeting) =>
@@ -16,6 +18,7 @@ function InProgressBlock() {
 				getDeadlineDays(a.deadlineDate!) -
 				getDeadlineDays(b.deadlineDate!),
 		);
+
 	return (
 		<>
 			<Block title="В работе 💻" wide={true}>

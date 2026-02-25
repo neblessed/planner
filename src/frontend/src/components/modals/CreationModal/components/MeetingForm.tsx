@@ -1,14 +1,22 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import DatePicker from '../../../common/DatePicker/DatePicker';
 import Field from '../../../common/Field/Field';
 import Textarea from '../../../common/Textarea/Textarea';
-import { useAppDispatch } from '../../../../hooks/redux';
+import { useAppDispatch, useAppSelector } from '../../../../hooks/redux';
 import { validateForm } from '../utils/validateForm';
 import type { MeetingType } from '../../../../types/MeetingType';
 import type { FormErrorType } from '../../../../types/FormErrorType';
-import { createNewMeeting } from '../../../../store/thunks/meeting.thunk';
+import {
+	createNewMeeting,
+	fetchMeetings,
+} from '../../../../store/thunks/meeting.thunk';
 import FormPlate from '../../../common/Plate/FormPlate';
 import ClientPlate from './ClientPlate';
+import { ClientType } from '../../../../types/ClientType';
+import {
+	createNewClient,
+	fetchClients,
+} from '../../../../store/thunks/client.thunk';
 
 type MeetingFormProps = {
 	setOpen: (state: boolean) => void;
@@ -16,16 +24,32 @@ type MeetingFormProps = {
 
 function MeetingForm({ setOpen }: MeetingFormProps) {
 	const dispatch = useAppDispatch();
-	const [client, setClient] = useState({ name: '', telegram: '' });
+	const { clients } = useAppSelector((store) => store.meetingsReducer);
+	const [client, setClient] = useState<{
+		id: null | number;
+		name: string;
+		telegram: string;
+	}>({ id: null, name: '', telegram: '' });
 	const [location, setLocation] = useState('');
 	const [date, setDate] = useState<string>('');
 	const [comment, setComment] = useState('');
 	const [error, setError] = useState<null | FormErrorType>(null);
 
+	useEffect(() => {
+		return () => {
+			dispatch(fetchMeetings()).unwrap();
+			dispatch(fetchClients()).unwrap();
+		};
+	}, []);
+
 	return (
 		<>
 			{error && <span className="error-text">❌ {error.message}</span>}
-			<ClientPlate error={error} setClient={setClient} />
+			<ClientPlate
+				clients={clients}
+				setClient={setClient}
+				error={error}
+			/>
 			<FormPlate title="Информация о съемке">
 				<Field
 					label="Место"
@@ -59,20 +83,55 @@ function MeetingForm({ setOpen }: MeetingFormProps) {
 			<button
 				style={{ width: '80px', alignSelf: 'flex-end' }}
 				onClick={() => {
-					const meeting: MeetingType = {
+					const telegramLink = `https://t.me/${client.telegram.trim().replace('@', '')}`;
+					const clientToCreate: Omit<ClientType, 'id'> = {
+						name: client.name,
+						telegram: telegramLink,
+						feedback: false,
+						note: '',
+					};
+
+					const meeting: Omit<MeetingType, 'personId'> = {
 						id: Date.now(),
-						person: client.name.trim(),
 						location: location.trim(),
 						date: date.trim(),
-						telegram: `https://t.me/${client.telegram.trim().replace('@', '')}`,
 						comment: comment.trim(),
 						status: 'Назначено',
 					};
 
 					try {
-						validateForm(meeting);
-						dispatch(createNewMeeting(meeting));
-						setOpen(false);
+						validateForm({
+							id: Date.now(),
+							person: client.name.trim(),
+							location: location.trim(),
+							date: date.trim(),
+							comment: comment.trim(),
+							status: 'Назначено',
+							telegram: telegramLink,
+						});
+
+						if (clients.some((c) => c.telegram === telegramLink)) {
+							dispatch(
+								createNewMeeting({
+									...meeting,
+									personId: client.id!,
+								}),
+							).then(() => setOpen(false));
+						} else {
+							dispatch(createNewClient(clientToCreate)).then(
+								(res) => {
+									const { client } = res.payload;
+									const { id } = client;
+
+									dispatch(
+										createNewMeeting({
+											...meeting,
+											personId: id,
+										}),
+									).then(() => setOpen(false));
+								},
+							);
+						}
 					} catch (e) {
 						setError(
 							JSON.parse((e as Error).message) as FormErrorType,

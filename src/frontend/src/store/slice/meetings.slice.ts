@@ -1,13 +1,8 @@
-import {
-	createAsyncThunk,
-	createSlice,
-	type PayloadAction,
-} from '@reduxjs/toolkit';
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 import type { InitialMeetingsStateType } from '../types/MeetingsStateType';
 import type { MeetingType } from '../../types/MeetingType';
 import type { SpendingType } from '../../types/SpendingType';
 import { calculateBalance } from '../utils/calculateBalance';
-import { api } from '../../api/client';
 import {
 	createNewMeeting,
 	updateExistedMeeting,
@@ -31,8 +26,6 @@ const initialMeetingsState: InitialMeetingsStateType = {
 	loading: false,
 	error: null,
 };
-
-type OptionalMeetingType = Partial<MeetingType>;
 
 const meetingsSlice = createSlice({
 	name: 'meetingsSlice',

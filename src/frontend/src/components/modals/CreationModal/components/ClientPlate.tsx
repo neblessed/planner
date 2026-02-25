@@ -4,15 +4,21 @@ import FormPlate from '../../../common/Plate/FormPlate';
 import { FormErrorType } from '../../../../types/FormErrorType';
 import Dropdown from '../../../common/Dropdown/Dropdown';
 import { useAppSelector } from '../../../../hooks/redux';
+import { ClientType } from '../../../../types/ClientType';
 
 interface ClientPlateProps {
 	error?: FormErrorType | null;
-	setClient: Dispatch<SetStateAction<{ name: string; telegram: string }>>;
+	setClient: Dispatch<
+		SetStateAction<{ id: null | number; name: string; telegram: string }>
+	>;
+	clients: ClientType[];
 }
 
-const ClientPlate: React.FC<ClientPlateProps> = ({ error, setClient }) => {
-	const { clients } = useAppSelector((store) => store.meetingsReducer);
-
+const ClientPlate: React.FC<ClientPlateProps> = ({
+	error,
+	setClient,
+	clients,
+}) => {
 	const [person, setPerson] = useState('');
 	const [telegram, setTelegram] = useState('');
 	const [personArrayIndex, setPersonArrayIndex] = useState<null | number>(
@@ -33,10 +39,12 @@ const ClientPlate: React.FC<ClientPlateProps> = ({ error, setClient }) => {
 	}, [personArrayIndex]);
 
 	useEffect(() => {
-		setClient({ name: person, telegram });
+		setClient({
+			id: personArrayIndex ? clients[personArrayIndex].id : null,
+			name: person,
+			telegram,
+		});
 	}, [telegram, person]);
-
-	console.log(error);
 
 	return (
 		<FormPlate

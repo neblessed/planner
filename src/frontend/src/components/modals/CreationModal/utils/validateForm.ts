@@ -1,8 +1,9 @@
 import type { MeetingType } from '../../../../types/MeetingType';
+import { MergedMeeting } from '../../../../types/MergerdMeeting';
 import type { SpendingType } from '../../../../types/SpendingType';
 import { CreationFormError } from '../enum/errors.enum';
 
-export const validateForm = (object: MeetingType | SpendingType) => {
+export const validateForm = (object: MergedMeeting | SpendingType) => {
 	if ('person' in object) {
 		if (object.telegram.replace('https://t.me/', '').length === 0) {
 			throw new Error(

@@ -1,9 +1,9 @@
-import type { StatusType } from './StatusType';
+import { StatusType } from './StatusType';
 
-export type MeetingType = {
+export type MergedMeeting = {
 	id: number;
-	/** ИД клиента **/
-	personId: number;
+	/** Имя клиента **/
+	person: string;
 	/** Место встречи **/
 	location: string;
 	/** Дата встречи **/
@@ -12,6 +12,7 @@ export type MeetingType = {
 	deadlineDate?: string;
 	/** Ссылка на портфолио с выполненной работой **/
 	wfolio?: string;
+	telegram: string;
 	status: StatusType;
 	/** Комментарий к записи */
 	comment?: string;

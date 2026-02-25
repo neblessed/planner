@@ -1,12 +1,11 @@
 export type Meeting = {
-    id: number;
-    person: string;
-    location: string;
-    date: string;
-    deadlineDate?: string;
-    telegram: string;
-    wfolio?: string;
-    status: string;
-    comment?: string;
-    amount?: number;
+	id: number;
+	personId: number;
+	location: string;
+	date: string;
+	deadlineDate?: string;
+	wfolio?: string;
+	status: string;
+	comment?: string;
+	amount?: number;
 };

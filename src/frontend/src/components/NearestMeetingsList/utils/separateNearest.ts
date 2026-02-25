@@ -1,66 +1,68 @@
-import type { MeetingType } from "../../../types/MeetingType";
+import { MergedMeeting } from '../../../types/MergerdMeeting';
 
 type SeparatedMeetings = {
-    one: MeetingType[];
-    two: MeetingType[];
-    three: MeetingType[];
-    four: MeetingType[];
-    five: MeetingType[];
-    six: MeetingType[];
-    seven: MeetingType[];
+	one: MergedMeeting[];
+	two: MergedMeeting[];
+	three: MergedMeeting[];
+	four: MergedMeeting[];
+	five: MergedMeeting[];
+	six: MergedMeeting[];
+	seven: MergedMeeting[];
 };
 
-export const separateNearest = (meetings: MeetingType[]): SeparatedMeetings => {
-    const separated: SeparatedMeetings = {
-        one: [],
-        two: [],
-        three: [],
-        four: [],
-        five: [],
-        six: [],
-        seven: [],
-    };
+export const separateNearest = (
+	meetings: MergedMeeting[],
+): SeparatedMeetings => {
+	const separated: SeparatedMeetings = {
+		one: [],
+		two: [],
+		three: [],
+		four: [],
+		five: [],
+		six: [],
+		seven: [],
+	};
 
-    const days = Array.from({ length: 7 }).map((_, index) => {
-        const day = new Date();
-        day.setDate(day.getDate() + index);
-        day.setHours(0, 0, 0, 0);
+	const days = Array.from({ length: 7 }).map((_, index) => {
+		const day = new Date();
+		day.setDate(day.getDate() + index);
+		day.setHours(0, 0, 0, 0);
 
-        return day;
-    });
+		return day;
+	});
 
-    for (const meeting of meetings) {
-        const meetingDate = new Date(meeting.date);
-        meetingDate.setHours(0, 0, 0, 0);
+	for (const meeting of meetings) {
+		const meetingDate = new Date(meeting.date);
+		meetingDate.setHours(0, 0, 0, 0);
 
-        if (meetingDate.getTime() === days[0].getTime()) {
-            separated.one.push(meeting);
-        }
+		if (meetingDate.getTime() === days[0].getTime()) {
+			separated.one.push(meeting);
+		}
 
-        if (meetingDate.getTime() === days[1].getTime()) {
-            separated.two.push(meeting);
-        }
+		if (meetingDate.getTime() === days[1].getTime()) {
+			separated.two.push(meeting);
+		}
 
-        if (meetingDate.getTime() === days[2].getTime()) {
-            separated.three.push(meeting);
-        }
+		if (meetingDate.getTime() === days[2].getTime()) {
+			separated.three.push(meeting);
+		}
 
-        if (meetingDate.getTime() === days[3].getTime()) {
-            separated.four.push(meeting);
-        }
+		if (meetingDate.getTime() === days[3].getTime()) {
+			separated.four.push(meeting);
+		}
 
-        if (meetingDate.getTime() === days[4].getTime()) {
-            separated.five.push(meeting);
-        }
+		if (meetingDate.getTime() === days[4].getTime()) {
+			separated.five.push(meeting);
+		}
 
-        if (meetingDate.getTime() === days[5].getTime()) {
-            separated.six.push(meeting);
-        }
+		if (meetingDate.getTime() === days[5].getTime()) {
+			separated.six.push(meeting);
+		}
 
-        if (meetingDate.getTime() === days[6].getTime()) {
-            separated.seven.push(meeting);
-        }
-    }
+		if (meetingDate.getTime() === days[6].getTime()) {
+			separated.seven.push(meeting);
+		}
+	}
 
-    return separated;
+	return separated;
 };
