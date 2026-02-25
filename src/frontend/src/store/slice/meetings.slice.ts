@@ -15,7 +15,11 @@ import {
 	fetchAllSpendings,
 } from '../thunks/spending.thunk';
 import { fetchGoal, renewGoal } from '../thunks/goal.thunk';
-import { fetchClients } from '../thunks/client.thunk';
+import {
+	createNewClient,
+	fetchClients,
+	updateClient,
+} from '../thunks/client.thunk';
 
 const initialMeetingsState: InitialMeetingsStateType = {
 	clients: [],
@@ -190,6 +194,43 @@ const meetingsSlice = createSlice({
 				state.clients = action.payload;
 			})
 			.addCase(fetchClients.rejected, (state, action) => {
+				state.loading = false;
+				state.error =
+					action.error.message || 'Failed to fetch meetings';
+			})
+			.addCase(createNewClient.pending, (state) => {
+				state.loading = true;
+				state.error = null;
+			})
+			.addCase(createNewClient.fulfilled, (state, action) => {
+				state.loading = false;
+
+				state.clients.push(action.payload);
+			})
+			.addCase(createNewClient.rejected, (state, action) => {
+				state.loading = false;
+				state.error =
+					action.error.message || 'Failed to fetch meetings';
+			})
+			.addCase(updateClient.pending, (state) => {
+				state.loading = true;
+				state.error = null;
+			})
+			.addCase(updateClient.fulfilled, (state, action) => {
+				state.loading = false;
+
+				const index = state.clients.findIndex(
+					(c) => c.id === action.payload.id,
+				);
+
+				if (index !== -1) {
+					state.clients[index] = {
+						...state.clients[index],
+						...action.payload,
+					};
+				}
+			})
+			.addCase(updateClient.rejected, (state, action) => {
 				state.loading = false;
 				state.error =
 					action.error.message || 'Failed to fetch meetings';

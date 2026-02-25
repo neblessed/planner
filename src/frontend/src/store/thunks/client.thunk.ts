@@ -19,3 +19,12 @@ export const createNewClient = createAsyncThunk(
 		return response;
 	},
 );
+
+export const updateClient = createAsyncThunk(
+	'clients/updateClient',
+	async ({ id, ...data }: Partial<ClientType> & { id: number }) => {
+		const response = await api.updateClient(id, data);
+
+		return response;
+	},
+);

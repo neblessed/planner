@@ -64,4 +64,10 @@ export const api = {
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(client),
 		}).then((res) => res.json()),
+	updateClient: (id: number, client: Partial<Omit<ClientType, 'id'>>) =>
+		fetch(`${API_BASE}/clients/${id}`, {
+			method: 'PUT',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify(client),
+		}).then((res) => res.json()),
 };
